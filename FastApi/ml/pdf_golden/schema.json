@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Golden PDF corpus ground truth (one file per slice)",
+  "type": "object",
+  "required": ["version", "slice", "purpose", "why", "documents"],
+  "properties": {
+    "version": {"const": 1},
+    "slice": {"type": "string"},
+    "purpose": {"type": "string", "minLength": 1},
+    "why": {"type": "string", "minLength": 1},
+    "documents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["file", "pages", "scan", "page_labels", "boilerplate", "hidden_texts", "blocks", "questions"],
+        "properties": {
+          "file": {"type": "string"},
+          "pages": {"type": "integer", "minimum": 1},
+          "scan": {"type": "boolean"},
+          "page_labels": {"type": "array", "items": {"type": "string"}},
+          "boilerplate": {"type": "array", "items": {"type": "string"}},
+          "hidden_texts": {"type": "array", "items": {"type": "string"}},
+          "blocks": {
+            "description": "Text per block in reading order. Tables carry rows; code carries its exact text.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "page", "kind", "text", "section"],
+              "properties": {
+                "id": {"type": "string"},
+                "page": {"type": "integer", "minimum": 0},
+                "kind": {"enum": ["paragraph", "heading", "code", "table", "caption", "figure", "aside"]},
+                "text": {"type": "string"},
+                "section": {"type": "string"},
+                "rows": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}},
+                "column": {"type": "integer"},
+                "lang": {"enum": ["en", "es"]}
+              }
+            }
+          },
+          "questions": {
+            "description": "Recall questions with the expected citation (block, page index, quote).",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "question", "block_id", "page", "quote"],
+              "properties": {
+                "id": {"type": "string"}, "question": {"type": "string"},
+                "block_id": {"type": "string"}, "page": {"type": "integer", "minimum": 0},
+                "quote": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

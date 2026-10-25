@@ -2,6 +2,9 @@
 
 from dataclasses import dataclass
 
+from app.application.pdf.ports.document_repository import DocumentRepository
+from app.application.pdf.ports.event_publisher import EventReader
+from app.application.pdf.use_cases.upload_document import UploadDocument
 from app.application.ports.ingestion_jobs import IngestionJobs
 from app.application.use_cases.ask_question import AskQuestion
 
@@ -10,3 +13,6 @@ from app.application.use_cases.ask_question import AskQuestion
 class Container:
     ask_question: AskQuestion
     ingestion: IngestionJobs | None = None
+    upload_document: UploadDocument | None = None
+    documents: DocumentRepository | None = None
+    document_events: EventReader | None = None

@@ -1,0 +1,36 @@
+name: pdf-quality
+on:
+  push:
+    paths: ["FastApi/ml/pdf_golden/**", "FastApi/app/application/pdf/**", "FastApi/app/adapters/outbound/pdf/**", ".github/workflows/pdf-quality.yml"]
+  pull_request:
+    paths: ["FastApi/ml/pdf_golden/**", "FastApi/app/application/pdf/**", "FastApi/app/adapters/outbound/pdf/**"]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: FastApi
+
+jobs:
+  pdf-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --python 3.13 --frozen --group pdf-corpus --group ml-core
+      - name: Harness tests (builder determinism, metrics, champion, replay, oracle and degraded pipelines)
+        run: uv run --group pdf-corpus --group ml-core pytest ml/pdf_golden/tests -q --no-cov
+      - name: Build the golden corpus (ground truth must match the frozen checksums)
+        run: make -C ml pdf-corpus
+      - name: Evaluate the pipeline and write metrics per slice
+        run: make -C ml pdf-eval
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pdf-metrics
+          path: FastApi/ml/pdf_golden/.build/metrics
+      - name: PDF quality gates
+        # RED ON PURPOSE until each stage lands (reader, layout, boilerplate, code, OCR, chunker, answerer).
+        # Reported, never blocking; remove continue-on-error once the born-digital slices are green.
+        continue-on-error: true
+        run: make -C ml pdf-gates

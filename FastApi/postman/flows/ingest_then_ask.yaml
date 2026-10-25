@@ -1,0 +1,39 @@
+order: 3
+name: Ingest then ask
+description: |
+  Needs the knowledge base (docker-compose environment sets knowledgeBase=true) and a user with the
+  `ingest` role. Submits a document URL, polls the job until it finishes, then asks a question.
+requests:
+  - name: Submit an ingestion job
+    method: POST
+    path: /v1/ingestions
+    requires: [knowledge_base]
+    body:
+      type: json
+      value: { url: "{{ingestUrl}}", language: java, framework: spring }
+    expect: { status: 202, content_type: application/json }
+    capture: { jobId: job_id }
+  - name: Poll the ingestion job
+    method: GET
+    path: /v1/ingestions/:job_id
+    path_vars: { job_id: "{{jobId}}" }
+    requires: [knowledge_base]
+    poll: { states_pending: [queued, running], terminal: [succeeded, failed], max_attempts: 30, delay_ms: 1000 }
+    expect: { status: 200, content_type: application/json }
+  - name: Ask about the ingested topic
+    method: POST
+    path: /v1/questions
+    requires: [knowledge_base]
+    body:
+      type: formdata
+      fields:
+        - { key: audio, type: file, src: fixtures/question.webm }
+    expect:
+      status: 200
+      content_type: application/json
+      script:
+        - "const body = pm.response.json();"
+        - "pm.test('the answer is grounded in ingested sources', () => {"
+        - "  pm.expect(body.status).to.equal('answer');"
+        - "  pm.expect(body.answer.sources.some((s) => /^https?:\\/\\//.test(s.url || ''))).to.be.true;"
+        - "});"

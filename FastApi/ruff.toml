@@ -7,8 +7,11 @@ select = ["E", "F", "I", "UP", "B", "SIM", "ANN", "S", "C90", "RUF"]
 ignore = ["ANN401"]
 
 [lint.per-file-ignores]
-"tests/**" = ["S101", "S105", "S106", "ANN", "E501"]
-"scripts/**" = ["E501", "ANN"]
+"tests/**" = ["S101", "S105", "S106", "S104", "S607", "ANN", "E501"]
+"scripts/**" = ["E501", "ANN", "C901"]
+"app/adapters/outbound/pdf/active_content.py" = ["C901"]
+"app/adapters/inbound/rest/errors.py" = ["C901"]
+"app/adapters/inbound/rest/tus_hooks.py" = ["C901"]
 "ml/**" = ["E501", "ANN", "S101", "S311", "S603", "S607", "C901", "SIM", "RUF007"]
 "alembic/**" = ["E501", "ANN"]
 

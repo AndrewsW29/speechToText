@@ -1,0 +1,40 @@
+order: 2
+name: Ask a question
+description: |
+  Upload a spoken question and read the transcript and the grounded answer.
+  With the fake STT engine any non-empty audio works; against Whisper use fixtures/question.real.webm.
+requests:
+  - name: Ask a question (audio)
+    method: POST
+    path: /v1/questions
+    body:
+      type: formdata
+      fields:
+        - { key: audio, type: file, src: fixtures/question.webm }
+        - { key: language, type: text, value: en, disabled: true }
+    expect:
+      status: 200
+      content_type: application/json
+      checks:
+        - { path: transcript.text, nonempty: true }
+        - { path: question_id, nonempty: true }
+        - { path: status, in: [answer, clarify, abstain, command] }
+    capture: { questionId: question_id }
+  - name: Answers cite at least one source
+    method: POST
+    path: /v1/questions
+    body:
+      type: formdata
+      fields:
+        - { key: audio, type: file, src: fixtures/question.webm }
+    expect:
+      status: 200
+      content_type: application/json
+      script:
+        - "const body = pm.response.json();"
+        - "if (body.status === 'answer') {"
+        - "  pm.test('an answer always has sources', () => pm.expect(body.answer.sources).to.be.an('array').that.is.not.empty);"
+        - "  pm.test('sources have a title and a kind', () => body.answer.sources.forEach((s) => pm.expect(s).to.include.all.keys('id', 'title', 'kind')));"
+        - "} else {"
+        - "  pm.test('non-answers carry no answer object', () => pm.expect(body.answer).to.be.null);"
+        - "}"

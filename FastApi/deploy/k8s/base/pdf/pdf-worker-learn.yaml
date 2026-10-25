@@ -1,0 +1,24 @@
+# Low-priority learning queue (summaries, glossary, synthetic Q&A) arrives with US24 and US25
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: pdf-worker-learn, labels: { app: pdf-worker-learn, part-of: voice-assistant, queue: learn } }
+spec:
+  replicas: 0
+  selector: { matchLabels: { app: pdf-worker-learn } }
+  template:
+    metadata: { labels: { app: pdf-worker-learn, part-of: voice-assistant, role: pdf-parser } }
+    spec:
+      automountServiceAccountToken: false
+      securityContext: { runAsNonRoot: true, runAsUser: 10002, runAsGroup: 10002, seccompProfile: { type: RuntimeDefault } }
+      containers:
+        - name: worker
+          image: voice-assistant/pdf-worker:latest
+          args: ["celery", "-A", "app.workers.pdf_worker", "worker", "-Q", "learn", "--concurrency", "2", "--max-tasks-per-child", "20"]
+          envFrom:
+            - configMapRef: { name: pdf-config }
+            - secretRef: { name: pdf-secrets }
+          resources: { requests: { cpu: 250m, memory: 1Gi }, limits: { cpu: "4", memory: 1Gi } }
+          securityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: [ALL] } }
+          volumeMounts: [{ name: tmp, mountPath: /tmp }]
+      volumes:
+        - { name: tmp, emptyDir: { medium: Memory, sizeLimit: 1Gi } }

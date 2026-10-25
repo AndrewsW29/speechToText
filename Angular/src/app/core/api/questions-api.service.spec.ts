@@ -8,9 +8,13 @@ import { AuthTokenProvider } from './auth-token.provider';
 import { QuestionsApi } from './questions-api.service';
 
 const OK: QuestionResponse = {
+  status: 'answer',
   question_id: 'q1',
   transcript: { text: 'hello', language: null },
   answer: { text: 'hi', sources: [{ id: 's', title: 'Docs', url: null, kind: 'documentation' }] },
+  clarification: null,
+  message: null,
+  intent: null,
 };
 
 describe('QuestionsApi', () => {

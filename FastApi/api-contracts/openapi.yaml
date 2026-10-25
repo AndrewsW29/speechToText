@@ -146,6 +146,194 @@ paths:
           content: *id001
       security:
       - bearer: []
+  /v1/documents:
+    post:
+      tags:
+      - documents
+      summary: Upload
+      operationId: upload_v1_documents_post
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_v1_documents_post'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentAccepted'
+        '200':
+          description: 'Duplicate: this owner already uploaded the same file'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentAccepted'
+        '401':
+          description: Missing or invalid token
+          content: *id001
+        '404':
+          description: Document not found
+          content: *id001
+        '413':
+          description: File too large
+          content: *id001
+        '415':
+          description: Not a valid PDF
+          content: *id001
+        '422':
+          description: Upload rejected or validation failed
+          content: *id001
+        '429':
+          description: Quota exceeded
+          content: *id001
+        '503':
+          description: Document processing is not configured or the queue is down
+          content: *id001
+      security:
+      - bearer: []
+    get:
+      tags:
+      - documents
+      summary: List Documents
+      operationId: list_documents_v1_documents_get
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+        '401':
+          description: Missing or invalid token
+          content: *id001
+        '404':
+          description: Document not found
+          content: *id001
+        '413':
+          description: File too large
+          content: *id001
+        '415':
+          description: Not a valid PDF
+          content: *id001
+        '422':
+          description: Upload rejected or validation failed
+          content: *id001
+        '429':
+          description: Quota exceeded
+          content: *id001
+        '503':
+          description: Document processing is not configured or the queue is down
+          content: *id001
+      security:
+      - bearer: []
+  /v1/documents/{document_id}:
+    get:
+      tags:
+      - documents
+      summary: Get Document
+      operationId: get_document_v1_documents__document_id__get
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Document Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentOut'
+        '401':
+          description: Missing or invalid token
+          content: *id001
+        '404':
+          description: Document not found
+          content: *id001
+        '413':
+          description: File too large
+          content: *id001
+        '415':
+          description: Not a valid PDF
+          content: *id001
+        '422':
+          description: Upload rejected or validation failed
+          content: *id001
+        '429':
+          description: Quota exceeded
+          content: *id001
+        '503':
+          description: Document processing is not configured or the queue is down
+          content: *id001
+      security:
+      - bearer: []
+  /v1/documents/{document_id}/events:
+    get:
+      tags:
+      - documents
+      summary: Stream Events
+      operationId: stream_events_v1_documents__document_id__events_get
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Document Id
+      - name: last-event-id
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Last-Event-Id
+      responses:
+        '200':
+          description: Stage events
+          content:
+            application/json:
+              schema: {}
+            text/event-stream:
+              schema:
+                type: string
+        '401':
+          description: Missing or invalid token
+          content: *id001
+        '404':
+          description: Document not found
+          content: *id001
+        '413':
+          description: File too large
+          content: *id001
+        '415':
+          description: Not a valid PDF
+          content: *id001
+        '422':
+          description: Upload rejected or validation failed
+          content: *id001
+        '429':
+          description: Quota exceeded
+          content: *id001
+        '503':
+          description: Document processing is not configured or the queue is down
+          content: *id001
+      security:
+      - bearer: []
 components:
   schemas:
     AnswerOut:
@@ -178,6 +366,21 @@ components:
       required:
       - audio
       title: Body_ask_question_v1_questions_post
+    Body_upload_v1_documents_post:
+      properties:
+        file:
+          type: string
+          contentMediaType: application/octet-stream
+          title: File
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+      type: object
+      required:
+      - file
+      title: Body_upload_v1_documents_post
     ClarificationOut:
       properties:
         question:
@@ -193,6 +396,84 @@ components:
       - question
       - options
       title: ClarificationOut
+    DocumentAccepted:
+      properties:
+        document_id:
+          type: string
+          title: Document Id
+        status:
+          type: string
+          title: Status
+        version:
+          type: integer
+          title: Version
+        duplicate_of:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Duplicate Of
+      type: object
+      required:
+      - document_id
+      - status
+      - version
+      - duplicate_of
+      title: DocumentAccepted
+    DocumentList:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DocumentOut'
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: DocumentList
+    DocumentOut:
+      properties:
+        document_id:
+          type: string
+          title: Document Id
+        title:
+          type: string
+          title: Title
+        status:
+          type: string
+          title: Status
+        version:
+          type: integer
+          title: Version
+        pages:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Pages
+        flags:
+          items:
+            type: string
+          type: array
+          title: Flags
+        failure_reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Failure Reason
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+      type: object
+      required:
+      - document_id
+      - title
+      - status
+      - version
+      - pages
+      - flags
+      - failure_reason
+      - created_at
+      title: DocumentOut
     HTTPValidationError:
       properties:
         detail:

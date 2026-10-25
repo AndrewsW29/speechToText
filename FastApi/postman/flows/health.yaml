@@ -1,0 +1,14 @@
+order: 1
+name: Health
+description: "Liveness and readiness. Run first, because nothing else is meaningful if these fail."
+requests:
+  - name: Liveness
+    method: GET
+    path: /health/live
+    auth: noauth
+    expect: { status: 200, content_type: application/json, json: { status: ok } }
+  - name: Readiness
+    method: GET
+    path: /health/ready
+    auth: noauth
+    expect: { status: 200, content_type: application/json, json: { status: ok } }

@@ -14,7 +14,14 @@ from app.adapters.outbound.ingestion.document_sources import UrlNotAllowedError
 from app.application.errors import (
     InvalidAudioError,
     NoRelevantSourcesError,
+    NotAPdfError,
+    PixelBudgetExceededError,
+    QueueUnavailableError,
+    QuotaExceededError,
+    TooLargeError,
+    TooManyPagesError,
     TranscriptionError,
+    UploadRejectedError,
 )
 
 PROBLEM_JSON = "application/problem+json"
@@ -61,6 +68,28 @@ def register_error_handlers(app: FastAPI) -> None:
     @app.exception_handler(UrlNotAllowedError)
     async def _url_not_allowed(_: Request, exc: UrlNotAllowedError) -> JSONResponse:
         return problem_response(422, "URL not allowed", "The URL failed ingestion validation")
+
+    @app.exception_handler(NotAPdfError)
+    async def _not_a_pdf(_: Request, exc: NotAPdfError) -> JSONResponse:
+        return problem_response(415, "Unsupported media type", str(exc))
+
+    @app.exception_handler(TooLargeError)
+    async def _too_large(_: Request, exc: TooLargeError) -> JSONResponse:
+        return problem_response(413, "File too large", str(exc))
+
+    @app.exception_handler(QuotaExceededError)
+    async def _quota(_: Request, exc: QuotaExceededError) -> JSONResponse:
+        return problem_response(429, "Quota exceeded", str(exc))
+
+    @app.exception_handler(TooManyPagesError)
+    @app.exception_handler(PixelBudgetExceededError)
+    @app.exception_handler(UploadRejectedError)
+    async def _rejected(_: Request, exc: UploadRejectedError) -> JSONResponse:
+        return problem_response(422, "Upload rejected", str(exc))
+
+    @app.exception_handler(QueueUnavailableError)
+    async def _queue(_: Request, exc: QueueUnavailableError) -> JSONResponse:
+        return problem_response(503, "Processing unavailable", str(exc))
 
     @app.exception_handler(RequestValidationError)
     async def _validation(_: Request, exc: RequestValidationError) -> JSONResponse:

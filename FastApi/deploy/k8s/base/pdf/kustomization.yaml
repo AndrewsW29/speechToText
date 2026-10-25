@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - config.yaml
+  - clamav.yaml
+  - tusd.yaml
+  - pdf-worker-ingest.yaml
+  - pdf-worker-gpu.yaml
+  - pdf-worker-learn.yaml
+  - networkpolicy.yaml

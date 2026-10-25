@@ -19,3 +19,52 @@ class NoRelevantSourcesError(ApplicationError):
 
 class ClassificationError(ApplicationError):
     """The intent classifier is unavailable or returned an unusable result."""
+
+
+class TransientError(ApplicationError):
+    """A failure worth retrying with backoff (network blip, scanner restarting, storage hiccup)."""
+
+
+class UploadRejectedError(ApplicationError):
+    """The upload is refused before any expensive work; the message is safe to show the user."""
+
+
+class NotAPdfError(UploadRejectedError):
+    def __init__(self, message: str = "This file isn't a valid PDF") -> None:
+        super().__init__(message)
+
+
+class TooLargeError(UploadRejectedError):
+    pass
+
+
+class TooManyPagesError(UploadRejectedError):
+    pass
+
+
+class QuotaExceededError(UploadRejectedError):
+    pass
+
+
+class MalwareFoundError(ApplicationError):
+    """The scanner flagged the file; the document is quarantined and never parsed."""
+
+
+class ScannerUnavailableError(TransientError):
+    """The malware scanner could not be reached; ingestion fails closed and retries."""
+
+
+class StorageError(TransientError):
+    pass
+
+
+class QueueUnavailableError(TransientError):
+    pass
+
+
+class ReaderNotConfiguredError(ApplicationError):
+    """No reader/indexer is wired in this deployment, so the document cannot be processed yet."""
+
+
+class PixelBudgetExceededError(UploadRejectedError):
+    """Rendering this page would exceed the pixel cap (decompression-bomb protection)."""

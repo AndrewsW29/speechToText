@@ -19,10 +19,28 @@ export interface Answer {
   readonly sources: readonly Source[];
 }
 
+/** answer: a grounded answer; clarify: ask the user a question; abstain: out of scope or unsure; command: app control. */
+export type ResponseStatus = 'answer' | 'clarify' | 'abstain' | 'command';
+
+export interface Clarification {
+  readonly question: string;
+  readonly options: readonly string[];
+}
+
+export interface IntentInfo {
+  readonly name: string;
+  readonly confidence: number;
+  readonly entities: Readonly<Record<string, string>>;
+}
+
 export interface QuestionResponse {
+  readonly status: ResponseStatus;
   readonly question_id: string;
   readonly transcript: Transcript;
-  readonly answer: Answer;
+  readonly answer: Answer | null;
+  readonly clarification: Clarification | null;
+  readonly message: string | null;
+  readonly intent: IntentInfo | null;
 }
 
 /** RFC 9457 Problem Details (application/problem+json). */

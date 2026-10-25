@@ -1,0 +1,262 @@
+{
+  "version": 1,
+  "slice": "clean_book",
+  "purpose": "Baseline: a clean technical book chapter with a repeated header and footer and front matter numbered in roman numerals.",
+  "why": "Anything that fails here fails everywhere. Repeated furniture must be removed from chunks (leakage) and the printed page label (i, ii, 1...) must differ from the page index so citations are tested for the right page.",
+  "documents": [
+    {
+      "file": "clean_book.pdf",
+      "pages": 7,
+      "scan": false,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "boilerplate": [
+        "Spring Guide Reference",
+        "Confidential - Acme Press"
+      ],
+      "hidden_texts": [],
+      "blocks": [
+        {
+          "id": "b0",
+          "page": 0,
+          "kind": "heading",
+          "text": "Preface",
+          "section": "Preface"
+        },
+        {
+          "id": "b1",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The batch limit of component Q001 is 61 messages. This value is read once at startup and can be overridden per environment. Operators usually leave it unchanged unless the workload grows.",
+          "section": "Preface",
+          "lang": "en"
+        },
+        {
+          "id": "b2",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The batch limit of component X002 is 64 minutes. Operators usually leave it unchanged unless the workload grows. The setting is validated before the service accepts traffic.",
+          "section": "Preface",
+          "lang": "en"
+        },
+        {
+          "id": "b3",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The heap ceiling of component Z003 is 34 seconds. Operators usually leave it unchanged unless the workload grows. It is documented here because several teams depend on it.",
+          "section": "Preface",
+          "lang": "en"
+        },
+        {
+          "id": "b4",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The timeout of component W004 is 70 megabytes. The setting is validated before the service accepts traffic. Operators usually leave it unchanged unless the workload grows.",
+          "section": "Preface",
+          "lang": "en"
+        },
+        {
+          "id": "b5",
+          "page": 2,
+          "kind": "heading",
+          "text": "Chapter 1 Getting started",
+          "section": "Chapter 1 Getting started"
+        },
+        {
+          "id": "b6",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The heap ceiling of component V005 is 32 messages. Changes take effect after the next rolling restart. It is documented here because several teams depend on it.",
+          "section": "Chapter 1 Getting started",
+          "lang": "en"
+        },
+        {
+          "id": "b7",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The batch limit of component K006 is 57 seconds. Changes take effect after the next rolling restart. The setting is validated before the service accepts traffic.",
+          "section": "Chapter 1 Getting started",
+          "lang": "en"
+        },
+        {
+          "id": "b8",
+          "page": 3,
+          "kind": "paragraph",
+          "text": "The batch limit of component Q007 is 85 seconds. It is documented here because several teams depend on it. The setting is validated before the service accepts traffic.",
+          "section": "Chapter 1 Getting started",
+          "lang": "en"
+        },
+        {
+          "id": "b9",
+          "page": 3,
+          "kind": "paragraph",
+          "text": "The cache ttl of component X008 is 50 requests. Operators usually leave it unchanged unless the workload grows. Changes take effect after the next rolling restart.",
+          "section": "Chapter 1 Getting started",
+          "lang": "en"
+        },
+        {
+          "id": "b10",
+          "page": 4,
+          "kind": "paragraph",
+          "text": "The timeout of component Z009 is 97 requests. Changes take effect after the next rolling restart. This value is read once at startup and can be overridden per environment.",
+          "section": "Chapter 1 Getting started",
+          "lang": "en"
+        },
+        {
+          "id": "b11",
+          "page": 4,
+          "kind": "paragraph",
+          "text": "The heap ceiling of component W010 is 70 records. This value is read once at startup and can be overridden per environment. The setting is validated before the service accepts traffic.",
+          "section": "Chapter 1 Getting started",
+          "lang": "en"
+        },
+        {
+          "id": "b12",
+          "page": 5,
+          "kind": "heading",
+          "text": "Chapter 2 Configuration",
+          "section": "Chapter 2 Configuration"
+        },
+        {
+          "id": "b13",
+          "page": 5,
+          "kind": "paragraph",
+          "text": "The retry budget of component V011 is 92 messages. The setting is validated before the service accepts traffic. This value is read once at startup and can be overridden per environment.",
+          "section": "Chapter 2 Configuration",
+          "lang": "en"
+        },
+        {
+          "id": "b14",
+          "page": 5,
+          "kind": "paragraph",
+          "text": "The cache ttl of component K012 is 6 connections. Changes take effect after the next rolling restart. Operators usually leave it unchanged unless the workload grows.",
+          "section": "Chapter 2 Configuration",
+          "lang": "en"
+        },
+        {
+          "id": "b15",
+          "page": 6,
+          "kind": "paragraph",
+          "text": "The cache ttl of component Q013 is 99 seconds. Operators usually leave it unchanged unless the workload grows. Changes take effect after the next rolling restart.",
+          "section": "Chapter 2 Configuration",
+          "lang": "en"
+        },
+        {
+          "id": "b16",
+          "page": 6,
+          "kind": "paragraph",
+          "text": "The queue depth of component X014 is 23 megabytes. Changes take effect after the next rolling restart. The setting is validated before the service accepts traffic.",
+          "section": "Chapter 2 Configuration",
+          "lang": "en"
+        }
+      ],
+      "questions": [
+        {
+          "id": "q0",
+          "question": "What is the batch limit of component Q001?",
+          "block_id": "b1",
+          "page": 0,
+          "quote": "The batch limit of component Q001 is 61 messages."
+        },
+        {
+          "id": "q1",
+          "question": "What is the batch limit of component X002?",
+          "block_id": "b2",
+          "page": 0,
+          "quote": "The batch limit of component X002 is 64 minutes."
+        },
+        {
+          "id": "q2",
+          "question": "What is the heap ceiling of component Z003?",
+          "block_id": "b3",
+          "page": 1,
+          "quote": "The heap ceiling of component Z003 is 34 seconds."
+        },
+        {
+          "id": "q3",
+          "question": "What is the timeout of component W004?",
+          "block_id": "b4",
+          "page": 1,
+          "quote": "The timeout of component W004 is 70 megabytes."
+        },
+        {
+          "id": "q4",
+          "question": "What is the heap ceiling of component V005?",
+          "block_id": "b6",
+          "page": 2,
+          "quote": "The heap ceiling of component V005 is 32 messages."
+        },
+        {
+          "id": "q5",
+          "question": "What is the batch limit of component K006?",
+          "block_id": "b7",
+          "page": 2,
+          "quote": "The batch limit of component K006 is 57 seconds."
+        },
+        {
+          "id": "q6",
+          "question": "What is the batch limit of component Q007?",
+          "block_id": "b8",
+          "page": 3,
+          "quote": "The batch limit of component Q007 is 85 seconds."
+        },
+        {
+          "id": "q7",
+          "question": "What is the cache ttl of component X008?",
+          "block_id": "b9",
+          "page": 3,
+          "quote": "The cache ttl of component X008 is 50 requests."
+        },
+        {
+          "id": "q8",
+          "question": "What is the timeout of component Z009?",
+          "block_id": "b10",
+          "page": 4,
+          "quote": "The timeout of component Z009 is 97 requests."
+        },
+        {
+          "id": "q9",
+          "question": "What is the heap ceiling of component W010?",
+          "block_id": "b11",
+          "page": 4,
+          "quote": "The heap ceiling of component W010 is 70 records."
+        },
+        {
+          "id": "q10",
+          "question": "What is the retry budget of component V011?",
+          "block_id": "b13",
+          "page": 5,
+          "quote": "The retry budget of component V011 is 92 messages."
+        },
+        {
+          "id": "q11",
+          "question": "What is the cache ttl of component K012?",
+          "block_id": "b14",
+          "page": 5,
+          "quote": "The cache ttl of component K012 is 6 connections."
+        },
+        {
+          "id": "q12",
+          "question": "What is the cache ttl of component Q013?",
+          "block_id": "b15",
+          "page": 6,
+          "quote": "The cache ttl of component Q013 is 99 seconds."
+        },
+        {
+          "id": "q13",
+          "question": "What is the queue depth of component X014?",
+          "block_id": "b16",
+          "page": 6,
+          "quote": "The queue depth of component X014 is 23 megabytes."
+        }
+      ]
+    }
+  ]
+}

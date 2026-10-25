@@ -20,3 +20,11 @@ repos:
     hooks:
       - id: conventional-pre-commit
         stages: [commit-msg]
+  - repo: local
+    hooks:
+      - id: postman-collection-sync
+        name: Postman collection is in sync with openapi.yaml
+        entry: uv run --project FastApi python FastApi/scripts/postman_collection.py --check
+        language: system
+        pass_filenames: false
+        files: ^FastApi/(api-contracts/openapi\.yaml|postman/(flows|scripts)/.*|scripts/postman_collection\.py)$

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: pdf-config }
+data:
+  VA_PDF_ENABLED: "true"
+  VA_INGESTION_BACKEND: celery
+  VA_CLAMAV_HOST: clamav
+  VA_MINIO_ENDPOINT: minio:9000
+  VA_MINIO_BUCKET: documents
+  VA_TUS_UPLOAD_DIR: /tus
+  VA_PDF_INGEST__LIMITS__MAX_FILE_MB: "50"
+  VA_PDF_INGEST__LIMITS__MAX_PAGES: "1000"
+---
+# Values come from the secret manager (External Secrets); this file only documents the keys.
+apiVersion: v1
+kind: Secret
+metadata: { name: pdf-secrets, annotations: { documentation: "populated by External Secrets, never committed with values" } }
+type: Opaque
+stringData:
+  tus-hook-token: ""
+  VA_MINIO_ACCESS_KEY: ""
+  VA_MINIO_SECRET_KEY: ""
+  VA_DATABASE_URL: ""
+  VA_REDIS_URL: ""

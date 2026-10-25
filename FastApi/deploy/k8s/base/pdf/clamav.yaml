@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: clamav, labels: { app: clamav, part-of: voice-assistant } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: clamav } }
+  template:
+    metadata: { labels: { app: clamav, part-of: voice-assistant } }
+    spec:
+      automountServiceAccountToken: false
+      securityContext: { runAsNonRoot: true, runAsUser: 100, runAsGroup: 101, seccompProfile: { type: RuntimeDefault } }
+      containers:
+        - name: clamav
+          image: clamav/clamav:1.4
+          ports: [{ containerPort: 3310, name: clamd }]
+          resources: { requests: { cpu: 250m, memory: 1Gi }, limits: { cpu: "1", memory: 2Gi } }
+          securityContext: { allowPrivilegeEscalation: false, capabilities: { drop: [ALL] } }
+          readinessProbe: { exec: { command: [clamdcheck.sh] }, initialDelaySeconds: 60, periodSeconds: 15 }
+          livenessProbe: { tcpSocket: { port: clamd }, initialDelaySeconds: 120, periodSeconds: 30 }
+          volumeMounts: [{ name: db, mountPath: /var/lib/clamav }, { name: tmp, mountPath: /tmp }, { name: run, mountPath: /run/clamav }]
+      volumes:
+        - { name: db, emptyDir: {} }
+        - { name: tmp, emptyDir: {} }
+        - { name: run, emptyDir: {} }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: clamav, labels: { app: clamav } }
+spec:
+  selector: { app: clamav }
+  ports: [{ port: 3310, targetPort: clamd, name: clamd }]

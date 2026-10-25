@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "slice": "slides",
+  "purpose": "Slide deck export: little prose, a simple diagram and captions.",
+  "why": "Figures and captions must be linked and the footer on every slide removed.",
+  "documents": [
+    {
+      "file": "slides.pdf",
+      "pages": 4,
+      "scan": false,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "boilerplate": [
+        "Devconf 2026"
+      ],
+      "hidden_texts": [],
+      "blocks": [
+        {
+          "id": "b0",
+          "page": 0,
+          "kind": "heading",
+          "text": "Reading PDFs at Scale",
+          "section": "Reading PDFs at Scale"
+        },
+        {
+          "id": "b1",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The retry budget of component Q001 is 67 messages. It is documented here because several teams depend on it. Changes take effect after the next rolling restart.",
+          "section": "Reading PDFs at Scale",
+          "lang": "en"
+        },
+        {
+          "id": "b2",
+          "page": 1,
+          "kind": "heading",
+          "text": "Why layout matters",
+          "section": "Why layout matters"
+        },
+        {
+          "id": "b3",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The retry budget of component X002 is 16 minutes. Changes take effect after the next rolling restart. It is documented here because several teams depend on it.",
+          "section": "Why layout matters",
+          "lang": "en"
+        },
+        {
+          "id": "b4",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The retry budget of component Z003 is 37 seconds. Changes take effect after the next rolling restart. This value is read once at startup and can be overridden per environment.",
+          "section": "Why layout matters",
+          "lang": "en"
+        },
+        {
+          "id": "b5",
+          "page": 2,
+          "kind": "heading",
+          "text": "Pipeline overview",
+          "section": "Pipeline overview"
+        },
+        {
+          "id": "b6",
+          "page": 2,
+          "kind": "figure",
+          "text": "Reader Chunker Index",
+          "section": "Pipeline overview"
+        },
+        {
+          "id": "b7",
+          "page": 2,
+          "kind": "caption",
+          "text": "Figure 1: The ingestion pipeline stages.",
+          "section": "Pipeline overview"
+        },
+        {
+          "id": "b8",
+          "page": 3,
+          "kind": "heading",
+          "text": "Results",
+          "section": "Results"
+        },
+        {
+          "id": "b9",
+          "page": 3,
+          "kind": "paragraph",
+          "text": "The cache ttl of component W004 is 37 megabytes. Changes take effect after the next rolling restart. It is documented here because several teams depend on it.",
+          "section": "Results",
+          "lang": "en"
+        },
+        {
+          "id": "b10",
+          "page": 3,
+          "kind": "figure",
+          "text": "Before After",
+          "section": "Results"
+        },
+        {
+          "id": "b11",
+          "page": 3,
+          "kind": "caption",
+          "text": "Figure 2: Leakage before and after the fix.",
+          "section": "Results"
+        }
+      ],
+      "questions": [
+        {
+          "id": "q0",
+          "question": "What is the retry budget of component Q001?",
+          "block_id": "b1",
+          "page": 0,
+          "quote": "The retry budget of component Q001 is 67 messages."
+        },
+        {
+          "id": "q1",
+          "question": "What is the retry budget of component X002?",
+          "block_id": "b3",
+          "page": 1,
+          "quote": "The retry budget of component X002 is 16 minutes."
+        },
+        {
+          "id": "q2",
+          "question": "What is the retry budget of component Z003?",
+          "block_id": "b4",
+          "page": 1,
+          "quote": "The retry budget of component Z003 is 37 seconds."
+        },
+        {
+          "id": "q3",
+          "question": "What is the cache ttl of component W004?",
+          "block_id": "b9",
+          "page": 3,
+          "quote": "The cache ttl of component W004 is 37 megabytes."
+        }
+      ]
+    }
+  ]
+}

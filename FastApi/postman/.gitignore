@@ -1,0 +1,4 @@
+# Local environments and exports can contain credentials: never commit them.
+*.local.postman_environment.json
+*.secret.json
+*.local.json

@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: { name: tus-uploads }
+spec:
+  accessModes: [ReadWriteMany]
+  resources: { requests: { storage: 20Gi } }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: tusd, labels: { app: tusd, part-of: voice-assistant } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: tusd } }
+  template:
+    metadata: { labels: { app: tusd, part-of: voice-assistant } }
+    spec:
+      automountServiceAccountToken: false
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, runAsGroup: 1000, fsGroup: 1000, seccompProfile: { type: RuntimeDefault } }
+      containers:
+        - name: tusd
+          image: tusproject/tusd:v2
+          args:
+            - -upload-dir=/data
+            - -hooks-enabled-events=pre-create,post-finish
+            - -hooks-http=http://api:8000/internal/tus/hooks/$(TUS_HOOK_TOKEN)
+          env:
+            - name: TUS_HOOK_TOKEN
+              valueFrom: { secretKeyRef: { name: pdf-secrets, key: tus-hook-token } }
+          ports: [{ containerPort: 8080, name: http }]
+          resources: { requests: { cpu: 100m, memory: 128Mi }, limits: { cpu: 500m, memory: 512Mi } }
+          securityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: [ALL] } }
+          readinessProbe: { httpGet: { path: /files/, port: http }, periodSeconds: 10 }
+          volumeMounts: [{ name: uploads, mountPath: /data }]
+      volumes:
+        - { name: uploads, persistentVolumeClaim: { claimName: tus-uploads } }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: tusd, labels: { app: tusd } }
+spec:
+  selector: { app: tusd }
+  ports: [{ port: 8080, targetPort: http, name: http }]

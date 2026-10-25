@@ -10,12 +10,16 @@ import { ConversationComponent } from './conversation.component';
 import { ConversationStore } from './conversation.store';
 
 const RESPONSE: QuestionResponse = {
+  status: 'answer',
   question_id: 'q1',
   transcript: { text: 'Create a controller', language: 'en' },
   answer: {
     text: 'Step one.\n```java\n@RestController\nclass A {}\n```\nDone.',
     sources: [{ id: 's1', title: 'Spring Docs', url: 'https://spring.io', kind: 'documentation' }],
   },
+  clarification: null,
+  message: null,
+  intent: null,
 };
 
 describe('ConversationComponent', () => {

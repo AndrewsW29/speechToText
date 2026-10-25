@@ -1,0 +1,338 @@
+{
+  "version": 1,
+  "slice": "two_column",
+  "purpose": "Two-column paper: the left column is read in full before the right one.",
+  "why": "Naive top-to-bottom extraction interleaves columns. Guards the reading-order stage.",
+  "documents": [
+    {
+      "file": "two_column.pdf",
+      "pages": 3,
+      "scan": false,
+      "page_labels": [
+        "1",
+        "2",
+        "3"
+      ],
+      "boilerplate": [
+        "Distributed Systems Review"
+      ],
+      "hidden_texts": [],
+      "blocks": [
+        {
+          "id": "b0",
+          "page": 0,
+          "kind": "heading",
+          "text": "Section 1 Replicated logs",
+          "section": "Section 1 Replicated logs",
+          "column": 0
+        },
+        {
+          "id": "b1",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The rate limit of component Q001 is 54 megabytes. Operators usually leave it unchanged unless the workload grows. It is documented here because several teams depend on it.",
+          "section": "Section 1 Replicated logs",
+          "lang": "en",
+          "column": 0
+        },
+        {
+          "id": "b2",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The rate limit of component X002 is 56 attempts. Changes take effect after the next rolling restart. It is documented here because several teams depend on it.",
+          "section": "Section 1 Replicated logs",
+          "lang": "en",
+          "column": 0
+        },
+        {
+          "id": "b3",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The retry budget of component Z003 is 27 messages. Operators usually leave it unchanged unless the workload grows. Changes take effect after the next rolling restart.",
+          "section": "Section 1 Replicated logs",
+          "lang": "en",
+          "column": 0
+        },
+        {
+          "id": "b4",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The batch limit of component W004 is 43 requests. Changes take effect after the next rolling restart. Operators usually leave it unchanged unless the workload grows.",
+          "section": "Section 1 Replicated logs",
+          "lang": "en",
+          "column": 1
+        },
+        {
+          "id": "b5",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The rate limit of component V005 is 97 megabytes. This value is read once at startup and can be overridden per environment. Operators usually leave it unchanged unless the workload grows.",
+          "section": "Section 1 Replicated logs",
+          "lang": "en",
+          "column": 1
+        },
+        {
+          "id": "b6",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The cache ttl of component K006 is 62 megabytes. Changes take effect after the next rolling restart. The setting is validated before the service accepts traffic.",
+          "section": "Section 1 Replicated logs",
+          "lang": "en",
+          "column": 1
+        },
+        {
+          "id": "b7",
+          "page": 1,
+          "kind": "heading",
+          "text": "Section 2 Consensus",
+          "section": "Section 2 Consensus",
+          "column": 0
+        },
+        {
+          "id": "b8",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The retry budget of component Q007 is 82 connections. This value is read once at startup and can be overridden per environment. It is documented here because several teams depend on it.",
+          "section": "Section 2 Consensus",
+          "lang": "en",
+          "column": 0
+        },
+        {
+          "id": "b9",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The rate limit of component X008 is 3 minutes. Operators usually leave it unchanged unless the workload grows. It is documented here because several teams depend on it.",
+          "section": "Section 2 Consensus",
+          "lang": "en",
+          "column": 0
+        },
+        {
+          "id": "b10",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The batch limit of component Z009 is 47 seconds. Operators usually leave it unchanged unless the workload grows. It is documented here because several teams depend on it.",
+          "section": "Section 2 Consensus",
+          "lang": "en",
+          "column": 0
+        },
+        {
+          "id": "b11",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The batch limit of component W010 is 32 requests. The setting is validated before the service accepts traffic. It is documented here because several teams depend on it.",
+          "section": "Section 2 Consensus",
+          "lang": "en",
+          "column": 1
+        },
+        {
+          "id": "b12",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The batch limit of component V011 is 39 minutes. The setting is validated before the service accepts traffic. Changes take effect after the next rolling restart.",
+          "section": "Section 2 Consensus",
+          "lang": "en",
+          "column": 1
+        },
+        {
+          "id": "b13",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The batch limit of component K012 is 9 messages. It is documented here because several teams depend on it. Operators usually leave it unchanged unless the workload grows.",
+          "section": "Section 2 Consensus",
+          "lang": "en",
+          "column": 1
+        },
+        {
+          "id": "b14",
+          "page": 2,
+          "kind": "heading",
+          "text": "Section 3 Recovery",
+          "section": "Section 3 Recovery",
+          "column": 0
+        },
+        {
+          "id": "b15",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The rate limit of component Q013 is 68 requests. It is documented here because several teams depend on it. The setting is validated before the service accepts traffic.",
+          "section": "Section 3 Recovery",
+          "lang": "en",
+          "column": 0
+        },
+        {
+          "id": "b16",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The queue depth of component X014 is 22 requests. Operators usually leave it unchanged unless the workload grows. The setting is validated before the service accepts traffic.",
+          "section": "Section 3 Recovery",
+          "lang": "en",
+          "column": 0
+        },
+        {
+          "id": "b17",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The queue depth of component Z015 is 27 seconds. It is documented here because several teams depend on it. The setting is validated before the service accepts traffic.",
+          "section": "Section 3 Recovery",
+          "lang": "en",
+          "column": 0
+        },
+        {
+          "id": "b18",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The retry budget of component W016 is 87 seconds. It is documented here because several teams depend on it. Changes take effect after the next rolling restart.",
+          "section": "Section 3 Recovery",
+          "lang": "en",
+          "column": 1
+        },
+        {
+          "id": "b19",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The queue depth of component V017 is 38 seconds. Operators usually leave it unchanged unless the workload grows. The setting is validated before the service accepts traffic.",
+          "section": "Section 3 Recovery",
+          "lang": "en",
+          "column": 1
+        },
+        {
+          "id": "b20",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The heap ceiling of component K018 is 85 minutes. Operators usually leave it unchanged unless the workload grows. It is documented here because several teams depend on it.",
+          "section": "Section 3 Recovery",
+          "lang": "en",
+          "column": 1
+        }
+      ],
+      "questions": [
+        {
+          "id": "q0",
+          "question": "What is the rate limit of component Q001?",
+          "block_id": "b1",
+          "page": 0,
+          "quote": "The rate limit of component Q001 is 54 megabytes."
+        },
+        {
+          "id": "q1",
+          "question": "What is the rate limit of component X002?",
+          "block_id": "b2",
+          "page": 0,
+          "quote": "The rate limit of component X002 is 56 attempts."
+        },
+        {
+          "id": "q2",
+          "question": "What is the retry budget of component Z003?",
+          "block_id": "b3",
+          "page": 0,
+          "quote": "The retry budget of component Z003 is 27 messages."
+        },
+        {
+          "id": "q3",
+          "question": "What is the batch limit of component W004?",
+          "block_id": "b4",
+          "page": 0,
+          "quote": "The batch limit of component W004 is 43 requests."
+        },
+        {
+          "id": "q4",
+          "question": "What is the rate limit of component V005?",
+          "block_id": "b5",
+          "page": 0,
+          "quote": "The rate limit of component V005 is 97 megabytes."
+        },
+        {
+          "id": "q5",
+          "question": "What is the cache ttl of component K006?",
+          "block_id": "b6",
+          "page": 0,
+          "quote": "The cache ttl of component K006 is 62 megabytes."
+        },
+        {
+          "id": "q6",
+          "question": "What is the retry budget of component Q007?",
+          "block_id": "b8",
+          "page": 1,
+          "quote": "The retry budget of component Q007 is 82 connections."
+        },
+        {
+          "id": "q7",
+          "question": "What is the rate limit of component X008?",
+          "block_id": "b9",
+          "page": 1,
+          "quote": "The rate limit of component X008 is 3 minutes."
+        },
+        {
+          "id": "q8",
+          "question": "What is the batch limit of component Z009?",
+          "block_id": "b10",
+          "page": 1,
+          "quote": "The batch limit of component Z009 is 47 seconds."
+        },
+        {
+          "id": "q9",
+          "question": "What is the batch limit of component W010?",
+          "block_id": "b11",
+          "page": 1,
+          "quote": "The batch limit of component W010 is 32 requests."
+        },
+        {
+          "id": "q10",
+          "question": "What is the batch limit of component V011?",
+          "block_id": "b12",
+          "page": 1,
+          "quote": "The batch limit of component V011 is 39 minutes."
+        },
+        {
+          "id": "q11",
+          "question": "What is the batch limit of component K012?",
+          "block_id": "b13",
+          "page": 1,
+          "quote": "The batch limit of component K012 is 9 messages."
+        },
+        {
+          "id": "q12",
+          "question": "What is the rate limit of component Q013?",
+          "block_id": "b15",
+          "page": 2,
+          "quote": "The rate limit of component Q013 is 68 requests."
+        },
+        {
+          "id": "q13",
+          "question": "What is the queue depth of component X014?",
+          "block_id": "b16",
+          "page": 2,
+          "quote": "The queue depth of component X014 is 22 requests."
+        },
+        {
+          "id": "q14",
+          "question": "What is the queue depth of component Z015?",
+          "block_id": "b17",
+          "page": 2,
+          "quote": "The queue depth of component Z015 is 27 seconds."
+        },
+        {
+          "id": "q15",
+          "question": "What is the retry budget of component W016?",
+          "block_id": "b18",
+          "page": 2,
+          "quote": "The retry budget of component W016 is 87 seconds."
+        },
+        {
+          "id": "q16",
+          "question": "What is the queue depth of component V017?",
+          "block_id": "b19",
+          "page": 2,
+          "quote": "The queue depth of component V017 is 38 seconds."
+        },
+        {
+          "id": "q17",
+          "question": "What is the heap ceiling of component K018?",
+          "block_id": "b20",
+          "page": 2,
+          "quote": "The heap ceiling of component K018 is 85 minutes."
+        }
+      ]
+    }
+  ]
+}

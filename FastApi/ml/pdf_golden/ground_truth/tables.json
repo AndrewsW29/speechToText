@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "slice": "tables",
+  "purpose": "Table-heavy reference: ruled tables of configuration properties.",
+  "why": "Tables flattened to text lose their structure. Guards table extraction (TEDS) and that a table is never split across chunks.",
+  "documents": [
+    {
+      "file": "tables.pdf",
+      "pages": 3,
+      "scan": false,
+      "page_labels": [
+        "1",
+        "2",
+        "3"
+      ],
+      "boilerplate": [],
+      "hidden_texts": [],
+      "blocks": [
+        {
+          "id": "b0",
+          "page": 0,
+          "kind": "heading",
+          "text": "Appendix A.1 Properties of server",
+          "section": "Appendix A.1 Properties of server"
+        },
+        {
+          "id": "b1",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The following properties configure the server module of the platform.",
+          "section": "Appendix A.1 Properties of server"
+        },
+        {
+          "id": "b2",
+          "page": 0,
+          "kind": "table",
+          "text": "Property | Default | Description\napp.server.retry-budget.q001 | 100 | Limit for Q001\napp.server.timeout.x002 | 265 | Limit for X002\napp.server.rate-limit.z003 | 243 | Limit for Z003\napp.server.timeout.w004 | 279 | Limit for W004",
+          "section": "Appendix A.1 Properties of server",
+          "rows": [
+            [
+              "Property",
+              "Default",
+              "Description"
+            ],
+            [
+              "app.server.retry-budget.q001",
+              "100",
+              "Limit for Q001"
+            ],
+            [
+              "app.server.timeout.x002",
+              "265",
+              "Limit for X002"
+            ],
+            [
+              "app.server.rate-limit.z003",
+              "243",
+              "Limit for Z003"
+            ],
+            [
+              "app.server.timeout.w004",
+              "279",
+              "Limit for W004"
+            ]
+          ]
+        },
+        {
+          "id": "b3",
+          "page": 1,
+          "kind": "heading",
+          "text": "Appendix A.2 Properties of datasource",
+          "section": "Appendix A.2 Properties of datasource"
+        },
+        {
+          "id": "b4",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The following properties configure the datasource module of the platform.",
+          "section": "Appendix A.2 Properties of datasource"
+        },
+        {
+          "id": "b5",
+          "page": 1,
+          "kind": "table",
+          "text": "Property | Default | Description\napp.datasource.retry-budget.v005 | 201 | Limit for V005\napp.datasource.pool-size.k006 | 474 | Limit for K006\napp.datasource.retry-budget.q007 | 362 | Limit for Q007\napp.datasource.retry-budget.x008 | 173 | Limit for X008",
+          "section": "Appendix A.2 Properties of datasource",
+          "rows": [
+            [
+              "Property",
+              "Default",
+              "Description"
+            ],
+            [
+              "app.datasource.retry-budget.v005",
+              "201",
+              "Limit for V005"
+            ],
+            [
+              "app.datasource.pool-size.k006",
+              "474",
+              "Limit for K006"
+            ],
+            [
+              "app.datasource.retry-budget.q007",
+              "362",
+              "Limit for Q007"
+            ],
+            [
+              "app.datasource.retry-budget.x008",
+              "173",
+              "Limit for X008"
+            ]
+          ]
+        },
+        {
+          "id": "b6",
+          "page": 2,
+          "kind": "heading",
+          "text": "Appendix A.3 Properties of cache",
+          "section": "Appendix A.3 Properties of cache"
+        },
+        {
+          "id": "b7",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The following properties configure the cache module of the platform.",
+          "section": "Appendix A.3 Properties of cache"
+        },
+        {
+          "id": "b8",
+          "page": 2,
+          "kind": "table",
+          "text": "Property | Default | Description\napp.cache.pool-size.z009 | 302 | Limit for Z009\napp.cache.cache-ttl.w010 | 128 | Limit for W010\napp.cache.cache-ttl.v011 | 449 | Limit for V011\napp.cache.retry-budget.k012 | 141 | Limit for K012",
+          "section": "Appendix A.3 Properties of cache",
+          "rows": [
+            [
+              "Property",
+              "Default",
+              "Description"
+            ],
+            [
+              "app.cache.pool-size.z009",
+              "302",
+              "Limit for Z009"
+            ],
+            [
+              "app.cache.cache-ttl.w010",
+              "128",
+              "Limit for W010"
+            ],
+            [
+              "app.cache.cache-ttl.v011",
+              "449",
+              "Limit for V011"
+            ],
+            [
+              "app.cache.retry-budget.k012",
+              "141",
+              "Limit for K012"
+            ]
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "q0",
+          "question": "What is the default of property app.server.retry-budget.q001?",
+          "block_id": "b2",
+          "page": 0,
+          "quote": "app.server.retry-budget.q001 | 100 | Limit for Q001"
+        },
+        {
+          "id": "q1",
+          "question": "What is the default of property app.datasource.retry-budget.v005?",
+          "block_id": "b5",
+          "page": 1,
+          "quote": "app.datasource.retry-budget.v005 | 201 | Limit for V005"
+        },
+        {
+          "id": "q2",
+          "question": "What is the default of property app.cache.pool-size.z009?",
+          "block_id": "b8",
+          "page": 2,
+          "quote": "app.cache.pool-size.z009 | 302 | Limit for Z009"
+        }
+      ]
+    }
+  ]
+}

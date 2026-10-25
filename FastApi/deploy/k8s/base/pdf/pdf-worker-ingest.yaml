@@ -1,0 +1,24 @@
+# CPU parsing queue: untrusted PDFs are parsed in a sandboxed subprocess of this pod
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: pdf-worker-ingest, labels: { app: pdf-worker-ingest, part-of: voice-assistant, queue: ingest } }
+spec:
+  replicas: 2
+  selector: { matchLabels: { app: pdf-worker-ingest } }
+  template:
+    metadata: { labels: { app: pdf-worker-ingest, part-of: voice-assistant, role: pdf-parser } }
+    spec:
+      automountServiceAccountToken: false
+      securityContext: { runAsNonRoot: true, runAsUser: 10002, runAsGroup: 10002, seccompProfile: { type: RuntimeDefault } }
+      containers:
+        - name: worker
+          image: voice-assistant/pdf-worker:latest
+          args: ["celery", "-A", "app.workers.pdf_worker", "worker", "-Q", "ingest", "--concurrency", "2", "--max-tasks-per-child", "20"]
+          envFrom:
+            - configMapRef: { name: pdf-config }
+            - secretRef: { name: pdf-secrets }
+          resources: { requests: { cpu: 500m, memory: 2Gi }, limits: { cpu: "2", memory: 2Gi } }
+          securityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: [ALL] } }
+          volumeMounts: [{ name: tmp, mountPath: /tmp }]
+      volumes:
+        - { name: tmp, emptyDir: { medium: Memory, sizeLimit: 1Gi } }

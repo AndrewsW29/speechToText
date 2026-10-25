@@ -1,0 +1,24 @@
+# GPU queue (OCR, layout, embeddings) arrives with US22; scheduled on the GPU node pool, scaled to 0 until then
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: pdf-worker-gpu, labels: { app: pdf-worker-gpu, part-of: voice-assistant, queue: gpu } }
+spec:
+  replicas: 0
+  selector: { matchLabels: { app: pdf-worker-gpu } }
+  template:
+    metadata: { labels: { app: pdf-worker-gpu, part-of: voice-assistant, role: pdf-parser } }
+    spec:
+      automountServiceAccountToken: false
+      securityContext: { runAsNonRoot: true, runAsUser: 10002, runAsGroup: 10002, seccompProfile: { type: RuntimeDefault } }
+      containers:
+        - name: worker
+          image: voice-assistant/pdf-worker:latest
+          args: ["celery", "-A", "app.workers.pdf_worker", "worker", "-Q", "gpu", "--concurrency", "2", "--max-tasks-per-child", "20"]
+          envFrom:
+            - configMapRef: { name: pdf-config }
+            - secretRef: { name: pdf-secrets }
+          resources: { requests: { cpu: 1, memory: 4Gi }, limits: { cpu: "4", memory: 4Gi } }
+          securityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: [ALL] } }
+          volumeMounts: [{ name: tmp, mountPath: /tmp }]
+      volumes:
+        - { name: tmp, emptyDir: { medium: Memory, sizeLimit: 1Gi } }

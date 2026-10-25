@@ -1,0 +1,13 @@
+{
+  "ground_truth/adversarial.json": "adff8dddbbc5d56b9d9a31cf60845b7e40e34b9e0936b269aeefb9491e6f3ff0",
+  "ground_truth/broken_huge.json": "c92cd68d90e17393a1fd3ce0dbeb0cb2662b645bcbe866e2ed78d20240925ba2",
+  "ground_truth/clean_book.json": "f0f4123edeb32e9158f924115b60007534d9f17b77d3640077be51742beb4016",
+  "ground_truth/clean_scan.json": "badedaeba51da069a4aaf2733900a5f0531b2709535839e0d50b2e5a30be8caa",
+  "ground_truth/code.json": "03d6f40ec7b17a7706a6af7720f147b70b96bf6c15c6833a99ef577c1adb6ba1",
+  "ground_truth/mixed_language.json": "fe94d58810cc14795e0268311e52fef29345387c2941449fc162513e92425de5",
+  "ground_truth/phone_photo.json": "086f1573b91fd26a036647cfdba4893a5d3df7c4bf83a8a3f3b31cb5c2d449e0",
+  "ground_truth/slides.json": "a2551fab82538e6b39faf2900303d6552c8756bf252b03513e54c36481cd94c8",
+  "ground_truth/tables.json": "fbcde5236afaadece1d4e9ed99a3cb7a11168eec03f5dbf2f178749901a4abe2",
+  "ground_truth/two_column.json": "a2ba2ba42776d16403e57949de3b4a909a4d1d91a66b06dab856bca709657f8f",
+  "schema.json": "347fcb1312be8002705cdad8f5911121095faa2d8fdf0b515c2a8588a8c2b5b1"
+}

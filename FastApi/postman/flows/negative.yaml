@@ -1,0 +1,54 @@
+order: 4
+name: Negative scenarios
+description: |
+  Every error the API documents. Scenarios that need auth, the knowledge base, the small audio limit
+  (start the API with VA_MAX_AUDIO_BYTES=2048) or a low-privilege token are skipped when their
+  environment flag is off.
+requests:
+  - name: 401 missing token
+    method: POST
+    path: /v1/questions
+    auth: noauth
+    requires: [auth]
+    body: { type: formdata, fields: [{ key: audio, type: file, src: fixtures/question.webm }] }
+    expect: { status: 401, content_type: application/problem+json }
+  - name: 403 token without the ingest role
+    method: POST
+    path: /v1/ingestions
+    auth: noauth
+    headers: { Authorization: "Bearer {{lowPrivilegeToken}}" }
+    requires: [auth, low_privilege_token]
+    body: { type: json, value: { url: "{{ingestUrl}}" } }
+    expect: { status: 403, content_type: application/problem+json }
+  - name: 404 unknown ingestion job
+    method: GET
+    path: /v1/ingestions/:job_id
+    path_vars: { job_id: does-not-exist }
+    requires: [knowledge_base]
+    expect: { status: 404, content_type: application/problem+json }
+  - name: 413 audio too large
+    method: POST
+    path: /v1/questions
+    requires: [small_audio_limit]
+    body: { type: formdata, fields: [{ key: audio, type: file, src: fixtures/large.webm }] }
+    expect: { status: 413, content_type: application/problem+json }
+  - name: 415 not an audio content type
+    method: POST
+    path: /v1/questions
+    body: { type: formdata, fields: [{ key: audio, type: file, src: fixtures/not-audio.txt }] }
+    expect: { status: 415, content_type: application/problem+json }
+  - name: 415 audio type but the bytes are not audio
+    method: POST
+    path: /v1/questions
+    body: { type: formdata, fields: [{ key: audio, type: file, src: fixtures/fake.exe.webm }] }
+    expect: { status: 415, content_type: application/problem+json }
+  - name: 422 empty audio
+    method: POST
+    path: /v1/questions
+    body: { type: formdata, fields: [{ key: audio, type: file, src: fixtures/empty.webm }] }
+    expect: { status: 422, content_type: application/problem+json }
+  - name: 422 blank ingestion url
+    method: POST
+    path: /v1/ingestions
+    body: { type: json, value: { url: "   " } }
+    expect: { status: 422, content_type: application/problem+json }

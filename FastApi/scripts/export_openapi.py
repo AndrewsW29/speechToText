@@ -58,6 +58,19 @@ def build() -> dict:  # type: ignore[type-arg]
         "422": "Validation failed or URL not allowed",
         "503": "Ingestion is not configured",
     }
+    document_errors = {
+        "401": "Missing or invalid token",
+        "404": "Document not found",
+        "413": "File too large",
+        "415": "Not a valid PDF",
+        "422": "Upload rejected or validation failed",
+        "429": "Quota exceeded",
+        "503": "Document processing is not configured or the queue is down",
+    }
+    for path, methods in spec["paths"].items():
+        if path.startswith("/v1/documents"):
+            for operation in methods.values():
+                add_errors(operation, document_errors)
     add_errors(spec["paths"]["/v1/ingestions"]["post"], ingest_errors)
     add_errors(spec["paths"]["/v1/ingestions/{job_id}"]["get"], ingest_errors)
     return spec

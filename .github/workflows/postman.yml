@@ -1,0 +1,109 @@
+name: postman
+on:
+  pull_request:
+    paths: ["FastApi/api-contracts/**", "FastApi/postman/**", "FastApi/scripts/postman*", "FastApi/app/**"]
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 3 * * *"   # nightly: full authenticated run against the compose stack
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish the collection to the Postman workspace"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: FastApi
+
+jobs:
+  drift-and-unit:
+    # The collection is generated from openapi.yaml: stale output fails the build.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --python 3.13 --frozen
+      - run: uv run python scripts/postman_collection.py --check
+      - run: uv run pytest tests/unit/test_postman_generator.py tests/unit/test_postman_test_scripts.py tests/unit/test_postman_sync.py tests/unit/test_fake_transcriber.py tests/contract/test_postman_collection.py tests/contract/test_postman_hygiene.py tests/contract/test_keycloak_realm.py --no-cov -q
+
+  smoke:
+    # Real Newman against a real API process: fake STT engine, auth disabled, 2 KiB audio limit.
+    needs: drift-and-unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: uv sync --python 3.13 --frozen
+      - name: Start the API
+        env:
+          VA_AUTH_ENABLED: "false"
+          VA_STT_ENGINE: fake
+          VA_MAX_AUDIO_BYTES: "2048"
+        run: |
+          nohup uv run uvicorn app.main:create_app --factory --port 8000 > api.log 2>&1 &
+          for i in $(seq 1 40); do curl -sf localhost:8000/health/live && break || sleep 1; done
+      - name: Newman
+        run: |
+          npx --yes newman run postman/voice-assistant.postman_collection.json \
+            -e postman/environments/local.postman_environment.json \
+            --env-var authEnabled=false --env-var smallAudioLimit=true \
+            --working-dir postman --reporters cli,junit --reporter-junit-export newman-smoke.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: newman-smoke
+          path: |
+            FastApi/newman-smoke.xml
+            FastApi/api.log
+
+  nightly-full:
+    # Full run with Keycloak auth, the knowledge base and the ingestion flow. Needs repository secrets.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      POSTGRES_PASSWORD: ${{ secrets.CI_POSTGRES_PASSWORD }}
+      MINIO_ROOT_USER: ${{ secrets.CI_MINIO_USER }}
+      MINIO_ROOT_PASSWORD: ${{ secrets.CI_MINIO_PASSWORD }}
+      KEYCLOAK_ADMIN: ${{ secrets.CI_KEYCLOAK_ADMIN }}
+      KEYCLOAK_ADMIN_PASSWORD: ${{ secrets.CI_KEYCLOAK_ADMIN_PASSWORD }}
+      DEV_USER_PASSWORD: ${{ secrets.CI_DEV_USER_PASSWORD }}
+      DEV_INGESTER_PASSWORD: ${{ secrets.CI_DEV_INGESTER_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: "Start the stack (fake STT: no GPU or audio model in CI)"
+        run: |
+          docker compose -f deploy/docker/docker-compose.yml up -d --build api worker postgres redis qdrant keycloak
+          for i in $(seq 1 90); do curl -sf localhost:8000/health/live && break || sleep 2; done
+      - name: Newman as the ingester, then as a plain user for the 403 scenario
+        run: |
+          npx --yes newman run postman/voice-assistant.postman_collection.json \
+            -e postman/environments/docker-compose.postman_environment.json \
+            --env-var username=dev-ingester --env-var password="$DEV_INGESTER_PASSWORD" \
+            --working-dir postman --reporters cli,junit --reporter-junit-export newman-full.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: newman-full, path: FastApi/newman-full.xml }
+      - if: always()
+        run: docker compose -f deploy/docker/docker-compose.yml down -v
+
+  publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.publish
+    needs: smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --python 3.13 --frozen
+      - run: uv run python scripts/postman_sync.py
+        env:
+          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+          POSTMAN_WORKSPACE_ID: ${{ secrets.POSTMAN_WORKSPACE_ID }}

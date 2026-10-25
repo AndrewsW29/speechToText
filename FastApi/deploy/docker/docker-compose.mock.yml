@@ -1,0 +1,10 @@
+# Mock API for client development (Angular, Android, iOS) from the OpenAPI contract: no backend needed.
+#   docker compose -f deploy/docker/docker-compose.mock.yml up
+# Point the clients at http://localhost:4010. Prism validates requests and answers from the examples.
+name: voice-assistant-mock
+services:
+  prism:
+    image: stoplight/prism:5
+    command: ["mock", "--host", "0.0.0.0", "--dynamic", "/contract/openapi.yaml"]
+    volumes: ["../../api-contracts:/contract:ro"]
+    ports: ["4010:4010"]

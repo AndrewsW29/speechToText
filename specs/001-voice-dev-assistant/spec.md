@@ -157,6 +157,27 @@ Independent tests and acceptance gates are defined per story in `tasks.md`.
 
 ---
 
+### User Story 15 - Postman collections (Priority: P15)
+
+A versioned Postman collection and environments generated from the OpenAPI contract, with auth, assertions,
+realistic flows (ask a question, ingest then ask) and negative scenarios, runnable in Postman and in CI with Newman.
+
+**Independent Test**: `make postman-check && make newman` passes against a locally started API; importing the
+collection and choosing the `local` environment lets a developer call every endpoint.
+
+---
+
+### User Stories 16–30 - Reading and learning from PDFs (Priorities: P16–P30)
+
+Derived from `READ_LEARN_FEATURE.md` (50 features, roadmap MVP, v1, v2). MVP: US16 intake and the async pipeline,
+US17 the ingestion quality harness, US18 reading born-digital PDFs, US19 chunking and the dense index, US20 scoped
+cited answers, deletion and audit, US21 library, upload and viewer on all clients. v1: US22 OCR, tables, figures and
+languages, US23 advanced retrieval, US24 summaries, US25 learning from PDFs, US26 voice commands, accessibility and
+offline, US27 versions, reprocessing and quotas. v2: US28 structured extraction and diff, US29 graph, quality,
+freshness and vision reading, US30 opt-in training and sharing. Independent tests are in `tasks.md`.
+
+---
+
 ### Edge Cases
 
 - Audio too long, silent, corrupt or in an unsupported codec.
@@ -190,6 +211,14 @@ Independent tests and acceptance gates are defined per story in `tasks.md`.
 - **FR-019**: Every trained model MUST record git SHA, image digest, dataset hash, seeds, hyperparameters and metrics, and ship a model card.
 - **FR-020**: Golden and challenge sets MUST be frozen, never used for training, and split by group (`parent_id`) to prevent leakage; gates MUST also check slice regressions.
 - **FR-021**: The system MUST answer, clarify or abstain from calibrated confidence and missing entities, and MUST return a degradation-ladder level when dependencies fail.
+- **FR-022**: Every documented endpoint MUST have a Postman request with saved examples and assertions, generated from `openapi.yaml`; CI MUST fail when the committed collection drifts from the contract.
+- **FR-023**: Postman artifacts MUST NOT contain real tokens, passwords or hostnames; secrets live in secret-typed environment variables.
+- **FR-024**: Uploaded PDFs MUST be validated by magic bytes, size, page count and quota, scanned for malware, and parsed only inside a sandbox; active content MUST never execute.
+- **FR-025**: Every chunk MUST carry provenance (document, version, page index and label, bounding boxes, section path, pipeline and embedder version, owner and ACL); retrieval MUST enforce scope and ACL inside the adapter.
+- **FR-026**: Answers over documents MUST cite pages with highlightable boxes and short quotes, and MUST say "not in this PDF" when evidence is weak.
+- **FR-027**: Deleting a document MUST purge its file, chunks, summaries, derived glossary entries, cached answers and derived training examples, with an audit record.
+- **FR-028**: PDFs MUST NOT be used to train shared models unless the uploader opts in and attests the rights; the default is retrieval and the owner's glossary only.
+- **FR-029**: Ingestion MUST be asynchronous (202 in under a second), idempotent and compensating, with per-stage status events and a golden-corpus quality gate.
 - **FR-017**: System MUST provide history search, saved answers, user preferences, follow-up suggestions and streamed partial transcripts.
 
 ### Key Entities
@@ -213,3 +242,11 @@ Independent tests and acceptance gates are defined per story in `tasks.md`.
 - The backend stays on Python; thresholds above are initial and revisable.
 - Open decision from FEATURE.md: generated text vs retrieved snippets only is resolved as
   "both, with retrieval-only fallback" (US4).
+
+## PDF assumptions (defaults for the open questions in READ_LEARN_FEATURE.md)
+
+- PDFs are private to each user in the MVP; sharing arrives in US30.
+- English first; Spanish pages are handled from US22.
+- Copy-protected PDFs are read only after the uploader attests the rights.
+- Offline means the library, summaries and recent answers, not full PDF copies.
+- A GPU is optional: OCR and layout run on CPU more slowly, and the code-verification sandbox is optional (syntax-only fallback).

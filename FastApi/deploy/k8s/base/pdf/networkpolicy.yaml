@@ -1,0 +1,46 @@
+# Default deny for everything that touches untrusted PDFs, then allow only what each component needs.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: pdf-default-deny }
+spec:
+  podSelector: { matchLabels: { part-of: voice-assistant } }
+  policyTypes: [Ingress, Egress]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: pdf-worker-egress }
+spec:
+  podSelector: { matchLabels: { role: pdf-parser } }
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - podSelector: { matchLabels: { app: redis } }
+        - podSelector: { matchLabels: { app: postgres } }
+        - podSelector: { matchLabels: { app: minio } }
+        - podSelector: { matchLabels: { app: clamav } }
+        - podSelector: { matchLabels: { app: qdrant } }
+    - to: [{ namespaceSelector: {}, podSelector: { matchLabels: { k8s-app: kube-dns } } }]
+      ports: [{ port: 53, protocol: UDP }, { port: 53, protocol: TCP }]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: clamav-ingress }
+spec:
+  podSelector: { matchLabels: { app: clamav } }
+  policyTypes: [Ingress]
+  ingress:
+    - from: [{ podSelector: { matchLabels: { role: pdf-parser } } }, { podSelector: { matchLabels: { app: api } } }]
+      ports: [{ port: 3310 }]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: tusd-flow }
+spec:
+  podSelector: { matchLabels: { app: tusd } }
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from: [{ namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: ingress-nginx } } }]
+      ports: [{ port: 8080 }]
+  egress:
+    - to: [{ podSelector: { matchLabels: { app: api } } }]
+      ports: [{ port: 8000 }]

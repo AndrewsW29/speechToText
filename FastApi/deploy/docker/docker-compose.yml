@@ -13,13 +13,53 @@ services:
       VA_REDIS_URL: redis://redis:6379/0
       VA_QDRANT_URL: http://qdrant:6333
       VA_INGESTION_BACKEND: celery
+      VA_PDF_ENABLED: "true"
+      VA_CLAMAV_HOST: clamav
+      VA_MINIO_ENDPOINT: minio:9000
+      VA_MINIO_ACCESS_KEY: ${MINIO_ROOT_USER:?set MINIO_ROOT_USER}
+      VA_MINIO_SECRET_KEY: ${MINIO_ROOT_PASSWORD:?set MINIO_ROOT_PASSWORD}
+      VA_TUS_HOOK_TOKEN: ${TUS_HOOK_TOKEN:?set TUS_HOOK_TOKEN}
+      VA_TUS_UPLOAD_DIR: /tus
       VA_INGEST_ALLOWED_HOSTS: '["docs.spring.io","kotlinlang.org","junit.org"]'
     ports: ["8000:8000"]
-    depends_on: [postgres, redis, qdrant]
+    volumes: [tus-uploads:/tus]
+    depends_on: [postgres, redis, qdrant, minio, clamav]
   web:
     build: { context: ../../../Angular, dockerfile: deploy/docker/Dockerfile }
     ports: ["4200:8080"]
     depends_on: [api]
+  pdf-worker:
+    build: { context: ../.., dockerfile: deploy/docker/pdf-worker.Dockerfile }
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    environment:
+      VA_PDF_ENABLED: "true"
+      VA_INGESTION_BACKEND: celery
+      VA_REDIS_URL: redis://redis:6379/0
+      VA_DATABASE_URL: postgresql+asyncpg://va:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/va
+      VA_CLAMAV_HOST: clamav
+      VA_MINIO_ENDPOINT: minio:9000
+      VA_MINIO_ACCESS_KEY: ${MINIO_ROOT_USER:?set MINIO_ROOT_USER}
+      VA_MINIO_SECRET_KEY: ${MINIO_ROOT_PASSWORD:?set MINIO_ROOT_PASSWORD}
+    depends_on: [redis, postgres, minio, clamav]
+  tusd:
+    image: tusproject/tusd:v2
+    command:
+      - -upload-dir=/data
+      - -hooks-enabled-events=pre-create,post-finish
+      - -hooks-http=http://api:8000/internal/tus/hooks/${TUS_HOOK_TOKEN:?set TUS_HOOK_TOKEN}
+    volumes: [tus-uploads:/data]
+    ports: ["1080:8080"]
+    depends_on: [api]
+  clamav:
+    image: clamav/clamav:1.4
+    volumes: [clamav-db:/var/lib/clamav]
+    healthcheck:
+      test: ["CMD", "clamdcheck.sh"]
+      interval: 30s
+      start_period: 120s
   worker:
     build: { context: ../.., dockerfile: deploy/docker/Dockerfile }
     command: ["celery", "-A", "app.workers.worker", "worker", "--loglevel=INFO"]
@@ -54,9 +94,11 @@ services:
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN:?set KEYCLOAK_ADMIN}
       KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:?set KEYCLOAK_ADMIN_PASSWORD}
+      DEV_USER_PASSWORD: ${DEV_USER_PASSWORD:?set DEV_USER_PASSWORD}
+      DEV_INGESTER_PASSWORD: ${DEV_INGESTER_PASSWORD:?set DEV_INGESTER_PASSWORD}
     volumes: [./keycloak/realm.json:/opt/keycloak/data/import/realm.json:ro]
     ports: ["8081:8080"]
   ollama:
     image: ollama/ollama:latest
     volumes: [ollama:/root/.ollama]
-volumes: { pgdata: {}, qdrant: {}, minio: {}, ollama: {} }
+volumes: { pgdata: {}, qdrant: {}, minio: {}, ollama: {}, tus-uploads: {}, clamav-db: {} }

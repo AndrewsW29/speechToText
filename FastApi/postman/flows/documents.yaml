@@ -1,0 +1,60 @@
+order: 5
+name: Documents
+description: |
+  Upload a PDF, read its status and list the library. Needs VA_PDF_ENABLED=true on the API. With auth
+  disabled any file works; the pipeline then ends `failed (reader_not_configured)` until the PDF reader
+  ships, which is the expected state for now.
+requests:
+  - name: Upload a PDF
+    method: POST
+    path: /v1/documents
+    requires: [pdf_enabled]
+    body:
+      type: formdata
+      fields:
+        - { key: file, type: file, src: fixtures/guide.pdf, content_type: application/pdf }
+    expect: { status: 202, content_type: application/json }
+    capture: { documentId: document_id }
+  - name: Upload the same PDF again returns the existing document
+    method: POST
+    path: /v1/documents
+    requires: [pdf_enabled]
+    body:
+      type: formdata
+      fields:
+        - { key: file, type: file, src: fixtures/guide.pdf, content_type: application/pdf }
+    expect:
+      status: 200
+      content_type: application/json
+      script:
+        - "pm.test('points at the first document', () => pm.expect(pm.response.json().duplicate_of).to.equal(pm.collectionVariables.get('documentId')));"
+  - name: Get the document
+    method: GET
+    path: /v1/documents/:document_id
+    path_vars: { document_id: "{{documentId}}" }
+    requires: [pdf_enabled]
+    expect: { status: 200, content_type: application/json }
+  - name: List the library
+    method: GET
+    path: /v1/documents
+    requires: [pdf_enabled]
+    expect:
+      status: 200
+      content_type: application/json
+      script:
+        - "pm.test('the uploaded document is listed', () => pm.expect(pm.response.json().items.map((d) => d.document_id)).to.include(pm.collectionVariables.get('documentId')));"
+  - name: 415 a ZIP renamed to .pdf is refused
+    method: POST
+    path: /v1/documents
+    requires: [pdf_enabled]
+    body:
+      type: formdata
+      fields:
+        - { key: file, type: file, src: fixtures/not-a-pdf.pdf, content_type: application/pdf }
+    expect: { status: 415, content_type: application/problem+json }
+  - name: 404 unknown document
+    method: GET
+    path: /v1/documents/:document_id
+    path_vars: { document_id: d_does_not_exist }
+    requires: [pdf_enabled]
+    expect: { status: 404, content_type: application/problem+json }

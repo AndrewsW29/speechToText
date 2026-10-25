@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "slice": "code",
+  "purpose": "Code-heavy tutorial: monospace listings whose PDF text has curly quotes and ligatures where the real source is ASCII.",
+  "why": "Code must survive exactly (indentation, quotes). Guards code detection and repair.",
+  "documents": [
+    {
+      "file": "code.pdf",
+      "pages": 3,
+      "scan": false,
+      "page_labels": [
+        "1",
+        "2",
+        "3"
+      ],
+      "boilerplate": [],
+      "hidden_texts": [],
+      "blocks": [
+        {
+          "id": "b0",
+          "page": 0,
+          "kind": "heading",
+          "text": "Step 1 Loading the settings",
+          "section": "Step 1 Loading the settings"
+        },
+        {
+          "id": "b1",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The timeout of component Q001 is 2 requests. It is documented here because several teams depend on it. This value is read once at startup and can be overridden per environment.",
+          "section": "Step 1 Loading the settings",
+          "lang": "en"
+        },
+        {
+          "id": "b2",
+          "page": 0,
+          "kind": "code",
+          "text": "def load_1(path):\n    \"\"\"Read the file at path.\"\"\"\n    with open(path) as handle:\n        return parse(handle.read(), mode=\"strict\")",
+          "section": "Step 1 Loading the settings"
+        },
+        {
+          "id": "b3",
+          "page": 0,
+          "kind": "paragraph",
+          "text": "The timeout of component X002 is 19 messages. Changes take effect after the next rolling restart. This value is read once at startup and can be overridden per environment.",
+          "section": "Step 1 Loading the settings",
+          "lang": "en"
+        },
+        {
+          "id": "b4",
+          "page": 1,
+          "kind": "heading",
+          "text": "Step 2 Loading the settings",
+          "section": "Step 2 Loading the settings"
+        },
+        {
+          "id": "b5",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The retry budget of component Z003 is 13 megabytes. It is documented here because several teams depend on it. This value is read once at startup and can be overridden per environment.",
+          "section": "Step 2 Loading the settings",
+          "lang": "en"
+        },
+        {
+          "id": "b6",
+          "page": 1,
+          "kind": "code",
+          "text": "class Finder2:\n    def first(self, items):\n        # find the first file that matches\n        return next((i for i in items if i.name == \"main\"), None)",
+          "section": "Step 2 Loading the settings"
+        },
+        {
+          "id": "b7",
+          "page": 1,
+          "kind": "paragraph",
+          "text": "The pool size of component W004 is 26 connections. Operators usually leave it unchanged unless the workload grows. It is documented here because several teams depend on it.",
+          "section": "Step 2 Loading the settings",
+          "lang": "en"
+        },
+        {
+          "id": "b8",
+          "page": 2,
+          "kind": "heading",
+          "text": "Step 3 Loading the settings",
+          "section": "Step 3 Loading the settings"
+        },
+        {
+          "id": "b9",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The cache ttl of component V005 is 97 requests. The setting is validated before the service accepts traffic. This value is read once at startup and can be overridden per environment.",
+          "section": "Step 3 Loading the settings",
+          "lang": "en"
+        },
+        {
+          "id": "b10",
+          "page": 2,
+          "kind": "code",
+          "text": "def configure_3(options):\n    if not options:\n        return {'ready': False}\n    return {'ready': True, 'name': 'file'}",
+          "section": "Step 3 Loading the settings"
+        },
+        {
+          "id": "b11",
+          "page": 2,
+          "kind": "paragraph",
+          "text": "The cache ttl of component K006 is 71 messages. It is documented here because several teams depend on it. Operators usually leave it unchanged unless the workload grows.",
+          "section": "Step 3 Loading the settings",
+          "lang": "en"
+        }
+      ],
+      "questions": [
+        {
+          "id": "q0",
+          "question": "What is the timeout of component Q001?",
+          "block_id": "b1",
+          "page": 0,
+          "quote": "The timeout of component Q001 is 2 requests."
+        },
+        {
+          "id": "q1",
+          "question": "What is the timeout of component X002?",
+          "block_id": "b3",
+          "page": 0,
+          "quote": "The timeout of component X002 is 19 messages."
+        },
+        {
+          "id": "q2",
+          "question": "What is the retry budget of component Z003?",
+          "block_id": "b5",
+          "page": 1,
+          "quote": "The retry budget of component Z003 is 13 megabytes."
+        },
+        {
+          "id": "q3",
+          "question": "What is the pool size of component W004?",
+          "block_id": "b7",
+          "page": 1,
+          "quote": "The pool size of component W004 is 26 connections."
+        },
+        {
+          "id": "q4",
+          "question": "What is the cache ttl of component V005?",
+          "block_id": "b9",
+          "page": 2,
+          "quote": "The cache ttl of component V005 is 97 requests."
+        },
+        {
+          "id": "q5",
+          "question": "What is the cache ttl of component K006?",
+          "block_id": "b11",
+          "page": 2,
+          "quote": "The cache ttl of component K006 is 71 messages."
+        }
+      ]
+    }
+  ]
+}

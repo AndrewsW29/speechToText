@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import dataclasses
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 import httpx
 from fastapi import FastAPI
 
-from app.adapters.inbound.rest import ingestions, questions
+from app.adapters.inbound.rest import document_events, documents, ingestions, questions, tus_hooks
 from app.adapters.inbound.rest.auth import jwks_verifier
 from app.adapters.inbound.rest.errors import register_error_handlers
 from app.adapters.inbound.rest.health import build_health_router
@@ -28,6 +29,7 @@ from app.application.ports.intent_classifier import IntentClassifier
 from app.application.services.glossary import GlossaryCorrector
 from app.application.use_cases.ask_question import AskQuestion
 from app.bootstrap import build_ingestion_facade, build_retriever
+from app.bootstrap_pdf import build_pdf_container_parts
 from app.config import Settings, get_settings
 from app.container import Container
 
@@ -56,6 +58,12 @@ def _build_classifier(settings: Settings) -> IntentClassifier | None:
     )
 
 
+def _with_pdf(settings: Settings, container: Container) -> Container:
+    if not settings.pdf_enabled:
+        return container
+    return dataclasses.replace(container, **build_pdf_container_parts(settings))  # type: ignore[arg-type]
+
+
 def build_container(settings: Settings) -> Container:
     """Without VA_QDRANT_URL the API serves the fixed walking-skeleton answer (US1)."""
     transcriber = TranscriberFactory.create(settings)
@@ -64,15 +72,20 @@ def build_container(settings: Settings) -> Container:
             transcriber, GlossaryCorrector.from_yaml(settings.glossary_path)
         )
     if settings.qdrant_url is None:
-        return Container(ask_question=AskQuestion(transcriber, FixedAnswerGenerator()))
-    return Container(
-        ask_question=AskQuestion(
-            transcriber,
-            TopChunksAnswerGenerator(),
-            build_retriever(settings),
-            _build_classifier(settings),
+        return _with_pdf(
+            settings, Container(ask_question=AskQuestion(transcriber, FixedAnswerGenerator()))
+        )
+    return _with_pdf(
+        settings,
+        Container(
+            ask_question=AskQuestion(
+                transcriber,
+                TopChunksAnswerGenerator(),
+                build_retriever(settings),
+                _build_classifier(settings),
+            ),
+            ingestion=_build_ingestion(settings),
         ),
-        ingestion=_build_ingestion(settings),
     )
 
 
@@ -97,4 +110,7 @@ def create_app(settings: Settings | None = None, *, container: Container | None 
     app.include_router(build_health_router())
     app.include_router(questions.router)
     app.include_router(ingestions.router)
+    app.include_router(documents.router)
+    app.include_router(document_events.router)
+    app.include_router(tus_hooks.router)
     return app

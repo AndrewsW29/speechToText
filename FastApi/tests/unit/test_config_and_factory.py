@@ -7,10 +7,10 @@ from app.config import Settings
 
 def test_settings_read_environment(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("VA_MAX_AUDIO_BYTES", "123")
-    monkeypatch.setenv("VA_DATABASE_URL", "postgresql+asyncpg://u:secret@h/db")
+    monkeypatch.setenv("VA_DATABASE_URL", "postgresql+asyncpg://u:pa55w0rd-value@h/db")
     s = Settings()
     assert s.max_audio_bytes == 123
-    assert "secret" not in repr(s)  # secrets are masked
+    assert "pa55w0rd-value" not in repr(s)  # secrets are masked
 
 
 def test_factory_creates_whisper_lazily() -> None:

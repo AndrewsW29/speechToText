@@ -1,6 +1,10 @@
 import { expect, test } from '@playwright/test';
 
 const RESPONSE = {
+  status: 'answer',
+  clarification: null,
+  message: null,
+  intent: null,
   question_id: 'q-1',
   transcript: { text: 'How do I create a controller in Spring?', language: 'en' },
   answer: {

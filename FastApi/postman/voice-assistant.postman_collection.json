@@ -1,0 +1,3245 @@
+{
+  "info": {
+    "_postman_id": "24b265e2-8c16-563a-959b-d386747e2538",
+    "name": "Voice Dev Assistant API (v0.1.0)",
+    "description": "Generated from api-contracts/openapi.yaml by scripts/postman_collection.py. Do not edit by hand: change the contract or postman/flows/*.yaml and run `make postman`.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Collection-level pre-request script:",
+          "//  1. tags every request with an X-Correlation-ID (shows up in the API's JSON logs);",
+          "//  2. when auth is enabled, obtains a Keycloak access token (password grant, or client credentials",
+          "//     when `clientSecret` is set) and refreshes it shortly before it expires.",
+          "pm.request.headers.upsert({ key: 'X-Correlation-ID', value: pm.variables.replaceIn('{{$guid}}') });",
+          "",
+          "const authEnabled = (pm.variables.get('authEnabled') || 'true') !== 'false';",
+          "const noAuthRequest = pm.request.auth && pm.request.auth.type === 'noauth';",
+          "if (!authEnabled || noAuthRequest) {",
+          "  return;",
+          "}",
+          "",
+          "const supplied = pm.environment.get('accessToken');",
+          "const expiresAt = Number(pm.environment.get('tokenExpiresAt') || 0);",
+          "if (supplied && (!expiresAt || Date.now() < expiresAt - 30000)) {",
+          "  return; // a pasted token, or a fetched one that is still valid",
+          "}",
+          "",
+          "const keycloak = pm.environment.get('keycloakUrl');",
+          "const realm = pm.environment.get('realm');",
+          "const clientId = pm.environment.get('clientId');",
+          "const clientSecret = pm.environment.get('clientSecret');",
+          "const username = pm.environment.get('username');",
+          "const password = pm.environment.get('password');",
+          "if (!keycloak || !realm || !clientId || !((username && password) || clientSecret)) {",
+          "  console.warn('No token and no Keycloak credentials: set accessToken, or username/password, in the environment.');",
+          "  return;",
+          "}",
+          "",
+          "const form = clientSecret",
+          "  ? [",
+          "      { key: 'grant_type', value: 'client_credentials' },",
+          "      { key: 'client_id', value: clientId },",
+          "      { key: 'client_secret', value: clientSecret },",
+          "    ]",
+          "  : [",
+          "      { key: 'grant_type', value: 'password' },",
+          "      { key: 'client_id', value: clientId },",
+          "      { key: 'username', value: username },",
+          "      { key: 'password', value: password },",
+          "    ];",
+          "",
+          "pm.sendRequest(",
+          "  {",
+          "    url: `${keycloak}/realms/${realm}/protocol/openid-connect/token`,",
+          "    method: 'POST',",
+          "    header: { 'Content-Type': 'application/x-www-form-urlencoded' },",
+          "    body: { mode: 'urlencoded', urlencoded: form },",
+          "  },",
+          "  (error, response) => {",
+          "    if (error || response.code !== 200) {",
+          "      console.error('Keycloak token request failed', error || response.code);",
+          "      return;",
+          "    }",
+          "    const data = response.json();",
+          "    pm.environment.set('accessToken', data.access_token);",
+          "    pm.environment.set('tokenExpiresAt', String(Date.now() + data.expires_in * 1000));",
+          "  },",
+          ");"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Collection-level assertions: they run after every request in the collection.",
+          "pm.test('X-Correlation-ID header is returned', () => {",
+          "  pm.expect(pm.response.headers.has('X-Correlation-ID')).to.be.true;",
+          "});",
+          "",
+          "pm.test('response time is within the latency budget', () => {",
+          "  const budget = Number(pm.variables.get('latencyBudgetMs') || 5000);",
+          "  pm.expect(pm.response.responseTime).to.be.below(budget);",
+          "});",
+          "",
+          "if (pm.response.code >= 400) {",
+          "  pm.test('errors are RFC 9457 problem details without internals', () => {",
+          "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json');",
+          "    const body = pm.response.json();",
+          "    pm.expect(body).to.include.all.keys('type', 'title', 'status');",
+          "    pm.expect(body.status).to.equal(pm.response.code);",
+          "    pm.expect(JSON.stringify(body)).to.not.match(/Traceback|SELECT |at \\w+\\.\\w+\\(/);",
+          "  });",
+          "}"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "jobId",
+      "value": ""
+    },
+    {
+      "key": "questionId",
+      "value": ""
+    },
+    {
+      "key": "pollAttempt",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "documents",
+      "item": [
+        {
+          "name": "POST /v1/documents",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.variables.get('pdfEnabled') !== 'true') {",
+                  "  pm.test.skip('skipped: PDF ingestion is not enabled on this API');",
+                  "} else {",
+                  "  const expectedStatus = 202;",
+                  "  const acceptedStatuses = [202, 200];",
+                  "  pm.test(`status is one of ${acceptedStatuses}`, () => pm.expect(acceptedStatuses).to.include(pm.response.code));",
+                  "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                  "  const schema = {\"properties\": {\"document_id\": {\"title\": \"Document Id\", \"type\": \"string\"}, \"duplicate_of\": {\"anyOf\": [{\"type\": \"string\"}, {\"type\": \"null\"}], \"title\": \"Duplicate Of\"}, \"status\": {\"title\": \"Status\", \"type\": \"string\"}, \"version\": {\"title\": \"Version\", \"type\": \"integer\"}}, \"required\": [\"document_id\", \"status\", \"version\", \"duplicate_of\"], \"title\": \"DocumentAccepted\", \"type\": \"object\"};",
+                  "  pm.test('response matches the OpenAPI schema', () => pm.response.to.have.jsonSchema(schema));",
+                  "  const payload = pm.response.json();",
+                  "  if (payload.document_id !== undefined) pm.collectionVariables.set('documentId', payload.document_id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/documents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "documents"
+              ]
+            },
+            "description": "Upload",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "fixtures/sample.pdf"
+                },
+                {
+                  "key": "title",
+                  "type": "text",
+                  "value": "string",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "202 Successful Response",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"document_id\": \"string\",\n  \"status\": \"string\",\n  \"version\": 0,\n  \"duplicate_of\": \"string\"\n}"
+            },
+            {
+              "name": "200 Duplicate: this owner already uploaded the same file",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"document_id\": \"string\",\n  \"status\": \"string\",\n  \"version\": 0,\n  \"duplicate_of\": \"string\"\n}"
+            },
+            {
+              "name": "401 Missing or invalid token",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Missing or invalid token\",\n  \"status\": 401\n}"
+            },
+            {
+              "name": "404 Document not found",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Document not found\",\n  \"status\": 404\n}"
+            },
+            {
+              "name": "413 File too large",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Payload Too Large",
+              "code": 413,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"File too large\",\n  \"status\": 413\n}"
+            },
+            {
+              "name": "415 Not a valid PDF",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Not a valid PDF\",\n  \"status\": 415\n}"
+            },
+            {
+              "name": "422 Upload rejected or validation failed",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Upload rejected or validation failed\",\n  \"status\": 422\n}"
+            },
+            {
+              "name": "429 Quota exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Response",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Quota exceeded\",\n  \"status\": 429\n}"
+            },
+            {
+              "name": "503 Document processing is not configured or the queue is down",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Document processing is not configured or the queue is down\",\n  \"status\": 503\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET /v1/documents",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.variables.get('pdfEnabled') !== 'true') {",
+                  "  pm.test.skip('skipped: PDF ingestion is not enabled on this API');",
+                  "} else {",
+                  "  const expectedStatus = 200;",
+                  "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                  "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                  "  const schema = {\"properties\": {\"items\": {\"items\": {\"properties\": {\"created_at\": {\"format\": \"date-time\", \"title\": \"Created At\", \"type\": \"string\"}, \"document_id\": {\"title\": \"Document Id\", \"type\": \"string\"}, \"failure_reason\": {\"anyOf\": [{\"type\": \"string\"}, {\"type\": \"null\"}], \"title\": \"Failure Reason\"}, \"flags\": {\"items\": {\"type\": \"string\"}, \"title\": \"Flags\", \"type\": \"array\"}, \"pages\": {\"anyOf\": [{\"type\": \"integer\"}, {\"type\": \"null\"}], \"title\": \"Pages\"}, \"status\": {\"title\": \"Status\", \"type\": \"string\"}, \"title\": {\"title\": \"Title\", \"type\": \"string\"}, \"version\": {\"title\": \"Version\", \"type\": \"integer\"}}, \"required\": [\"document_id\", \"title\", \"status\", \"version\", \"pages\", \"flags\", \"failure_reason\", \"created_at\"], \"title\": \"DocumentOut\", \"type\": \"object\"}, \"title\": \"Items\", \"type\": \"array\"}}, \"required\": [\"items\"], \"title\": \"DocumentList\", \"type\": \"object\"};",
+                  "  pm.test('response matches the OpenAPI schema', () => pm.response.to.have.jsonSchema(schema));",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/documents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "documents"
+              ]
+            },
+            "description": "List Documents"
+          },
+          "response": [
+            {
+              "name": "200 Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"document_id\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"version\": 0,\n      \"pages\": 0,\n      \"flags\": [\n        \"string\"\n      ],\n      \"failure_reason\": \"string\",\n      \"created_at\": \"string\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "401 Missing or invalid token",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Missing or invalid token\",\n  \"status\": 401\n}"
+            },
+            {
+              "name": "404 Document not found",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Document not found\",\n  \"status\": 404\n}"
+            },
+            {
+              "name": "413 File too large",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Payload Too Large",
+              "code": 413,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"File too large\",\n  \"status\": 413\n}"
+            },
+            {
+              "name": "415 Not a valid PDF",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Not a valid PDF\",\n  \"status\": 415\n}"
+            },
+            {
+              "name": "422 Upload rejected or validation failed",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Upload rejected or validation failed\",\n  \"status\": 422\n}"
+            },
+            {
+              "name": "429 Quota exceeded",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Response",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Quota exceeded\",\n  \"status\": 429\n}"
+            },
+            {
+              "name": "503 Document processing is not configured or the queue is down",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Document processing is not configured or the queue is down\",\n  \"status\": 503\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET /v1/documents/{document_id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.variables.get('pdfEnabled') !== 'true') {",
+                  "  pm.test.skip('skipped: PDF ingestion is not enabled on this API');",
+                  "} else {",
+                  "  const expectedStatus = 200;",
+                  "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                  "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                  "  const schema = {\"properties\": {\"created_at\": {\"format\": \"date-time\", \"title\": \"Created At\", \"type\": \"string\"}, \"document_id\": {\"title\": \"Document Id\", \"type\": \"string\"}, \"failure_reason\": {\"anyOf\": [{\"type\": \"string\"}, {\"type\": \"null\"}], \"title\": \"Failure Reason\"}, \"flags\": {\"items\": {\"type\": \"string\"}, \"title\": \"Flags\", \"type\": \"array\"}, \"pages\": {\"anyOf\": [{\"type\": \"integer\"}, {\"type\": \"null\"}], \"title\": \"Pages\"}, \"status\": {\"title\": \"Status\", \"type\": \"string\"}, \"title\": {\"title\": \"Title\", \"type\": \"string\"}, \"version\": {\"title\": \"Version\", \"type\": \"integer\"}}, \"required\": [\"document_id\", \"title\", \"status\", \"version\", \"pages\", \"flags\", \"failure_reason\", \"created_at\"], \"title\": \"DocumentOut\", \"type\": \"object\"};",
+                  "  pm.test('response matches the OpenAPI schema', () => pm.response.to.have.jsonSchema(schema));",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/documents/:document_id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "documents",
+                ":document_id"
+              ],
+              "variable": [
+                {
+                  "key": "document_id",
+                  "value": "{{documentId}}"
+                }
+              ]
+            },
+            "description": "Get Document"
+          },
+          "response": [
+            {
+              "name": "200 Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"document_id\": \"string\",\n  \"title\": \"string\",\n  \"status\": \"string\",\n  \"version\": 0,\n  \"pages\": 0,\n  \"flags\": [\n    \"string\"\n  ],\n  \"failure_reason\": \"string\",\n  \"created_at\": \"string\"\n}"
+            },
+            {
+              "name": "401 Missing or invalid token",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Missing or invalid token\",\n  \"status\": 401\n}"
+            },
+            {
+              "name": "404 Document not found",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Document not found\",\n  \"status\": 404\n}"
+            },
+            {
+              "name": "413 File too large",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Payload Too Large",
+              "code": 413,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"File too large\",\n  \"status\": 413\n}"
+            },
+            {
+              "name": "415 Not a valid PDF",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Not a valid PDF\",\n  \"status\": 415\n}"
+            },
+            {
+              "name": "422 Upload rejected or validation failed",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Upload rejected or validation failed\",\n  \"status\": 422\n}"
+            },
+            {
+              "name": "429 Quota exceeded",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Response",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Quota exceeded\",\n  \"status\": 429\n}"
+            },
+            {
+              "name": "503 Document processing is not configured or the queue is down",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Document processing is not configured or the queue is down\",\n  \"status\": 503\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET /v1/documents/{document_id}/events",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.variables.get('pdfEnabled') !== 'true') {",
+                  "  pm.test.skip('skipped: PDF ingestion is not enabled on this API');",
+                  "} else {",
+                  "  const expectedStatus = 200;",
+                  "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                  "  pm.test('content-type is text/event-stream', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('text/event-stream'));",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/documents/:document_id/events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "documents",
+                ":document_id",
+                "events"
+              ],
+              "variable": [
+                {
+                  "key": "document_id",
+                  "value": "{{documentId}}"
+                }
+              ]
+            },
+            "description": "Stream Events"
+          },
+          "response": [
+            {
+              "name": "200 Stage events",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id",
+                    "events"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\""
+            },
+            {
+              "name": "401 Missing or invalid token",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id",
+                    "events"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Missing or invalid token\",\n  \"status\": 401\n}"
+            },
+            {
+              "name": "404 Document not found",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id",
+                    "events"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Document not found\",\n  \"status\": 404\n}"
+            },
+            {
+              "name": "413 File too large",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id",
+                    "events"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Payload Too Large",
+              "code": 413,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"File too large\",\n  \"status\": 413\n}"
+            },
+            {
+              "name": "415 Not a valid PDF",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id",
+                    "events"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Not a valid PDF\",\n  \"status\": 415\n}"
+            },
+            {
+              "name": "422 Upload rejected or validation failed",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id",
+                    "events"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Upload rejected or validation failed\",\n  \"status\": 422\n}"
+            },
+            {
+              "name": "429 Quota exceeded",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id",
+                    "events"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Response",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Quota exceeded\",\n  \"status\": 429\n}"
+            },
+            {
+              "name": "503 Document processing is not configured or the queue is down",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id",
+                    "events"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Document processing is not configured or the queue is down\",\n  \"status\": 503\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "GET /health/live",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const expectedStatus = 200;",
+                  "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                  "pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                  "const schema = {\"additionalProperties\": {\"type\": \"string\"}, \"title\": \"Response Live Health Live Get\", \"type\": \"object\"};",
+                  "pm.test('response matches the OpenAPI schema', () => pm.response.to.have.jsonSchema(schema));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health/live",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health",
+                "live"
+              ]
+            },
+            "description": "Live",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "name": "200 Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/health/live",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "live"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET /health/ready",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const expectedStatus = 200;",
+                  "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                  "pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                  "const schema = {};",
+                  "pm.test('response matches the OpenAPI schema', () => pm.response.to.have.jsonSchema(schema));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health/ready",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health",
+                "ready"
+              ]
+            },
+            "description": "Ready",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "name": "200 Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/health/ready",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "ready"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"checks\": {}\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ingestions",
+      "item": [
+        {
+          "name": "POST /v1/ingestions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.variables.get('knowledgeBase') !== 'true') {",
+                  "  pm.test.skip('skipped: the knowledge base is not configured');",
+                  "} else {",
+                  "  const expectedStatus = 202;",
+                  "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                  "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                  "  const schema = {\"properties\": {\"job_id\": {\"title\": \"Job Id\", \"type\": \"string\"}, \"status_url\": {\"title\": \"Status Url\", \"type\": \"string\"}}, \"required\": [\"job_id\", \"status_url\"], \"title\": \"IngestionAccepted\", \"type\": \"object\"};",
+                  "  pm.test('response matches the OpenAPI schema', () => pm.response.to.have.jsonSchema(schema));",
+                  "  const payload = pm.response.json();",
+                  "  if (payload.job_id !== undefined) pm.collectionVariables.set('jobId', payload.job_id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/ingestions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "ingestions"
+              ]
+            },
+            "description": "Submit",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"{{ingestUrl}}\",\n  \"language\": \"java\",\n  \"framework\": \"spring\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "202 Successful Response",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions"
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"{{jobId}}\",\n  \"status_url\": \"string\"\n}"
+            },
+            {
+              "name": "401 Missing or invalid token",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Missing or invalid token\",\n  \"status\": 401\n}"
+            },
+            {
+              "name": "403 Requires the 'ingest' role",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Requires the 'ingest' role\",\n  \"status\": 403\n}"
+            },
+            {
+              "name": "404 Ingestion job not found",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Ingestion job not found\",\n  \"status\": 404\n}"
+            },
+            {
+              "name": "422 Validation failed or URL not allowed",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Validation failed or URL not allowed\",\n  \"status\": 422\n}"
+            },
+            {
+              "name": "503 Ingestion is not configured",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Ingestion is not configured\",\n  \"status\": 503\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET /v1/ingestions/{job_id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.variables.get('knowledgeBase') !== 'true') {",
+                  "  pm.test.skip('skipped: the knowledge base is not configured');",
+                  "} else {",
+                  "  const expectedStatus = 200;",
+                  "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                  "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                  "  const schema = {\"properties\": {\"chunks\": {\"title\": \"Chunks\", \"type\": \"integer\"}, \"documents\": {\"title\": \"Documents\", \"type\": \"integer\"}, \"error\": {\"anyOf\": [{\"type\": \"string\"}, {\"type\": \"null\"}], \"title\": \"Error\"}, \"job_id\": {\"title\": \"Job Id\", \"type\": \"string\"}, \"state\": {\"title\": \"State\", \"type\": \"string\"}}, \"required\": [\"job_id\", \"state\", \"documents\", \"chunks\", \"error\"], \"title\": \"IngestionStatus\", \"type\": \"object\"};",
+                  "  pm.test('response matches the OpenAPI schema', () => pm.response.to.have.jsonSchema(schema));",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/ingestions/:job_id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "ingestions",
+                ":job_id"
+              ],
+              "variable": [
+                {
+                  "key": "job_id",
+                  "value": "{{jobId}}"
+                }
+              ]
+            },
+            "description": "Status"
+          },
+          "response": [
+            {
+              "name": "200 Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions/:job_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions",
+                    ":job_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "job_id",
+                      "value": "{{jobId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"{{jobId}}\",\n  \"state\": \"string\",\n  \"documents\": 0,\n  \"chunks\": 0,\n  \"error\": \"string\"\n}"
+            },
+            {
+              "name": "401 Missing or invalid token",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions/:job_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions",
+                    ":job_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "job_id",
+                      "value": "{{jobId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Missing or invalid token\",\n  \"status\": 401\n}"
+            },
+            {
+              "name": "403 Requires the 'ingest' role",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions/:job_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions",
+                    ":job_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "job_id",
+                      "value": "{{jobId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Requires the 'ingest' role\",\n  \"status\": 403\n}"
+            },
+            {
+              "name": "404 Ingestion job not found",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions/:job_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions",
+                    ":job_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "job_id",
+                      "value": "{{jobId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Ingestion job not found\",\n  \"status\": 404\n}"
+            },
+            {
+              "name": "422 Validation failed or URL not allowed",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions/:job_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions",
+                    ":job_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "job_id",
+                      "value": "{{jobId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Validation failed or URL not allowed\",\n  \"status\": 422\n}"
+            },
+            {
+              "name": "503 Ingestion is not configured",
+              "originalRequest": {
+                "method": "GET",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions/:job_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions",
+                    ":job_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "job_id",
+                      "value": "{{jobId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Ingestion is not configured\",\n  \"status\": 503\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "questions",
+      "item": [
+        {
+          "name": "POST /v1/questions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const expectedStatus = 200;",
+                  "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                  "pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                  "const schema = {\"description\": \"`status` is answer | clarify | abstain | command; only `answer` carries an answer.\", \"properties\": {\"answer\": {\"anyOf\": [{\"properties\": {\"sources\": {\"items\": {\"properties\": {\"id\": {\"title\": \"Id\", \"type\": \"string\"}, \"kind\": {\"title\": \"Kind\", \"type\": \"string\"}, \"title\": {\"title\": \"Title\", \"type\": \"string\"}, \"url\": {\"anyOf\": [{\"type\": \"string\"}, {\"type\": \"null\"}], \"title\": \"Url\"}}, \"required\": [\"id\", \"title\", \"url\", \"kind\"], \"title\": \"SourceOut\", \"type\": \"object\"}, \"title\": \"Sources\", \"type\": \"array\"}, \"text\": {\"title\": \"Text\", \"type\": \"string\"}}, \"required\": [\"text\", \"sources\"], \"title\": \"AnswerOut\", \"type\": \"object\"}, {\"type\": \"null\"}]}, \"clarification\": {\"anyOf\": [{\"properties\": {\"options\": {\"items\": {\"type\": \"string\"}, \"title\": \"Options\", \"type\": \"array\"}, \"question\": {\"title\": \"Question\", \"type\": \"string\"}}, \"required\": [\"question\", \"options\"], \"title\": \"ClarificationOut\", \"type\": \"object\"}, {\"type\": \"null\"}]}, \"intent\": {\"anyOf\": [{\"properties\": {\"confidence\": {\"title\": \"Confidence\", \"type\": \"number\"}, \"entities\": {\"additionalProperties\": {\"type\": \"string\"}, \"title\": \"Entities\", \"type\": \"object\"}, \"name\": {\"title\": \"Name\", \"type\": \"string\"}}, \"required\": [\"name\", \"confidence\", \"entities\"], \"title\": \"IntentOut\", \"type\": \"object\"}, {\"type\": \"null\"}]}, \"message\": {\"anyOf\": [{\"type\": \"string\"}, {\"type\": \"null\"}], \"title\": \"Message\"}, \"question_id\": {\"title\": \"Question Id\", \"type\": \"string\"}, \"status\": {\"default\": \"answer\", \"title\": \"Status\", \"type\": \"string\"}, \"transcript\": {\"properties\": {\"language\": {\"anyOf\": [{\"type\": \"string\"}, {\"type\": \"null\"}], \"title\": \"Language\"}, \"text\": {\"title\": \"Text\", \"type\": \"string\"}}, \"required\": [\"text\", \"language\"], \"title\": \"TranscriptOut\", \"type\": \"object\"}}, \"required\": [\"question_id\", \"transcript\"], \"title\": \"QuestionOut\", \"type\": \"object\"};",
+                  "pm.test('response matches the OpenAPI schema', () => pm.response.to.have.jsonSchema(schema));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/questions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "questions"
+              ]
+            },
+            "description": "Ask Question",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "audio",
+                  "type": "file",
+                  "src": "fixtures/question.webm",
+                  "contentType": "audio/webm"
+                },
+                {
+                  "key": "language",
+                  "type": "text",
+                  "value": "java",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Successful Response",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"answer\",\n  \"question_id\": \"string\",\n  \"transcript\": {\n    \"text\": \"string\",\n    \"language\": \"java\"\n  },\n  \"answer\": {\n    \"text\": \"string\",\n    \"sources\": [\n      {\n        \"id\": \"string\",\n        \"title\": \"string\",\n        \"url\": \"{{ingestUrl}}\",\n        \"kind\": \"string\"\n      }\n    ]\n  },\n  \"clarification\": {\n    \"question\": \"string\",\n    \"options\": [\n      \"string\"\n    ]\n  },\n  \"message\": \"string\",\n  \"intent\": {\n    \"name\": \"string\",\n    \"confidence\": 0.0,\n    \"entities\": {\n      \"key\": \"string\"\n    }\n  }\n}"
+            },
+            {
+              "name": "401 Missing or invalid token",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Missing or invalid token\",\n  \"status\": 401\n}"
+            },
+            {
+              "name": "404 No relevant knowledge found",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"No relevant knowledge found\",\n  \"status\": 404\n}"
+            },
+            {
+              "name": "413 Audio too large",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                }
+              },
+              "status": "Payload Too Large",
+              "code": 413,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Audio too large\",\n  \"status\": 413\n}"
+            },
+            {
+              "name": "415 Unsupported media type",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Unsupported media type\",\n  \"status\": 415\n}"
+            },
+            {
+              "name": "422 Invalid audio or validation failure",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Invalid audio or validation failure\",\n  \"status\": 422\n}"
+            },
+            {
+              "name": "502 Speech-to-text unavailable",
+              "originalRequest": {
+                "method": "POST",
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"about:blank\",\n  \"title\": \"Speech-to-text unavailable\",\n  \"status\": 502\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Flows",
+      "description": "Hand-authored scenarios. Run a folder with the Collection Runner or Newman.",
+      "item": [
+        {
+          "name": "Health",
+          "description": "Liveness and readiness. Run first, because nothing else is meaningful if these fail.",
+          "item": [
+            {
+              "name": "Liveness",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const expectedStatus = 200;",
+                      "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "pm.test('status is ok', () => pm.expect(pm.response.json().status).to.equal(\"ok\"));"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health/live",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "live"
+                  ]
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              }
+            },
+            {
+              "name": "Readiness",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const expectedStatus = 200;",
+                      "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "pm.test('status is ok', () => pm.expect(pm.response.json().status).to.equal(\"ok\"));"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health/ready",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "ready"
+                  ]
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Ask a question",
+          "description": "Upload a spoken question and read the transcript and the grounded answer.\nWith the fake STT engine any non-empty audio works; against Whisper use fixtures/question.real.webm.\n",
+          "item": [
+            {
+              "name": "Ask a question (audio)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const expectedStatus = 200;",
+                      "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "const payload = pm.response.json();",
+                      "if (payload.question_id !== undefined) pm.collectionVariables.set('questionId', payload.question_id);",
+                      "pm.test('transcript.text is not empty', () => pm.expect(pm.response.json().transcript.text).to.be.a('string').that.is.not.empty);",
+                      "pm.test('question_id is not empty', () => pm.expect(pm.response.json().question_id).to.be.a('string').that.is.not.empty);",
+                      "pm.test('status is one of answer, clarify, abstain, command', () => pm.expect([\"answer\", \"clarify\", \"abstain\", \"command\"]).to.include(pm.response.json().status));"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "audio",
+                      "type": "file",
+                      "src": "fixtures/question.webm",
+                      "contentType": "audio/webm"
+                    },
+                    {
+                      "key": "language",
+                      "type": "text",
+                      "value": "en",
+                      "disabled": true
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Answers cite at least one source",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const expectedStatus = 200;",
+                      "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "const body = pm.response.json();",
+                      "if (body.status === 'answer') {",
+                      "  pm.test('an answer always has sources', () => pm.expect(body.answer.sources).to.be.an('array').that.is.not.empty);",
+                      "  pm.test('sources have a title and a kind', () => body.answer.sources.forEach((s) => pm.expect(s).to.include.all.keys('id', 'title', 'kind')));",
+                      "} else {",
+                      "  pm.test('non-answers carry no answer object', () => pm.expect(body.answer).to.be.null);",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "audio",
+                      "type": "file",
+                      "src": "fixtures/question.webm",
+                      "contentType": "audio/webm"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Ingest then ask",
+          "description": "Needs the knowledge base (docker-compose environment sets knowledgeBase=true) and a user with the\n`ingest` role. Submits a document URL, polls the job until it finishes, then asks a question.\n",
+          "item": [
+            {
+              "name": "Submit an ingestion job",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('knowledgeBase') !== 'true') {",
+                      "  pm.test.skip('skipped: the knowledge base is not configured');",
+                      "} else {",
+                      "  const expectedStatus = 202;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "  const payload = pm.response.json();",
+                      "  if (payload.job_id !== undefined) pm.collectionVariables.set('jobId', payload.job_id);",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"{{ingestUrl}}\",\n  \"language\": \"java\",\n  \"framework\": \"spring\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Poll the ingestion job",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const until = Date.now() + 1000;",
+                      "while (Date.now() < until) {}"
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('knowledgeBase') !== 'true') {",
+                      "  pm.test.skip('skipped: the knowledge base is not configured');",
+                      "} else {",
+                      "  const expectedStatus = 200;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "  const state = pm.response.json().state;",
+                      "  const pending = [\"queued\", \"running\"];",
+                      "  const terminal = [\"succeeded\", \"failed\"];",
+                      "  const attempt = Number(pm.collectionVariables.get('pollAttempt') || 0) + 1;",
+                      "  if (pending.includes(state) && attempt < 30) {",
+                      "    pm.collectionVariables.set('pollAttempt', String(attempt));",
+                      "    postman.setNextRequest(pm.info.requestName);",
+                      "  } else {",
+                      "    pm.collectionVariables.unset('pollAttempt');",
+                      "    pm.test(`job reached a terminal state (${state})`, () => pm.expect(terminal).to.include(state));",
+                      "    pm.test('job succeeded', () => pm.expect(state).to.equal('succeeded'));",
+                      "  }",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions/:job_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions",
+                    ":job_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "job_id",
+                      "value": "{{jobId}}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Ask about the ingested topic",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('knowledgeBase') !== 'true') {",
+                      "  pm.test.skip('skipped: the knowledge base is not configured');",
+                      "} else {",
+                      "  const expectedStatus = 200;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "  const body = pm.response.json();",
+                      "  pm.test('the answer is grounded in ingested sources', () => {",
+                      "    pm.expect(body.status).to.equal('answer');",
+                      "    pm.expect(body.answer.sources.some((s) => /^https?:\\/\\//.test(s.url || ''))).to.be.true;",
+                      "  });",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "audio",
+                      "type": "file",
+                      "src": "fixtures/question.webm",
+                      "contentType": "audio/webm"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Negative scenarios",
+          "description": "Every error the API documents. Scenarios that need auth, the knowledge base, the small audio limit\n(start the API with VA_MAX_AUDIO_BYTES=2048) or a low-privilege token are skipped when their\nenvironment flag is off.\n",
+          "item": [
+            {
+              "name": "401 missing token",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('authEnabled') === 'false') {",
+                      "  pm.test.skip('skipped: auth is disabled');",
+                      "} else {",
+                      "  const expectedStatus = 401;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/problem+json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json'));",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                },
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "audio",
+                      "type": "file",
+                      "src": "fixtures/question.webm",
+                      "contentType": "audio/webm"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "403 token without the ingest role",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('authEnabled') === 'false' || !pm.variables.get('lowPrivilegeToken')) {",
+                      "  pm.test.skip('skipped: auth is disabled and no lowPrivilegeToken is set');",
+                      "} else {",
+                      "  const expectedStatus = 403;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/problem+json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json'));",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lowPrivilegeToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions"
+                  ]
+                },
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"{{ingestUrl}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "404 unknown ingestion job",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('knowledgeBase') !== 'true') {",
+                      "  pm.test.skip('skipped: the knowledge base is not configured');",
+                      "} else {",
+                      "  const expectedStatus = 404;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/problem+json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json'));",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions/:job_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions",
+                    ":job_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "job_id",
+                      "value": "does-not-exist"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "413 audio too large",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('smallAudioLimit') !== 'true') {",
+                      "  pm.test.skip('skipped: the API is not running with a small audio limit');",
+                      "} else {",
+                      "  const expectedStatus = 413;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/problem+json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json'));",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "audio",
+                      "type": "file",
+                      "src": "fixtures/large.webm",
+                      "contentType": "audio/webm"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "415 not an audio content type",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const expectedStatus = 415;",
+                      "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "pm.test('content-type is application/problem+json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json'));"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "audio",
+                      "type": "file",
+                      "src": "fixtures/not-audio.txt",
+                      "contentType": "text/plain"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "415 audio type but the bytes are not audio",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const expectedStatus = 415;",
+                      "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "pm.test('content-type is application/problem+json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json'));"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "audio",
+                      "type": "file",
+                      "src": "fixtures/fake.exe.webm",
+                      "contentType": "audio/webm"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "422 empty audio",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const expectedStatus = 422;",
+                      "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "pm.test('content-type is application/problem+json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json'));"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/questions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "questions"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "audio",
+                      "type": "file",
+                      "src": "fixtures/empty.webm",
+                      "contentType": "audio/webm"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "422 blank ingestion url",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const expectedStatus = 422;",
+                      "pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "pm.test('content-type is application/problem+json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json'));"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ingestions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ingestions"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"   \"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Documents",
+          "description": "Upload a PDF, read its status and list the library. Needs VA_PDF_ENABLED=true on the API. With auth\ndisabled any file works; the pipeline then ends `failed (reader_not_configured)` until the PDF reader\nships, which is the expected state for now.\n",
+          "item": [
+            {
+              "name": "Upload a PDF",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('pdfEnabled') !== 'true') {",
+                      "  pm.test.skip('skipped: PDF ingestion is not enabled on this API');",
+                      "} else {",
+                      "  const expectedStatus = 202;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "  const payload = pm.response.json();",
+                      "  if (payload.document_id !== undefined) pm.collectionVariables.set('documentId', payload.document_id);",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": "fixtures/guide.pdf",
+                      "contentType": "application/pdf"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Upload the same PDF again returns the existing document",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('pdfEnabled') !== 'true') {",
+                      "  pm.test.skip('skipped: PDF ingestion is not enabled on this API');",
+                      "} else {",
+                      "  const expectedStatus = 200;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "  pm.test('points at the first document', () => pm.expect(pm.response.json().duplicate_of).to.equal(pm.collectionVariables.get('documentId')));",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": "fixtures/guide.pdf",
+                      "contentType": "application/pdf"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get the document",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('pdfEnabled') !== 'true') {",
+                      "  pm.test.skip('skipped: PDF ingestion is not enabled on this API');",
+                      "} else {",
+                      "  const expectedStatus = 200;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "{{documentId}}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "List the library",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('pdfEnabled') !== 'true') {",
+                      "  pm.test.skip('skipped: PDF ingestion is not enabled on this API');",
+                      "} else {",
+                      "  const expectedStatus = 200;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+                      "  pm.test('the uploaded document is listed', () => pm.expect(pm.response.json().items.map((d) => d.document_id)).to.include(pm.collectionVariables.get('documentId')));",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "415 a ZIP renamed to .pdf is refused",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('pdfEnabled') !== 'true') {",
+                      "  pm.test.skip('skipped: PDF ingestion is not enabled on this API');",
+                      "} else {",
+                      "  const expectedStatus = 415;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/problem+json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json'));",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": "fixtures/not-a-pdf.pdf",
+                      "contentType": "application/pdf"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "404 unknown document",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('pdfEnabled') !== 'true') {",
+                      "  pm.test.skip('skipped: PDF ingestion is not enabled on this API');",
+                      "} else {",
+                      "  const expectedStatus = 404;",
+                      "  pm.test(`status is ${expectedStatus}`, () => pm.response.to.have.status(expectedStatus));",
+                      "  pm.test('content-type is application/problem+json', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/problem+json'));",
+                      "}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "document_id",
+                      "value": "d_does_not_exist"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

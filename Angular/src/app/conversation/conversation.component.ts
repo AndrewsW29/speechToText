@@ -42,12 +42,27 @@ import { UserBubbleComponent } from './user-bubble.component';
         @if (store.error(); as message) {
           <p class="err" role="alert">{{ message }}</p>
         }
+        @if (store.clarification(); as c) {
+          <section class="err" role="group" aria-label="Clarification">
+            <p>{{ c.question }}</p>
+            <div class="follow">
+              @for (option of c.options; track option) {
+                <button type="button" class="chip" (click)="store.pickOption(option)">{{ option }}</button>
+              }
+            </div>
+          </section>
+        }
+        @if (store.notice(); as note) {
+          <p class="err" role="status">{{ note }}</p>
+        }
         @if (store.response(); as r) {
-          <va-answer-card [text]="r.answer.text" [sources]="r.answer.sources" />
-          <div class="follow">
-            <button type="button" class="chip" (click)="store.askText('Add validation')">Add validation</button>
-            <button type="button" class="chip" (click)="store.askText('Write a test')">Write a test</button>
-          </div>
+          @if (r.answer; as a) {
+            <va-answer-card [text]="a.text" [sources]="a.sources" />
+            <div class="follow">
+              <button type="button" class="chip" (click)="store.askText('Add validation')">Add validation</button>
+              <button type="button" class="chip" (click)="store.askText('Write a test')">Write a test</button>
+            </div>
+          }
         }
       } @else {
         <va-suggestion-list (chosen)="store.askText($event)" />
