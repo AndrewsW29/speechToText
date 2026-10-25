@@ -1,0 +1,409 @@
+openapi: 3.1.0
+info:
+  title: Voice Dev Assistant API
+  version: 0.1.0
+paths:
+  /health/live:
+    get:
+      tags:
+      - health
+      summary: Live
+      operationId: live_health_live_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+                title: Response Live Health Live Get
+  /health/ready:
+    get:
+      tags:
+      - health
+      summary: Ready
+      operationId: ready_health_ready_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /v1/questions:
+    post:
+      tags:
+      - questions
+      summary: Ask Question
+      operationId: ask_question_v1_questions_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_ask_question_v1_questions_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionOut'
+        '401':
+          description: Missing or invalid token
+          content: &id001
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: No relevant knowledge found
+          content: *id001
+        '413':
+          description: Audio too large
+          content: *id001
+        '415':
+          description: Unsupported media type
+          content: *id001
+        '422':
+          description: Invalid audio or validation failure
+          content: *id001
+        '502':
+          description: Speech-to-text unavailable
+          content: *id001
+      security:
+      - bearer: []
+  /v1/ingestions:
+    post:
+      tags:
+      - ingestions
+      summary: Submit
+      operationId: submit_v1_ingestions_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngestionRequest'
+        required: true
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestionAccepted'
+        '401':
+          description: Missing or invalid token
+          content: *id001
+        '403':
+          description: Requires the 'ingest' role
+          content: *id001
+        '404':
+          description: Ingestion job not found
+          content: *id001
+        '422':
+          description: Validation failed or URL not allowed
+          content: *id001
+        '503':
+          description: Ingestion is not configured
+          content: *id001
+      security:
+      - bearer: []
+  /v1/ingestions/{job_id}:
+    get:
+      tags:
+      - ingestions
+      summary: Status
+      operationId: status_v1_ingestions__job_id__get
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestionStatus'
+        '401':
+          description: Missing or invalid token
+          content: *id001
+        '403':
+          description: Requires the 'ingest' role
+          content: *id001
+        '404':
+          description: Ingestion job not found
+          content: *id001
+        '422':
+          description: Validation failed or URL not allowed
+          content: *id001
+        '503':
+          description: Ingestion is not configured
+          content: *id001
+      security:
+      - bearer: []
+components:
+  schemas:
+    AnswerOut:
+      properties:
+        text:
+          type: string
+          title: Text
+        sources:
+          items:
+            $ref: '#/components/schemas/SourceOut'
+          type: array
+          title: Sources
+      type: object
+      required:
+      - text
+      - sources
+      title: AnswerOut
+    Body_ask_question_v1_questions_post:
+      properties:
+        audio:
+          type: string
+          contentMediaType: application/octet-stream
+          title: Audio
+        language:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Language
+      type: object
+      required:
+      - audio
+      title: Body_ask_question_v1_questions_post
+    ClarificationOut:
+      properties:
+        question:
+          type: string
+          title: Question
+        options:
+          items:
+            type: string
+          type: array
+          title: Options
+      type: object
+      required:
+      - question
+      - options
+      title: ClarificationOut
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    IngestionAccepted:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+        status_url:
+          type: string
+          title: Status Url
+      type: object
+      required:
+      - job_id
+      - status_url
+      title: IngestionAccepted
+    IngestionRequest:
+      properties:
+        url:
+          type: string
+          maxLength: 2048
+          title: Url
+        language:
+          type: string
+          maxLength: 20
+          minLength: 1
+          title: Language
+          default: java
+        framework:
+          anyOf:
+          - type: string
+            maxLength: 40
+          - type: 'null'
+          title: Framework
+      type: object
+      required:
+      - url
+      title: IngestionRequest
+    IngestionStatus:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+        state:
+          type: string
+          title: State
+        documents:
+          type: integer
+          title: Documents
+        chunks:
+          type: integer
+          title: Chunks
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - job_id
+      - state
+      - documents
+      - chunks
+      - error
+      title: IngestionStatus
+    IntentOut:
+      properties:
+        name:
+          type: string
+          title: Name
+        confidence:
+          type: number
+          title: Confidence
+        entities:
+          additionalProperties:
+            type: string
+          type: object
+          title: Entities
+      type: object
+      required:
+      - name
+      - confidence
+      - entities
+      title: IntentOut
+    QuestionOut:
+      properties:
+        status:
+          type: string
+          title: Status
+          default: answer
+        question_id:
+          type: string
+          title: Question Id
+        transcript:
+          $ref: '#/components/schemas/TranscriptOut'
+        answer:
+          anyOf:
+          - $ref: '#/components/schemas/AnswerOut'
+          - type: 'null'
+        clarification:
+          anyOf:
+          - $ref: '#/components/schemas/ClarificationOut'
+          - type: 'null'
+        message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Message
+        intent:
+          anyOf:
+          - $ref: '#/components/schemas/IntentOut'
+          - type: 'null'
+      type: object
+      required:
+      - question_id
+      - transcript
+      title: QuestionOut
+      description: '`status` is answer | clarify | abstain | command; only `answer`
+        carries an answer.'
+    SourceOut:
+      properties:
+        id:
+          type: string
+          title: Id
+        title:
+          type: string
+          title: Title
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        kind:
+          type: string
+          title: Kind
+      type: object
+      required:
+      - id
+      - title
+      - url
+      - kind
+      title: SourceOut
+    TranscriptOut:
+      properties:
+        text:
+          type: string
+          title: Text
+        language:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Language
+      type: object
+      required:
+      - text
+      - language
+      title: TranscriptOut
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ProblemDetails:
+      type: object
+      required:
+      - type
+      - title
+      - status
+      properties:
+        type:
+          type: string
+          default: about:blank
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

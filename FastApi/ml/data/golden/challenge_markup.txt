@@ -1,0 +1,62 @@
+CREATE_CODE_ARTIFACT :: how do i create a [controler|ARTIFACT] and a [surface|ARTIFACT] in [java|LANGUAGE]
+CREATE_CODE_ARTIFACT :: um so like make me a [rest controller|ARTIFACT] uh in [spring|FRAMEWORK]
+CREATE_CODE_ARTIFACT :: create a [j p a|LIBRARY] [repository|ARTIFACT] for products
+CREATE_CODE_ARTIFACT :: generate a [springboot|FRAMEWORK] [serves|ARTIFACT] class in [jar va|LANGUAGE]
+CREATE_CODE_ARTIFACT :: make one [kontroller|ARTIFACT] with [cotlin|LANGUAGE] please
+CREATE_CODE_ARTIFACT :: write an [unit test|ARTIFACT] for the [service|ARTIFACT] with [mock ito|LIBRARY]
+CREATE_CODE_ARTIFACT :: i need a [d t o|ARTIFACT] for the user entity
+CREATE_CODE_ARTIFACT :: build [rest|ARTIFACT] [end point|ARTIFACT] in [spring|FRAMEWORK] [boot|FRAMEWORK]
+EXPLAIN_CONCEPT :: what is [dependancy|ARTIFACT] [injection|ARTIFACT]
+EXPLAIN_CONCEPT :: uh explain how [spring|FRAMEWORK] [beens|ARTIFACT] get wired
+EXPLAIN_CONCEPT :: what does [j p a|LIBRARY] lazy loading mean
+EXPLAIN_CONCEPT :: tell me whats a [d t o|ARTIFACT]
+EXPLAIN_CONCEPT :: what is the [hexagon|ARTIFACT] architecture thing
+EXPLAIN_CONCEPT :: explain [sold|ARTIFACT] principles
+EXPLAIN_CONCEPT :: how do [co routines|LIBRARY] work in [cotlin|LANGUAGE]
+EXPLAIN_CONCEPT :: what is [c q r s|ARTIFACT]
+FIND_DOCS :: show me the dogs for [spring data j p a|LIBRARY]
+FIND_DOCS :: where is the [springboot|FRAMEWORK] documentation
+FIND_DOCS :: find the [jay unit|LIBRARY] five docs
+FIND_DOCS :: documentation for [mock ito|LIBRARY] please
+FIND_DOCS :: link the [cotlin|LANGUAGE] guide
+FIND_DOCS :: open the [angler|FRAMEWORK] docs on signals
+FIND_DOCS :: where are the [hibernate|LIBRARY] docks
+FIND_DOCS :: look up [lom bock|LIBRARY] features
+DEBUG_ERROR :: i got a [no pointer exception|ERROR_CODE] in my [serves|ARTIFACT]
+DEBUG_ERROR :: my [kontroller|ARTIFACT] returns [four oh four|ERROR_CODE]
+DEBUG_ERROR :: why [five hundred|ERROR_CODE] from my [spring|FRAMEWORK] api
+DEBUG_ERROR :: [lazy init exception|ERROR_CODE] when i load the [entity|ARTIFACT]
+DEBUG_ERROR :: uh my test is failing with [class cast|ERROR_CODE] or something
+DEBUG_ERROR :: [no such been|ERROR_CODE] definition error
+DEBUG_ERROR :: [cores|ERROR_CODE] problem calling my api from [angler|FRAMEWORK]
+DEBUG_ERROR :: [stack over flow|ERROR_CODE] in my recursive function
+COMPARE_OPTIONS :: [j p a|LIBRARY] or [j d b c|LIBRARY]
+COMPARE_OPTIONS :: [maven|FRAMEWORK] versus [gradle|FRAMEWORK] i guess
+COMPARE_OPTIONS :: should i use [cotlin|LANGUAGE] or [jar va|LANGUAGE]
+COMPARE_OPTIONS :: [rest controller|ARTIFACT] or the functional thing
+COMPARE_OPTIONS :: [mock ito|LIBRARY] versus [mock k|LIBRARY]
+COMPARE_OPTIONS :: [angler|FRAMEWORK] or [react|FRAMEWORK]
+COMPARE_OPTIONS :: uh [spring|FRAMEWORK] [boot|FRAMEWORK] or [kwarkus|FRAMEWORK]
+COMPARE_OPTIONS :: [kafka|LIBRARY] versus [rabbit m q|LIBRARY]
+MODIFY_PREVIOUS :: um now add [validation|ARTIFACT] to it
+MODIFY_PREVIOUS :: make it [cotlin|LANGUAGE] instead
+MODIFY_PREVIOUS :: add a [test|ARTIFACT] for the thing you just did
+MODIFY_PREVIOUS :: and the same for the [repo|ARTIFACT]
+MODIFY_PREVIOUS :: uh use [lom bock|LIBRARY] in that
+MODIFY_PREVIOUS :: can you make it shorter
+MODIFY_PREVIOUS :: add [lodging|ARTIFACT] to it
+MODIFY_PREVIOUS :: switch to [constructor|ARTIFACT] injection there
+META_COMMAND :: um repeat that please
+META_COMMAND :: save the this answer
+META_COMMAND :: stop stop
+META_COMMAND :: clear it all
+META_COMMAND :: red it out loud
+META_COMMAND :: open my safe answers
+OUT_OF_SCOPE :: how do i fix my controller its stuck on the loading screen
+OUT_OF_SCOPE :: how do i spring into action at the gym
+OUT_OF_SCOPE :: set up a service for my bike
+OUT_OF_SCOPE :: what is the java island population
+OUT_OF_SCOPE :: whats the best way to test a pid controller on a robot
+OUT_OF_SCOPE :: how do i inject insulin
+OUT_OF_SCOPE :: explain the architecture of the roman colosseum
+OUT_OF_SCOPE :: which repository of antiques is the oldest

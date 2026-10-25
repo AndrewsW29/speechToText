@@ -1,0 +1,35 @@
+# Intent taxonomy: small, mutually exclusive, one handler per intent.
+intents:
+  CREATE_CODE_ARTIFACT:
+    handler: create_code
+    meaning: Build something (controller, service, test, DTO...)
+    required_entities: [LANGUAGE]
+  EXPLAIN_CONCEPT:
+    handler: explain
+    meaning: Understand a concept or term
+  FIND_DOCS:
+    handler: find_docs
+    meaning: Locate a reference or documentation page
+  DEBUG_ERROR:
+    handler: debug
+    meaning: Diagnose and fix a failure
+  COMPARE_OPTIONS:
+    handler: compare
+    meaning: Choose between two or more options
+  MODIFY_PREVIOUS:
+    handler: modify
+    meaning: Follow-up that changes or extends the previous answer
+  META_COMMAND:
+    handler: meta
+    meaning: Control the app itself (repeat, save, stop, clear)
+  OUT_OF_SCOPE:
+    handler: refuse
+    meaning: Not our domain; includes hard negatives that sound like it (game controller, PID controller)
+entities:
+  LANGUAGE: Programming language (java, kotlin, typescript)
+  FRAMEWORK: Framework or platform (spring boot, angular, fastapi)
+  ARTIFACT: Thing to build or discuss (controller, service, dto, unit test)
+  LIBRARY: Library or specification (jpa, mockito, lombok)
+  VERSION: Version number or release name (3, 17, 21)
+  ERROR_CODE: Error name or status code (nullpointerexception, 404, 500)
+tagging: BIO

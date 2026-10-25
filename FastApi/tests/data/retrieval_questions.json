@@ -1,0 +1,12 @@
+[
+  {"q": "how do I create a rest controller in java", "expect": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller.html"},
+  {"q": "create a controller and a service in Java with Spring", "expect": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller.html"},
+  {"q": "what annotation makes a class a service bean", "expect": "https://docs.spring.io/spring-framework/reference/core/beans/classpath-scanning.html"},
+  {"q": "explain dependency injection in spring", "expect": "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html"},
+  {"q": "why prefer constructor injection", "expect": "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html"},
+  {"q": "how to write a JPA repository with query methods", "expect": "https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html"},
+  {"q": "add validation to a DTO with NotBlank", "expect": "https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html"},
+  {"q": "write a JUnit test for a service with Mockito", "expect": "https://junit.org/junit5/docs/current/user-guide/"},
+  {"q": "show me a UserService example with a repository", "expect": "https://example.com/samples/UserService.java"},
+  {"q": "kotlin coroutines structured concurrency", "expect": "https://kotlinlang.org/docs/coroutines-basics.html"}
+]

@@ -1,0 +1,25 @@
+[importlinter]
+root_package = app
+include_external_packages = True
+
+[importlinter:contract:layers]
+name = Hexagonal layers (domain <- application <- adapters)
+type = layers
+layers =
+    app.main
+    app.adapters
+    app.application
+    app.domain
+
+[importlinter:contract:domain-pure]
+name = Domain must not import frameworks
+type = forbidden
+source_modules =
+    app.domain
+forbidden_modules =
+    fastapi
+    sqlalchemy
+    celery
+    pydantic
+    httpx
+    redis

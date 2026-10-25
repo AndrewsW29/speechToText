@@ -1,0 +1,416 @@
+{"id": "u-00001", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "O", "O", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["how", "do", "i", "create", "a", "controller", "and", "a", "service", "in", "java"]}
+{"id": "u-00002", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-FRAMEWORK", "I-FRAMEWORK"], "tokens": ["create", "a", "rest", "controller", "in", "spring", "boot"]}
+{"id": "u-00003", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "B-FRAMEWORK", "B-ARTIFACT"], "tokens": ["make", "me", "a", "spring", "service"]}
+{"id": "u-00004", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "B-LIBRARY", "O", "B-LANGUAGE"], "tokens": ["generate", "a", "repository", "with", "jpa", "in", "java"]}
+{"id": "u-00005", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["write", "a", "dto", "class", "in", "kotlin"]}
+{"id": "u-00006", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "B-ARTIFACT", "O", "B-LIBRARY"], "tokens": ["show", "me", "how", "to", "build", "an", "entity", "with", "hibernate"]}
+{"id": "u-00007", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "O", "B-LANGUAGE"], "tokens": ["i", "need", "a", "controller", "for", "users", "in", "java"]}
+{"id": "u-00008", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LIBRARY", "O", "B-LANGUAGE"], "tokens": ["how", "to", "write", "a", "unit", "test", "with", "junit", "in", "java"]}
+{"id": "u-00009", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "B-ARTIFACT"], "tokens": ["build", "a", "service", "that", "uses", "a", "repository"]}
+{"id": "u-00010", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "O", "O", "O", "B-ARTIFACT"], "tokens": ["scaffold", "a", "spring", "boot", "app", "with", "a", "controller"]}
+{"id": "u-00011", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "B-FRAMEWORK"], "tokens": ["create", "a", "component", "in", "angular"]}
+{"id": "u-00012", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-FRAMEWORK", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["generate", "a", "fastapi", "router", "in", "python"]}
+{"id": "u-00013", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LANGUAGE", "O", "O", "O"], "tokens": ["write", "a", "data", "class", "in", "kotlin", "for", "an", "order"]}
+{"id": "u-00014", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["how", "do", "i", "make", "a", "rest", "endpoint", "in", "java"]}
+{"id": "u-00015", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "B-FRAMEWORK", "B-ARTIFACT"], "tokens": ["add", "a", "post", "endpoint", "to", "my", "spring", "controller"]}
+{"id": "u-00016", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "O", "B-ARTIFACT", "O", "O", "O", "B-ARTIFACT"], "tokens": ["can", "you", "write", "a", "mapper", "from", "entity", "to", "dto"]}
+{"id": "u-00017", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "B-ARTIFACT", "O", "O", "B-ARTIFACT"], "tokens": ["create", "a", "mockito", "test", "for", "my", "service"]}
+{"id": "u-00018", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-FRAMEWORK", "I-FRAMEWORK"], "tokens": ["build", "a", "configuration", "class", "for", "spring", "boot"]}
+{"id": "u-00019", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["make", "a", "custom", "exception", "in", "java"]}
+{"id": "u-00020", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["generate", "a", "builder", "for", "this", "class", "in", "java"]}
+{"id": "u-00021", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["write", "an", "interface", "and", "its", "implementation", "in", "kotlin"]}
+{"id": "u-00022", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-FRAMEWORK"], "tokens": ["how", "do", "i", "create", "a", "scheduled", "job", "in", "spring"]}
+{"id": "u-00023", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["create", "a", "kafka", "consumer", "in", "java"]}
+{"id": "u-00024", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "B-LIBRARY"], "tokens": ["show", "an", "example", "controller", "with", "validation"]}
+{"id": "u-00025", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK"], "tokens": ["write", "a", "repository", "interface", "for", "spring", "data"]}
+{"id": "u-00026", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["make", "a", "filter", "that", "logs", "every", "request", "in", "java"]}
+{"id": "u-00027", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LIBRARY", "I-LIBRARY"], "tokens": ["create", "a", "bean", "for", "a", "rest", "template"]}
+{"id": "u-00028", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["i", "want", "a", "service", "class", "with", "constructor", "injection", "in", "java"]}
+{"id": "u-00029", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "B-ARTIFACT", "O", "B-FRAMEWORK", "I-FRAMEWORK", "B-VERSION"], "tokens": ["generate", "an", "openapi", "config", "for", "spring", "boot", "3"]}
+{"id": "u-00030", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "B-ARTIFACT", "O", "B-LIBRARY", "I-LIBRARY", "I-LIBRARY"], "tokens": ["build", "a", "crud", "controller", "with", "spring", "data", "jpa"]}
+{"id": "u-00031", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "B-FRAMEWORK", "B-LANGUAGE"], "tokens": ["write", "a", "pipe", "in", "angular", "typescript"]}
+{"id": "u-00032", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["how", "do", "i", "write", "a", "view", "model", "in", "kotlin"]}
+{"id": "u-00033", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O", "B-LANGUAGE", "B-VERSION"], "tokens": ["create", "a", "record", "for", "a", "user", "in", "java", "21"]}
+{"id": "u-00034", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LIBRARY", "O", "B-FRAMEWORK"], "tokens": ["make", "a", "security", "config", "with", "jwt", "in", "spring"]}
+{"id": "u-00035", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "O"], "tokens": ["generate", "a", "dockerfile", "for", "a", "spring", "boot", "app"]}
+{"id": "u-00036", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LIBRARY"], "tokens": ["write", "an", "integration", "test", "with", "testcontainers"]}
+{"id": "u-00037", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "O"], "tokens": ["show", "me", "a", "controller", "advice", "for", "error", "handling"]}
+{"id": "u-00038", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["build", "a", "pagination", "endpoint", "in", "java"]}
+{"id": "u-00039", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["create", "an", "enum", "with", "a", "lookup", "method", "in", "java"]}
+{"id": "u-00040", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "B-ARTIFACT", "O", "O"], "tokens": ["write", "a", "lombok", "entity", "for", "products"]}
+{"id": "u-00041", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["i", "need", "a", "service", "and", "a", "repository", "for", "orders"]}
+{"id": "u-00042", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "O", "O", "O", "B-FRAMEWORK"], "tokens": ["make", "a", "get", "endpoint", "that", "returns", "a", "list", "in", "spring"]}
+{"id": "u-00043", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["create", "a", "dependency", "injection", "example", "in", "java"]}
+{"id": "u-00044", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["how", "can", "i", "build", "a", "rest", "client", "in", "kotlin"]}
+{"id": "u-00045", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LIBRARY", "B-VERSION"], "tokens": ["write", "a", "parameterized", "test", "with", "junit", "5"]}
+{"id": "u-00046", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "B-ARTIFACT"], "tokens": ["generate", "a", "liquibase", "migration"]}
+{"id": "u-00047", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-FRAMEWORK", "I-FRAMEWORK"], "tokens": ["build", "a", "health", "check", "for", "spring", "boot"]}
+{"id": "u-00048", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["create", "a", "util", "class", "with", "static", "helpers", "in", "java"]}
+{"id": "u-00049", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["write", "a", "coroutine", "that", "fetches", "data", "in", "kotlin"]}
+{"id": "u-00050", "intent": "CREATE_CODE_ARTIFACT", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O", "B-ARTIFACT"], "tokens": ["make", "a", "swagger", "annotated", "controller"]}
+{"id": "u-00051", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT"], "tokens": ["what", "is", "dependency", "injection"]}
+{"id": "u-00052", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "B-ARTIFACT", "I-ARTIFACT", "I-ARTIFACT", "O", "O"], "tokens": ["explain", "inversion", "of", "control", "to", "me"]}
+{"id": "u-00053", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "O", "O"], "tokens": ["how", "does", "spring", "boot", "autoconfiguration", "work"]}
+{"id": "u-00054", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O"], "tokens": ["what", "does", "the", "transactional", "annotation", "do"]}
+{"id": "u-00055", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "B-ARTIFACT", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "difference", "between", "a", "bean", "and", "a", "regular", "object"]}
+{"id": "u-00056", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["explain", "how", "jpa", "lazy", "loading", "works"]}
+{"id": "u-00057", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "a", "dto", "and", "why", "do", "we", "use", "it"]}
+{"id": "u-00058", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O"], "tokens": ["tell", "me", "what", "hexagonal", "architecture", "means"]}
+{"id": "u-00059", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O"], "tokens": ["what", "are", "solid", "principles"]}
+{"id": "u-00060", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "B-LANGUAGE"], "tokens": ["explain", "coroutines", "in", "kotlin"]}
+{"id": "u-00061", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["how", "do", "generics", "work", "in", "java"]}
+{"id": "u-00062", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O"], "tokens": ["what", "is", "a", "repository", "pattern"]}
+{"id": "u-00063", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "O"], "tokens": ["why", "do", "we", "need", "a", "service", "layer"]}
+{"id": "u-00064", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "B-ARTIFACT", "O", "B-FRAMEWORK"], "tokens": ["explain", "signals", "in", "angular"]}
+{"id": "u-00065", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O"], "tokens": ["what", "is", "a", "rest", "api"]}
+{"id": "u-00066", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O", "O"], "tokens": ["how", "does", "hibernate", "caching", "work"]}
+{"id": "u-00067", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "cors", "and", "how", "does", "it", "work"]}
+{"id": "u-00068", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O"], "tokens": ["explain", "what", "an", "orm", "is"]}
+{"id": "u-00069", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O"], "tokens": ["what", "does", "idempotent", "mean", "for", "an", "endpoint"]}
+{"id": "u-00070", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE", "B-VERSION"], "tokens": ["how", "do", "streams", "work", "in", "java", "8"]}
+{"id": "u-00071", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "B-FRAMEWORK"], "tokens": ["what", "is", "the", "singleton", "scope", "in", "spring"]}
+{"id": "u-00072", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["explain", "the", "observer", "design", "pattern"]}
+{"id": "u-00073", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "O", "O"], "tokens": ["how", "does", "garbage", "collection", "work", "in", "the", "jvm"]}
+{"id": "u-00074", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT"], "tokens": ["what", "is", "a", "circuit", "breaker"]}
+{"id": "u-00075", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "O", "O", "O"], "tokens": ["explain", "oauth", "two", "in", "simple", "terms"]}
+{"id": "u-00076", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT"], "tokens": ["what", "is", "cqrs"]}
+{"id": "u-00077", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["how", "does", "the", "event", "loop", "work", "in", "typescript"]}
+{"id": "u-00078", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["what", "is", "the", "purpose", "of", "an", "interface", "in", "java"]}
+{"id": "u-00079", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "O", "O"], "tokens": ["explain", "mockito", "mocks", "versus", "spies"]}
+{"id": "u-00080", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "O"], "tokens": ["what", "is", "a", "jwt", "token"]}
+{"id": "u-00081", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LANGUAGE", "B-VERSION"], "tokens": ["tell", "me", "about", "virtual", "threads", "in", "java", "21"]}
+{"id": "u-00082", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "tdd", "and", "how", "do", "i", "do", "it"]}
+{"id": "u-00083", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["explain", "what", "liskov", "substitution", "is"]}
+{"id": "u-00084", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-FRAMEWORK", "O", "O"], "tokens": ["how", "does", "kubernetes", "scheduling", "work"]}
+{"id": "u-00085", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O"], "tokens": ["what", "is", "a", "bean", "lifecycle"]}
+{"id": "u-00086", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["why", "is", "immutability", "good", "in", "java"]}
+{"id": "u-00087", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "O", "O"], "tokens": ["what", "is", "an", "aggregate", "in", "domain", "driven", "design"]}
+{"id": "u-00088", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "B-ARTIFACT", "O", "O", "B-LIBRARY"], "tokens": ["explain", "reactive", "programming", "with", "webflux"]}
+{"id": "u-00089", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["what", "does", "final", "mean", "in", "java"]}
+{"id": "u-00090", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["how", "do", "annotations", "work", "in", "java"]}
+{"id": "u-00091", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT"], "tokens": ["what", "is", "a", "pojo"]}
+{"id": "u-00092", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O"], "tokens": ["explain", "the", "builder", "pattern"]}
+{"id": "u-00093", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "I-ARTIFACT", "O", "O", "O", "B-LIBRARY"], "tokens": ["what", "is", "n", "plus", "one", "query", "problem", "in", "jpa"]}
+{"id": "u-00094", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "O", "O", "O"], "tokens": ["how", "does", "spring", "security", "filter", "chain", "work"]}
+{"id": "u-00095", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT"], "tokens": ["what", "is", "eventual", "consistency"]}
+{"id": "u-00096", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O"], "tokens": ["explain", "the", "strategy", "pattern", "with", "an", "example"]}
+{"id": "u-00097", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "I-LIBRARY", "O"], "tokens": ["what", "does", "at", "autowired", "do"]}
+{"id": "u-00098", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT"], "tokens": ["what", "is", "a", "microservice"]}
+{"id": "u-00099", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-FRAMEWORK", "O", "O"], "tokens": ["explain", "how", "docker", "layers", "work"]}
+{"id": "u-00100", "intent": "EXPLAIN_CONCEPT", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O", "O"], "tokens": ["what", "is", "grpc", "used", "for"]}
+{"id": "u-00101", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-LIBRARY", "I-LIBRARY", "I-LIBRARY", "O"], "tokens": ["show", "me", "the", "docs", "for", "spring", "data", "jpa", "queries"]}
+{"id": "u-00102", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "O", "O"], "tokens": ["where", "are", "the", "spring", "boot", "reference", "docs"]}
+{"id": "u-00103", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "B-LIBRARY", "B-VERSION"], "tokens": ["find", "the", "documentation", "for", "junit", "5"]}
+{"id": "u-00104", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "B-LANGUAGE", "O", "O"], "tokens": ["link", "me", "to", "the", "kotlin", "coroutines", "guide"]}
+{"id": "u-00105", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-FRAMEWORK", "O", "O", "O"], "tokens": ["open", "the", "official", "angular", "docs", "on", "signals"]}
+{"id": "u-00106", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-LIBRARY", "O", "O"], "tokens": ["where", "can", "i", "read", "about", "mockito", "argument", "matchers"]}
+{"id": "u-00107", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-LANGUAGE", "B-VERSION", "O", "O"], "tokens": ["documentation", "for", "the", "java", "21", "stream", "api"]}
+{"id": "u-00108", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "B-LIBRARY"], "tokens": ["find", "the", "javadoc", "for", "completablefuture"]}
+{"id": "u-00109", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O", "O"], "tokens": ["show", "the", "hibernate", "user", "guide"]}
+{"id": "u-00110", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "O"], "tokens": ["look", "up", "the", "spring", "security", "reference"]}
+{"id": "u-00111", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "B-LIBRARY", "O"], "tokens": ["give", "me", "a", "link", "to", "the", "openapi", "specification"]}
+{"id": "u-00112", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-FRAMEWORK", "O"], "tokens": ["where", "is", "the", "fastapi", "tutorial"]}
+{"id": "u-00113", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "B-FRAMEWORK", "O"], "tokens": ["find", "examples", "of", "rest", "controller", "in", "the", "spring", "guides"]}
+{"id": "u-00114", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O"], "tokens": ["pull", "up", "the", "lombok", "feature", "list"]}
+{"id": "u-00115", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-LIBRARY"], "tokens": ["show", "the", "official", "page", "for", "testcontainers"]}
+{"id": "u-00116", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "B-LIBRARY", "O"], "tokens": ["search", "the", "docs", "for", "transactional", "propagation"]}
+{"id": "u-00117", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-FRAMEWORK", "O", "O"], "tokens": ["where", "do", "i", "find", "the", "kubernetes", "api", "reference"]}
+{"id": "u-00118", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "I-LIBRARY", "O"], "tokens": ["reference", "for", "bean", "validation", "constraints"]}
+{"id": "u-00119", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "B-VERSION"], "tokens": ["find", "the", "migration", "guide", "for", "spring", "boot", "3"]}
+{"id": "u-00120", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-LANGUAGE", "O", "O"], "tokens": ["show", "me", "the", "swift", "language", "guide"]}
+{"id": "u-00121", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O"], "tokens": ["documentation", "on", "jackson", "annotations"]}
+{"id": "u-00122", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-FRAMEWORK", "O", "O", "O", "O"], "tokens": ["where", "are", "the", "gradle", "docs", "for", "dependency", "management"]}
+{"id": "u-00123", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "B-LIBRARY", "O"], "tokens": ["find", "a", "tutorial", "on", "kafka", "consumers"]}
+{"id": "u-00124", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O"], "tokens": ["show", "me", "the", "rxjs", "operators", "reference"]}
+{"id": "u-00125", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "O", "O"], "tokens": ["look", "for", "spring", "cloud", "gateway", "docs"]}
+{"id": "u-00126", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-FRAMEWORK", "O", "O", "O", "O", "O"], "tokens": ["open", "the", "terraform", "documentation", "for", "the", "aws", "provider"]}
+{"id": "u-00127", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK"], "tokens": ["where", "is", "the", "guide", "for", "docker", "compose"]}
+{"id": "u-00128", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-LANGUAGE", "B-VERSION"], "tokens": ["find", "the", "release", "notes", "for", "java", "17"]}
+{"id": "u-00129", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "B-LIBRARY", "O"], "tokens": ["show", "me", "docs", "about", "actuator", "endpoints"]}
+{"id": "u-00130", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O"], "tokens": ["link", "to", "the", "mapstruct", "reference", "guide"]}
+{"id": "u-00131", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O"], "tokens": ["find", "the", "jpa", "specification"]}
+{"id": "u-00132", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-LANGUAGE", "O"], "tokens": ["show", "the", "typescript", "handbook"]}
+{"id": "u-00133", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-LANGUAGE", "O", "O"], "tokens": ["where", "are", "the", "kotlin", "style", "conventions"]}
+{"id": "u-00134", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["documentation", "of", "the", "stream", "collectors", "in", "java"]}
+{"id": "u-00135", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-FRAMEWORK", "O", "O", "O"], "tokens": ["open", "the", "spring", "web", "mvc", "docs"]}
+{"id": "u-00136", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O", "O"], "tokens": ["find", "the", "junit", "assertions", "page"]}
+{"id": "u-00137", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-FRAMEWORK", "O"], "tokens": ["show", "me", "the", "manual", "for", "maven", "profiles"]}
+{"id": "u-00138", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "O"], "tokens": ["where", "is", "the", "micrometer", "documentation"]}
+{"id": "u-00139", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O", "O"], "tokens": ["look", "up", "resilience4j", "retry", "configuration"]}
+{"id": "u-00140", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "O"], "tokens": ["find", "official", "examples", "for", "spring", "data", "repositories"]}
+{"id": "u-00141", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-FRAMEWORK", "O", "O", "O"], "tokens": ["give", "me", "the", "angular", "cli", "command", "reference"]}
+{"id": "u-00142", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "B-VERSION", "O", "O"], "tokens": ["show", "the", "hibernate", "6", "migration", "notes"]}
+{"id": "u-00143", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "B-LIBRARY", "O", "B-FRAMEWORK", "I-FRAMEWORK"], "tokens": ["find", "the", "guide", "on", "oauth", "with", "spring", "security"]}
+{"id": "u-00144", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-FRAMEWORK", "O", "O", "O"], "tokens": ["where", "is", "the", "quarkus", "getting", "started", "guide"]}
+{"id": "u-00145", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["show", "me", "the", "docs", "on", "records", "in", "java"]}
+{"id": "u-00146", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O"], "tokens": ["find", "the", "slf4j", "manual"]}
+{"id": "u-00147", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "B-VERSION", "O"], "tokens": ["bring", "up", "the", "jakarta", "ee", "tutorial"]}
+{"id": "u-00148", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-FRAMEWORK", "O", "O"], "tokens": ["look", "up", "the", "spring", "profiles", "documentation"]}
+{"id": "u-00149", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "O"], "tokens": ["reference", "page", "for", "jdbc", "template"]}
+{"id": "u-00150", "intent": "FIND_DOCS", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O"], "tokens": ["show", "me", "the", "swagger", "annotations", "docs"]}
+{"id": "u-00151", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "B-ARTIFACT", "O"], "tokens": ["i", "get", "a", "null", "pointer", "exception", "in", "my", "service", "why"]}
+{"id": "u-00152", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-ARTIFACT", "O", "B-ERROR_CODE"], "tokens": ["my", "controller", "returns", "404"]}
+{"id": "u-00153", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ERROR_CODE", "O", "O", "B-FRAMEWORK", "O"], "tokens": ["why", "do", "i", "get", "a", "500", "from", "my", "spring", "endpoint"]}
+{"id": "u-00154", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "B-ARTIFACT"], "tokens": ["lazy", "initialization", "exception", "when", "loading", "an", "entity"]}
+{"id": "u-00155", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE"], "tokens": ["how", "do", "i", "fix", "no", "such", "bean", "definition"]}
+{"id": "u-00156", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE"], "tokens": ["my", "test", "fails", "with", "class", "cast", "exception"]}
+{"id": "u-00157", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE"], "tokens": ["the", "app", "crashes", "on", "startup", "with", "bean", "creation", "exception"]}
+{"id": "u-00158", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "O"], "tokens": ["stack", "overflow", "error", "in", "my", "recursive", "method"]}
+{"id": "u-00159", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["why", "is", "my", "repository", "returning", "null"]}
+{"id": "u-00160", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "B-ERROR_CODE", "O", "O", "O", "O"], "tokens": ["i", "keep", "getting", "403", "on", "a", "post", "request"]}
+{"id": "u-00161", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "O", "O", "O"], "tokens": ["circular", "dependency", "between", "two", "services", "how", "to", "fix"]}
+{"id": "u-00162", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "B-LANGUAGE", "O"], "tokens": ["out", "of", "memory", "error", "in", "my", "java", "app"]}
+{"id": "u-00163", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["why", "does", "my", "jpa", "query", "return", "duplicates"]}
+{"id": "u-00164", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "O", "O"], "tokens": ["my", "mockito", "mock", "returns", "null"]}
+{"id": "u-00165", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "O", "O", "O", "O", "O", "O"], "tokens": ["401", "unauthorized", "even", "with", "a", "valid", "token"]}
+{"id": "u-00166", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "O", "O", "O"], "tokens": ["the", "transactional", "annotation", "does", "nothing", "why"]}
+{"id": "u-00167", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "O"], "tokens": ["concurrent", "modification", "exception", "while", "iterating", "a", "list"]}
+{"id": "u-00168", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-FRAMEWORK", "I-FRAMEWORK", "O", "O", "O", "O", "O", "O", "B-VERSION"], "tokens": ["my", "spring", "boot", "app", "will", "not", "start", "on", "port", "8080"]}
+{"id": "u-00169", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "B-ARTIFACT"], "tokens": ["unsatisfied", "dependency", "in", "my", "controller"]}
+{"id": "u-00170", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE"], "tokens": ["json", "deserialization", "fails", "with", "unrecognized", "field"]}
+{"id": "u-00171", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "O"], "tokens": ["index", "out", "of", "bounds", "when", "reading", "the", "array"]}
+{"id": "u-00172", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "O"], "tokens": ["why", "is", "my", "rest", "endpoint", "so", "slow"]}
+{"id": "u-00173", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["cors", "error", "when", "the", "frontend", "calls", "my", "api"]}
+{"id": "u-00174", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O"], "tokens": ["data", "integrity", "violation", "on", "save"]}
+{"id": "u-00175", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["my", "junit", "tests", "pass", "locally", "but", "fail", "on", "the", "build", "server"]}
+{"id": "u-00176", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O"], "tokens": ["no", "unique", "bean", "of", "type", "found"]}
+{"id": "u-00177", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "B-ERROR_CODE", "O", "O", "O"], "tokens": ["method", "not", "allowed", "405", "on", "my", "endpoint"]}
+{"id": "u-00178", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["the", "hibernate", "session", "is", "closed", "when", "i", "access", "a", "collection"]}
+{"id": "u-00179", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "B-ARTIFACT", "O"], "tokens": ["illegal", "argument", "exception", "from", "my", "service", "method"]}
+{"id": "u-00180", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "O"], "tokens": ["why", "does", "my", "stream", "throw", "an", "exception"]}
+{"id": "u-00181", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-LANGUAGE", "O", "O", "O"], "tokens": ["my", "kotlin", "coroutine", "never", "completes"]}
+{"id": "u-00182", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O"], "tokens": ["connection", "refused", "to", "the", "database"]}
+{"id": "u-00183", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O"], "tokens": ["number", "format", "exception", "parsing", "the", "request"]}
+{"id": "u-00184", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "O", "O"], "tokens": ["why", "does", "dependency", "injection", "fail", "in", "my", "test"]}
+{"id": "u-00185", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "O", "O", "O"], "tokens": ["timeout", "calling", "another", "service"]}
+{"id": "u-00186", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "O", "O", "O"], "tokens": ["my", "flyway", "migration", "fails", "at", "startup"]}
+{"id": "u-00187", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "B-ERROR_CODE", "O", "O", "O", "O", "O"], "tokens": ["bad", "request", "400", "but", "the", "body", "looks", "right"]}
+{"id": "u-00188", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "O", "O", "O"], "tokens": ["the", "lombok", "getters", "are", "not", "generated"]}
+{"id": "u-00189", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O"], "tokens": ["class", "not", "found", "exception", "after", "upgrading", "dependencies"]}
+{"id": "u-00190", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-FRAMEWORK", "O", "O", "O", "B-ERROR_CODE"], "tokens": ["my", "angular", "http", "call", "gets", "415"]}
+{"id": "u-00191", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O"], "tokens": ["optimistic", "lock", "exception", "on", "update"]}
+{"id": "u-00192", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["why", "is", "my", "bean", "created", "twice"]}
+{"id": "u-00193", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "O", "O", "O", "O", "O", "B-LANGUAGE", "O"], "tokens": ["deadlock", "between", "two", "threads", "in", "my", "java", "code"]}
+{"id": "u-00194", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["the", "validation", "annotation", "is", "ignored", "in", "my", "controller"]}
+{"id": "u-00195", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O"], "tokens": ["port", "already", "in", "use", "when", "running", "tests"]}
+{"id": "u-00196", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "B-LANGUAGE", "O"], "tokens": ["type", "mismatch", "in", "my", "kotlin", "code"]}
+{"id": "u-00197", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-ARTIFACT", "I-ARTIFACT", "O", "O"], "tokens": ["my", "scheduled", "job", "never", "runs"]}
+{"id": "u-00198", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["B-ERROR_CODE", "O", "O", "O", "O"], "tokens": ["503", "from", "the", "gateway", "sometimes"]}
+{"id": "u-00199", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "O"], "tokens": ["why", "does", "my", "mapper", "lose", "a", "field"]}
+{"id": "u-00200", "intent": "DEBUG_ERROR", "source": "seed", "tags": ["O", "B-FRAMEWORK", "O", "O", "O"], "tokens": ["the", "docker", "container", "exits", "immediately"]}
+{"id": "u-00201", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "I-ARTIFACT", "O", "O", "O"], "tokens": ["rest", "controller", "versus", "functional", "endpoints"]}
+{"id": "u-00202", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["should", "i", "use", "jpa", "or", "jdbc"]}
+{"id": "u-00203", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-FRAMEWORK", "I-FRAMEWORK", "O", "B-FRAMEWORK", "O", "O", "O", "O"], "tokens": ["spring", "boot", "or", "quarkus", "for", "a", "new", "service"]}
+{"id": "u-00204", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "B-VERSION", "O", "B-LIBRARY"], "tokens": ["what", "is", "better", "junit", "5", "or", "testng"]}
+{"id": "u-00205", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["constructor", "injection", "versus", "field", "injection"]}
+{"id": "u-00206", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LANGUAGE", "O", "B-LANGUAGE", "O", "O", "O"], "tokens": ["kotlin", "or", "java", "for", "the", "backend"]}
+{"id": "u-00207", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["O", "B-FRAMEWORK", "O", "B-FRAMEWORK"], "tokens": ["compare", "maven", "and", "gradle"]}
+{"id": "u-00208", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["mockito", "against", "easymock"]}
+{"id": "u-00209", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "B-ARTIFACT", "O", "O"], "tokens": ["difference", "between", "put", "and", "patch", "in", "rest"]}
+{"id": "u-00210", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["rest", "or", "graphql", "for", "my", "api"]}
+{"id": "u-00211", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["hibernate", "versus", "mybatis"]}
+{"id": "u-00212", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-FRAMEWORK", "O", "B-FRAMEWORK"], "tokens": ["angular", "versus", "react"]}
+{"id": "u-00213", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "B-LIBRARY", "B-ARTIFACT", "O"], "tokens": ["record", "or", "lombok", "data", "class"]}
+{"id": "u-00214", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["kafka", "versus", "rabbitmq"]}
+{"id": "u-00215", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["O", "O", "O", "O", "B-ARTIFACT", "O", "O", "O", "O"], "tokens": ["should", "i", "use", "an", "interface", "or", "an", "abstract", "class"]}
+{"id": "u-00216", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["postgres", "or", "mysql", "with", "jpa"]}
+{"id": "u-00217", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["resttemplate", "versus", "webclient"]}
+{"id": "u-00218", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["flyway", "or", "liquibase"]}
+{"id": "u-00219", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["O", "O", "O", "O", "B-ARTIFACT", "O", "O", "O"], "tokens": ["pros", "and", "cons", "of", "microservices", "versus", "a", "monolith"]}
+{"id": "u-00220", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["list", "versus", "set", "in", "java"]}
+{"id": "u-00221", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "O", "O"], "tokens": ["jwt", "or", "session", "cookies"]}
+{"id": "u-00222", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-FRAMEWORK", "I-FRAMEWORK", "O", "B-LIBRARY"], "tokens": ["spring", "mvc", "versus", "webflux"]}
+{"id": "u-00223", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "O", "O"], "tokens": ["optional", "versus", "returning", "null"]}
+{"id": "u-00224", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LANGUAGE", "O", "B-LANGUAGE", "O", "O"], "tokens": ["swift", "or", "kotlin", "for", "mobile"]}
+{"id": "u-00225", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-FRAMEWORK", "I-FRAMEWORK", "O", "B-FRAMEWORK"], "tokens": ["docker", "compose", "versus", "kubernetes"]}
+{"id": "u-00226", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "O", "O"], "tokens": ["mapstruct", "versus", "manual", "mapping"]}
+{"id": "u-00227", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "B-ARTIFACT"], "tokens": ["which", "is", "faster", "arraylist", "or", "linkedlist"]}
+{"id": "u-00228", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY", "O", "O"], "tokens": ["junit", "versus", "spock", "for", "testing"]}
+{"id": "u-00229", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "O", "O", "O", "O", "O"], "tokens": ["oauth", "or", "basic", "auth", "for", "internal", "apis"]}
+{"id": "u-00230", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["jackson", "versus", "gson"]}
+{"id": "u-00231", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["checked", "versus", "unchecked", "exceptions", "in", "java"]}
+{"id": "u-00232", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "O", "O"], "tokens": ["streams", "or", "plain", "loops"]}
+{"id": "u-00233", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-ARTIFACT"], "tokens": ["grpc", "versus", "rest"]}
+{"id": "u-00234", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-FRAMEWORK", "I-FRAMEWORK", "O", "O", "O", "O", "O"], "tokens": ["spring", "data", "repositories", "or", "a", "custom", "dao"]}
+{"id": "u-00235", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-FRAMEWORK", "O", "B-FRAMEWORK"], "tokens": ["terraform", "or", "pulumi"]}
+{"id": "u-00236", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "I-ARTIFACT", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LANGUAGE", "B-VERSION"], "tokens": ["thread", "pool", "versus", "virtual", "threads", "in", "java", "21"]}
+{"id": "u-00237", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["sql", "or", "nosql", "for", "this", "service"]}
+{"id": "u-00238", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-FRAMEWORK", "O", "O", "B-LIBRARY"], "tokens": ["angular", "signals", "or", "rxjs"]}
+{"id": "u-00239", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "O", "O", "O", "O"], "tokens": ["lombok", "versus", "writing", "getters", "by", "hand"]}
+{"id": "u-00240", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "B-ARTIFACT", "O"], "tokens": ["eager", "versus", "lazy", "fetching"]}
+{"id": "u-00241", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "B-ARTIFACT", "O", "O"], "tokens": ["soap", "or", "rest", "for", "integration"]}
+{"id": "u-00242", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["h2", "or", "testcontainers", "for", "integration", "tests"]}
+{"id": "u-00243", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-FRAMEWORK", "I-FRAMEWORK", "B-VERSION", "O", "B-VERSION"], "tokens": ["spring", "boot", "2", "versus", "3"]}
+{"id": "u-00244", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "O", "O", "O"], "tokens": ["yaml", "versus", "properties", "for", "config"]}
+{"id": "u-00245", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-FRAMEWORK", "O", "O", "O"], "tokens": ["jenkins", "or", "github", "actions"]}
+{"id": "u-00246", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "O", "O"], "tokens": ["aop", "versus", "a", "decorator"]}
+{"id": "u-00247", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY", "O", "B-LANGUAGE"], "tokens": ["mockk", "versus", "mockito", "in", "kotlin"]}
+{"id": "u-00248", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-ARTIFACT", "O", "O", "O", "B-LIBRARY"], "tokens": ["cache", "in", "memory", "or", "redis"]}
+{"id": "u-00249", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "O", "O", "B-LIBRARY"], "tokens": ["jdk", "http", "client", "or", "okhttp"]}
+{"id": "u-00250", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["now", "add", "validation"]}
+{"id": "u-00251", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "B-LANGUAGE", "O"], "tokens": ["make", "it", "use", "kotlin", "instead"]}
+{"id": "u-00252", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["add", "a", "test", "for", "that"]}
+{"id": "u-00253", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["can", "you", "also", "add", "logging"]}
+{"id": "u-00254", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["change", "it", "to", "return", "a", "dto"]}
+{"id": "u-00255", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["do", "the", "same", "for", "the", "repository"]}
+{"id": "u-00256", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["rewrite", "that", "with", "constructor", "injection"]}
+{"id": "u-00257", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["add", "error", "handling", "to", "it"]}
+{"id": "u-00258", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "B-ARTIFACT"], "tokens": ["make", "it", "reactive"]}
+{"id": "u-00259", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["and", "now", "add", "pagination"]}
+{"id": "u-00260", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "B-LIBRARY", "O"], "tokens": ["use", "lombok", "there"]}
+{"id": "u-00261", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["rename", "the", "class", "to", "something", "shorter"]}
+{"id": "u-00262", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O"], "tokens": ["add", "a", "delete", "endpoint", "as", "well"]}
+{"id": "u-00263", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT"], "tokens": ["make", "that", "method", "async"]}
+{"id": "u-00264", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "B-LIBRARY", "B-VERSION"], "tokens": ["switch", "it", "to", "junit", "5"]}
+{"id": "u-00265", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["can", "you", "make", "it", "thread", "safe"]}
+{"id": "u-00266", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["add", "comments", "to", "the", "code"]}
+{"id": "u-00267", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-LIBRARY"], "tokens": ["show", "it", "again", "but", "with", "mockito"]}
+{"id": "u-00268", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["apply", "the", "same", "change", "to", "the", "controller"]}
+{"id": "u-00269", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O"], "tokens": ["use", "an", "enum", "instead", "of", "strings"]}
+{"id": "u-00270", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["simplify", "that", "please"]}
+{"id": "u-00271", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "B-LIBRARY", "O", "O", "O"], "tokens": ["add", "swagger", "annotations", "to", "it"]}
+{"id": "u-00272", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "B-LIBRARY"], "tokens": ["now", "secure", "it", "with", "jwt"]}
+{"id": "u-00273", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["make", "the", "example", "shorter"]}
+{"id": "u-00274", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "B-ARTIFACT"], "tokens": ["and", "add", "a", "constructor"]}
+{"id": "u-00275", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["convert", "it", "to", "a", "record"]}
+{"id": "u-00276", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["add", "caching", "to", "that", "method"]}
+{"id": "u-00277", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "B-ARTIFACT", "O", "O", "O", "O"], "tokens": ["use", "optional", "for", "the", "return", "value"]}
+{"id": "u-00278", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["explain", "that", "last", "part", "in", "more", "detail"]}
+{"id": "u-00279", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["now", "do", "it", "in", "python"]}
+{"id": "u-00280", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "O"], "tokens": ["add", "a", "unit", "test", "with", "edge", "cases"]}
+{"id": "u-00281", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["extract", "an", "interface", "from", "it"]}
+{"id": "u-00282", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["make", "the", "method", "static"]}
+{"id": "u-00283", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["add", "retry", "logic", "to", "it"]}
+{"id": "u-00284", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["put", "that", "in", "a", "separate", "service"]}
+{"id": "u-00285", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["change", "the", "endpoint", "path", "to", "slash", "api", "slash", "users"]}
+{"id": "u-00286", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["use", "the", "builder", "pattern", "instead"]}
+{"id": "u-00287", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "B-VERSION"], "tokens": ["make", "it", "work", "with", "spring", "boot", "3"]}
+{"id": "u-00288", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O"], "tokens": ["add", "a", "transactional", "annotation"]}
+{"id": "u-00289", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["and", "handle", "the", "empty", "case"]}
+{"id": "u-00290", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["use", "streams", "in", "that", "loop"]}
+{"id": "u-00291", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "B-FRAMEWORK"], "tokens": ["give", "me", "the", "same", "thing", "for", "angular"]}
+{"id": "u-00292", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["remove", "the", "lombok", "dependency", "from", "it"]}
+{"id": "u-00293", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["add", "input", "validation", "on", "the", "id"]}
+{"id": "u-00294", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["make", "it", "return", "json"]}
+{"id": "u-00295", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["split", "it", "into", "two", "methods"]}
+{"id": "u-00296", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["also", "cover", "the", "null", "case"]}
+{"id": "u-00297", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["change", "the", "return", "type", "to", "a", "list"]}
+{"id": "u-00298", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["add", "metrics", "to", "it"]}
+{"id": "u-00299", "intent": "MODIFY_PREVIOUS", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["format", "the", "code", "properly"]}
+{"id": "u-00300", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["repeat", "that"]}
+{"id": "u-00301", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["say", "that", "again"]}
+{"id": "u-00302", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["save", "this", "answer"]}
+{"id": "u-00303", "intent": "META_COMMAND", "source": "seed", "tags": ["O"], "tokens": ["stop"]}
+{"id": "u-00304", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["clear", "the", "conversation"]}
+{"id": "u-00305", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["read", "it", "out", "loud"]}
+{"id": "u-00306", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["go", "back", "to", "the", "previous", "answer"]}
+{"id": "u-00307", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["bookmark", "this"]}
+{"id": "u-00308", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["copy", "the", "code"]}
+{"id": "u-00309", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["share", "this", "answer"]}
+{"id": "u-00310", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["start", "over"]}
+{"id": "u-00311", "intent": "META_COMMAND", "source": "seed", "tags": ["O"], "tokens": ["cancel"]}
+{"id": "u-00312", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["speak", "slower"]}
+{"id": "u-00313", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["louder", "please"]}
+{"id": "u-00314", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["show", "my", "history"]}
+{"id": "u-00315", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["open", "my", "saved", "answers"]}
+{"id": "u-00316", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["delete", "this", "conversation"]}
+{"id": "u-00317", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["new", "question"]}
+{"id": "u-00318", "intent": "META_COMMAND", "source": "seed", "tags": ["O"], "tokens": ["pause"]}
+{"id": "u-00319", "intent": "META_COMMAND", "source": "seed", "tags": ["O"], "tokens": ["continue"]}
+{"id": "u-00320", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["turn", "on", "dark", "mode"]}
+{"id": "u-00321", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["switch", "to", "light", "mode"]}
+{"id": "u-00322", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["what", "can", "you", "do"]}
+{"id": "u-00323", "intent": "META_COMMAND", "source": "seed", "tags": ["O"], "tokens": ["help"]}
+{"id": "u-00324", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["mute", "the", "voice"]}
+{"id": "u-00325", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["undo", "that"]}
+{"id": "u-00326", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["show", "the", "sources", "again"]}
+{"id": "u-00327", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["hide", "the", "code"]}
+{"id": "u-00328", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["copy", "the", "answer", "to", "the", "clipboard"]}
+{"id": "u-00329", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["export", "this", "as", "markdown"]}
+{"id": "u-00330", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["open", "settings"]}
+{"id": "u-00331", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["skip", "to", "the", "next", "step"]}
+{"id": "u-00332", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["previous", "step"]}
+{"id": "u-00333", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["zoom", "in", "on", "the", "code"]}
+{"id": "u-00334", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["scroll", "down"]}
+{"id": "u-00335", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["read", "the", "sources"]}
+{"id": "u-00336", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["stop", "reading"]}
+{"id": "u-00337", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["turn", "off", "the", "microphone"]}
+{"id": "u-00338", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["listen", "again"]}
+{"id": "u-00339", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["that", "was", "helpful"]}
+{"id": "u-00340", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["that", "was", "wrong"]}
+{"id": "u-00341", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["log", "me", "out"]}
+{"id": "u-00342", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["change", "the", "language", "to", "english"]}
+{"id": "u-00343", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["send", "feedback"]}
+{"id": "u-00344", "intent": "META_COMMAND", "source": "seed", "tags": ["O"], "tokens": ["dismiss"]}
+{"id": "u-00345", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["close", "the", "sources", "panel"]}
+{"id": "u-00346", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["pin", "this", "answer"]}
+{"id": "u-00347", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O"], "tokens": ["print", "this"]}
+{"id": "u-00348", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["show", "the", "transcript"]}
+{"id": "u-00349", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["edit", "my", "question"]}
+{"id": "u-00350", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["re", "run", "the", "search"]}
+{"id": "u-00351", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["cancel", "that", "request"]}
+{"id": "u-00352", "intent": "META_COMMAND", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["repeat", "the", "last", "step"]}
+{"id": "u-00353", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "weather", "today"]}
+{"id": "u-00354", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "use", "a", "game", "controller"]}
+{"id": "u-00355", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["tell", "me", "a", "joke"]}
+{"id": "u-00356", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["what", "time", "is", "it", "in", "tokyo"]}
+{"id": "u-00357", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["play", "some", "music"]}
+{"id": "u-00358", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "tune", "a", "pid", "controller", "for", "a", "drone"]}
+{"id": "u-00359", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["who", "won", "the", "football", "match", "last", "night"]}
+{"id": "u-00360", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["give", "me", "a", "recipe", "for", "pasta"]}
+{"id": "u-00361", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "connect", "my", "xbox", "controller", "to", "the", "pc"]}
+{"id": "u-00362", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "capital", "of", "france"]}
+{"id": "u-00363", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["book", "me", "a", "flight", "to", "madrid"]}
+{"id": "u-00364", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["translate", "good", "morning", "to", "german"]}
+{"id": "u-00365", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["how", "tall", "is", "mount", "everest"]}
+{"id": "u-00366", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["set", "an", "alarm", "for", "seven"]}
+{"id": "u-00367", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "service", "my", "car"]}
+{"id": "u-00368", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "best", "pizza", "place", "nearby"]}
+{"id": "u-00369", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "spring", "clean", "my", "house"]}
+{"id": "u-00370", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["who", "is", "the", "president", "of", "brazil"]}
+{"id": "u-00371", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "stock", "price", "of", "apple"]}
+{"id": "u-00372", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "train", "my", "dog", "to", "sit"]}
+{"id": "u-00373", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "does", "a", "java", "coffee", "blend", "taste", "like"]}
+{"id": "u-00374", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "fix", "a", "leaking", "tap"]}
+{"id": "u-00375", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["call", "my", "mother"]}
+{"id": "u-00376", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["write", "me", "a", "poem", "about", "the", "sea"]}
+{"id": "u-00377", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["how", "far", "is", "the", "moon"]}
+{"id": "u-00378", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "airport", "controller", "doing", "during", "landing"]}
+{"id": "u-00379", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "lose", "weight", "quickly"]}
+{"id": "u-00380", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["explain", "the", "plot", "of", "the", "movie", "inception"]}
+{"id": "u-00381", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "grow", "tomatoes"]}
+{"id": "u-00382", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "are", "the", "symptoms", "of", "the", "flu"]}
+{"id": "u-00383", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O"], "tokens": ["recommend", "a", "good", "book"]}
+{"id": "u-00384", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "make", "my", "wifi", "faster"]}
+{"id": "u-00385", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "a", "good", "name", "for", "my", "cat"]}
+{"id": "u-00386", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["show", "me", "pictures", "of", "dogs"]}
+{"id": "u-00387", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "remote", "control", "a", "toy", "car"]}
+{"id": "u-00388", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "service", "a", "bicycle", "chain"]}
+{"id": "u-00389", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "does", "a", "kotlin", "island", "ferry", "schedule", "work"]}
+{"id": "u-00390", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "traffic", "like", "on", "my", "commute"]}
+{"id": "u-00391", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "apply", "for", "a", "visa"]}
+{"id": "u-00392", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["sing", "happy", "birthday"]}
+{"id": "u-00393", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "calibrate", "a", "thermostat", "controller"]}
+{"id": "u-00394", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "a", "good", "workout", "for", "beginners"]}
+{"id": "u-00395", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "spring", "forward", "my", "clocks"]}
+{"id": "u-00396", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["tell", "me", "about", "the", "history", "of", "rome"]}
+{"id": "u-00397", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "fix", "my", "printer"]}
+{"id": "u-00398", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["order", "a", "coffee", "for", "me"]}
+{"id": "u-00399", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["what", "is", "two", "plus", "two"]}
+{"id": "u-00400", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "change", "a", "tire"]}
+{"id": "u-00401", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "much", "is", "a", "flight", "to", "lisbon"]}
+{"id": "u-00402", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "beat", "the", "final", "boss", "with", "this", "controller"]}
+{"id": "u-00403", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "meaning", "of", "life"]}
+{"id": "u-00404", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["help", "me", "write", "a", "cover", "letter"]}
+{"id": "u-00405", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "cook", "rice"]}
+{"id": "u-00406", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["what", "year", "did", "the", "war", "end"]}
+{"id": "u-00407", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "tune", "a", "guitar"]}
+{"id": "u-00408", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["turn", "on", "the", "living", "room", "lights"]}
+{"id": "u-00409", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "get", "a", "refund", "for", "a", "service", "i", "bought"]}
+{"id": "u-00410", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "a", "good", "gift", "for", "my", "boss"]}
+{"id": "u-00411", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "learn", "spanish", "fast"]}
+{"id": "u-00412", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["where", "can", "i", "buy", "a", "mechanical", "keyboard"]}
+{"id": "u-00413", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "temperature", "outside"]}
+{"id": "u-00414", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O"], "tokens": ["read", "my", "email"]}
+{"id": "u-00415", "intent": "OUT_OF_SCOPE", "source": "seed", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "service", "a", "washing", "machine"]}
+{"id": "u-00416", "intent": "COMPARE_OPTIONS", "source": "seed", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["log4j", "versus", "logback"]}

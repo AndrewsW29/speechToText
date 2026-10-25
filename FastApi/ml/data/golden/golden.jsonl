@@ -1,0 +1,200 @@
+{"id": "g-00001", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["could", "you", "show", "me", "how", "to", "build", "a", "controller", "class", "in", "java"]}
+{"id": "g-00002", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "O", "B-FRAMEWORK", "B-ARTIFACT", "O", "O", "O", "B-ARTIFACT"], "tokens": ["i", "would", "like", "a", "spring", "service", "that", "calls", "a", "repository"]}
+{"id": "g-00003", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK"], "tokens": ["please", "generate", "a", "rest", "api", "endpoint", "for", "customers", "in", "spring", "boot"]}
+{"id": "g-00004", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-LIBRARY", "B-ARTIFACT", "O", "O"], "tokens": ["write", "the", "code", "for", "a", "jpa", "entity", "called", "invoice"]}
+{"id": "g-00005", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["set", "up", "a", "mockito", "test", "for", "the", "order", "service"]}
+{"id": "g-00006", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["draft", "a", "dto", "and", "a", "mapper", "in", "java"]}
+{"id": "g-00007", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "B-VERSION", "B-ARTIFACT", "I-ARTIFACT"], "tokens": ["give", "me", "boilerplate", "for", "a", "spring", "boot", "3", "rest", "controller"]}
+{"id": "g-00008", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-FRAMEWORK"], "tokens": ["how", "would", "i", "code", "an", "exception", "handler", "in", "spring"]}
+{"id": "g-00009", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "B-LANGUAGE", "B-ARTIFACT", "O", "B-FRAMEWORK", "I-FRAMEWORK"], "tokens": ["produce", "a", "kotlin", "repository", "using", "spring", "data"]}
+{"id": "g-00010", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "O", "B-LIBRARY", "B-VERSION", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["help", "me", "write", "a", "junit", "5", "test", "class", "for", "a", "service"]}
+{"id": "g-00011", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "B-FRAMEWORK", "B-ARTIFACT", "O", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["i", "need", "an", "angular", "service", "that", "calls", "an", "api", "in", "typescript"]}
+{"id": "g-00012", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "B-FRAMEWORK"], "tokens": ["make", "an", "interceptor", "for", "logging", "in", "spring"]}
+{"id": "g-00013", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE", "B-VERSION"], "tokens": ["code", "up", "a", "pagination", "helper", "in", "java", "17"]}
+{"id": "g-00014", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O", "B-ARTIFACT", "O", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["what", "is", "the", "code", "for", "a", "simple", "controller", "with", "a", "get", "method", "in", "kotlin"]}
+{"id": "g-00015", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "B-LIBRARY", "I-LIBRARY"], "tokens": ["build", "me", "a", "validator", "with", "bean", "validation"]}
+{"id": "g-00016", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "O", "O", "O", "B-LIBRARY", "O", "O", "O", "O"], "tokens": ["write", "a", "docker", "compose", "file", "for", "a", "postgres", "database", "and", "my", "api"]}
+{"id": "g-00017", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "B-LIBRARY", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["generate", "a", "feign", "client", "in", "java"]}
+{"id": "g-00018", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE"], "tokens": ["show", "a", "singleton", "implementation", "in", "java"]}
+{"id": "g-00019", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "B-LANGUAGE", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "O", "O"], "tokens": ["create", "a", "swift", "view", "model", "for", "a", "login", "screen"]}
+{"id": "g-00020", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LIBRARY"], "tokens": ["draft", "a", "cache", "configuration", "with", "caffeine"]}
+{"id": "g-00021", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "B-LIBRARY", "O", "B-FRAMEWORK", "I-FRAMEWORK"], "tokens": ["i", "want", "a", "security", "filter", "for", "jwt", "in", "spring", "boot"]}
+{"id": "g-00022", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "O", "B-FRAMEWORK", "O", "O", "O", "O", "B-LANGUAGE", "O"], "tokens": ["could", "you", "write", "a", "gradle", "build", "file", "for", "a", "kotlin", "service"]}
+{"id": "g-00023", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-ARTIFACT", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["produce", "a", "rest", "controller", "and", "service", "pair", "for", "products", "in", "java"]}
+{"id": "g-00024", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "B-FRAMEWORK"], "tokens": ["lets", "build", "a", "websocket", "handler", "in", "spring"]}
+{"id": "g-00025", "intent": "CREATE_CODE_ARTIFACT", "source": "golden", "tags": ["O", "O", "B-FRAMEWORK", "B-ARTIFACT", "O", "O", "O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["write", "a", "fastapi", "dependency", "that", "reads", "the", "auth", "header", "in", "python"]}
+{"id": "g-00026", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "O"], "tokens": ["could", "you", "explain", "what", "dependency", "injection", "is", "all", "about"]}
+{"id": "g-00027", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "O", "B-ARTIFACT", "O", "B-FRAMEWORK"], "tokens": ["i", "do", "not", "understand", "transactions", "in", "spring"]}
+{"id": "g-00028", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "O"], "tokens": ["what", "is", "the", "idea", "behind", "hexagonal", "architecture"]}
+{"id": "g-00029", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O"], "tokens": ["break", "down", "how", "jpa", "relationships", "work"]}
+{"id": "g-00030", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT"], "tokens": ["help", "me", "understand", "reactive", "streams"]}
+{"id": "g-00031", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["what", "makes", "a", "rest", "api", "restful"]}
+{"id": "g-00032", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "O", "O", "O", "O"], "tokens": ["why", "would", "i", "use", "a", "dto", "instead", "of", "an", "entity"]}
+{"id": "g-00033", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "O"], "tokens": ["describe", "the", "mvc", "pattern"]}
+{"id": "g-00034", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-FRAMEWORK", "O", "O", "O", "O", "O"], "tokens": ["how", "does", "spring", "decide", "which", "bean", "to", "inject"]}
+{"id": "g-00035", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["what", "is", "polymorphism", "in", "java"]}
+{"id": "g-00036", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O"], "tokens": ["tell", "me", "how", "mockito", "verifies", "calls"]}
+{"id": "g-00037", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "jvm", "and", "what", "does", "it", "do"]}
+{"id": "g-00038", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O"], "tokens": ["explain", "how", "optional", "helps", "avoid", "nulls"]}
+{"id": "g-00039", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT"], "tokens": ["what", "is", "dependency", "inversion"]}
+{"id": "g-00040", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "B-LANGUAGE", "B-VERSION"], "tokens": ["how", "do", "lambdas", "work", "in", "java", "8"]}
+{"id": "g-00041", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O"], "tokens": ["what", "does", "stateless", "mean", "for", "a", "service"]}
+{"id": "g-00042", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "B-ARTIFACT", "I-ARTIFACT", "O"], "tokens": ["explain", "aspect", "oriented", "programming"]}
+{"id": "g-00043", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["what", "is", "the", "point", "of", "interfaces", "in", "kotlin"]}
+{"id": "g-00044", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-LIBRARY", "O", "O", "O", "O"], "tokens": ["how", "does", "oauth", "authorization", "code", "flow", "work"]}
+{"id": "g-00045", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "I-ARTIFACT"], "tokens": ["what", "is", "domain", "driven", "design"]}
+{"id": "g-00046", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O"], "tokens": ["explain", "what", "lazy", "loading", "is"]}
+{"id": "g-00047", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["what", "are", "sealed", "classes", "in", "kotlin"]}
+{"id": "g-00048", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "B-FRAMEWORK", "O", "O", "O"], "tokens": ["how", "does", "kubernetes", "self", "healing", "work"]}
+{"id": "g-00049", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O"], "tokens": ["why", "is", "the", "open", "closed", "principle", "useful"]}
+{"id": "g-00050", "intent": "EXPLAIN_CONCEPT", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "O"], "tokens": ["what", "is", "a", "thread", "pool"]}
+{"id": "g-00051", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "B-LIBRARY", "I-LIBRARY", "I-LIBRARY", "O"], "tokens": ["could", "you", "point", "me", "to", "the", "spring", "data", "jpa", "reference"]}
+{"id": "g-00052", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "B-VERSION", "O"], "tokens": ["i", "need", "the", "official", "page", "about", "spring", "boot", "3", "changes"]}
+{"id": "g-00053", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-LIBRARY"], "tokens": ["where", "is", "the", "documentation", "for", "mockito"]}
+{"id": "g-00054", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "B-LANGUAGE", "O", "O"], "tokens": ["find", "me", "the", "kotlin", "language", "reference"]}
+{"id": "g-00055", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "B-LIBRARY", "I-LIBRARY", "O"], "tokens": ["open", "docs", "for", "bean", "validation", "annotations"]}
+{"id": "g-00056", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "B-FRAMEWORK", "O", "O"], "tokens": ["take", "me", "to", "the", "angular", "forms", "guide"]}
+{"id": "g-00057", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "B-FRAMEWORK", "B-ARTIFACT", "I-ARTIFACT"], "tokens": ["where", "do", "i", "read", "about", "the", "spring", "rest", "controller"]}
+{"id": "g-00058", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-LIBRARY", "O", "O"], "tokens": ["i", "am", "looking", "for", "the", "jackson", "user", "guide"]}
+{"id": "g-00059", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["search", "for", "hibernate", "documentation", "on", "caching"]}
+{"id": "g-00060", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "B-LANGUAGE", "B-LIBRARY", "O"], "tokens": ["show", "the", "api", "reference", "for", "the", "java", "util", "package"]}
+{"id": "g-00061", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-LIBRARY", "O"], "tokens": ["where", "is", "the", "reference", "on", "junit", "extensions"]}
+{"id": "g-00062", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "B-LIBRARY", "B-VERSION", "O", "O"], "tokens": ["open", "the", "openapi", "3", "specification", "page"]}
+{"id": "g-00063", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "O", "O"], "tokens": ["point", "me", "to", "docs", "on", "spring", "security", "method", "security"]}
+{"id": "g-00064", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "B-FRAMEWORK", "O", "O"], "tokens": ["get", "me", "the", "docker", "cli", "reference"]}
+{"id": "g-00065", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "B-FRAMEWORK", "O", "O"], "tokens": ["where", "are", "the", "terraform", "module", "docs"]}
+{"id": "g-00066", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-FRAMEWORK", "O"], "tokens": ["find", "the", "manual", "page", "for", "gradle", "plugins"]}
+{"id": "g-00067", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["look", "for", "the", "testcontainers", "getting", "started", "guide"]}
+{"id": "g-00068", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "B-LIBRARY", "O", "O"], "tokens": ["documentation", "for", "lombok", "builder", "annotation"]}
+{"id": "g-00069", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "B-LANGUAGE", "O", "O"], "tokens": ["where", "is", "the", "swift", "concurrency", "documentation"]}
+{"id": "g-00070", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "B-FRAMEWORK", "O", "O", "O"], "tokens": ["show", "me", "quarkus", "guides", "on", "rest"]}
+{"id": "g-00071", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["find", "the", "kafka", "producer", "configuration", "reference"]}
+{"id": "g-00072", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "B-FRAMEWORK", "B-LIBRARY", "O"], "tokens": ["take", "me", "to", "the", "spring", "cloud", "docs"]}
+{"id": "g-00073", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-LIBRARY", "O"], "tokens": ["where", "can", "i", "find", "the", "slf4j", "faq"]}
+{"id": "g-00074", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "B-LANGUAGE", "O", "O", "O"], "tokens": ["open", "the", "typescript", "documentation", "on", "generics"]}
+{"id": "g-00075", "intent": "FIND_DOCS", "source": "golden", "tags": ["O", "O", "O", "O", "B-LIBRARY", "O"], "tokens": ["the", "official", "guide", "for", "jdbc", "please"]}
+{"id": "g-00076", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "B-ARTIFACT"], "tokens": ["help", "i", "have", "a", "null", "pointer", "exception", "in", "my", "controller"]}
+{"id": "g-00077", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "O", "B-ERROR_CODE", "O", "O", "O", "B-FRAMEWORK", "O"], "tokens": ["what", "causes", "a", "404", "on", "a", "valid", "spring", "route"]}
+{"id": "g-00078", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "B-ARTIFACT", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE"], "tokens": ["my", "service", "throws", "illegal", "state", "exception"]}
+{"id": "g-00079", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE"], "tokens": ["how", "can", "i", "resolve", "no", "qualifying", "bean"]}
+{"id": "g-00080", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O"], "tokens": ["why", "do", "i", "see", "lazy", "initialization", "exception", "after", "a", "query"]}
+{"id": "g-00081", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "B-LANGUAGE", "O"], "tokens": ["the", "build", "fails", "with", "compilation", "error", "in", "my", "java", "class"]}
+{"id": "g-00082", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "O", "B-ERROR_CODE", "O", "O", "O"], "tokens": ["my", "endpoint", "gives", "500", "only", "in", "production"]}
+{"id": "g-00083", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "O", "B-LIBRARY", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["why", "does", "my", "jpa", "save", "not", "persist", "the", "entity"]}
+{"id": "g-00084", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "O", "O", "O"], "tokens": ["stack", "overflow", "with", "two", "entities", "referencing", "each", "other"]}
+{"id": "g-00085", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["B-ERROR_CODE", "B-ERROR_CODE", "O", "O", "O", "O"], "tokens": ["unauthorized", "401", "from", "my", "secured", "endpoint"]}
+{"id": "g-00086", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "B-LIBRARY", "O", "O", "O", "O", "O", "O"], "tokens": ["the", "mockito", "when", "call", "is", "not", "stubbing", "anything"]}
+{"id": "g-00087", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "B-FRAMEWORK", "I-FRAMEWORK", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE"], "tokens": ["my", "spring", "boot", "app", "fails", "with", "port", "in", "use"]}
+{"id": "g-00088", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "O"], "tokens": ["concurrent", "modification", "in", "a", "for", "loop"]}
+{"id": "g-00089", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["why", "is", "transactional", "not", "rolling", "back"]}
+{"id": "g-00090", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "O", "O"], "tokens": ["class", "cast", "when", "reading", "from", "the", "list"]}
+{"id": "g-00091", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "O"], "tokens": ["an", "out", "of", "memory", "in", "my", "batch", "job"]}
+{"id": "g-00092", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["B-ERROR_CODE", "B-ERROR_CODE", "O", "O", "O"], "tokens": ["forbidden", "403", "after", "adding", "csrf"]}
+{"id": "g-00093", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["the", "json", "response", "is", "missing", "fields", "in", "my", "dto"]}
+{"id": "g-00094", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O"], "tokens": ["bean", "creation", "error", "at", "startup"]}
+{"id": "g-00095", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "O", "B-FRAMEWORK", "O", "O", "B-ERROR_CODE", "O"], "tokens": ["why", "does", "my", "angular", "app", "show", "cors", "errors"]}
+{"id": "g-00096", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "B-LANGUAGE", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE"], "tokens": ["my", "kotlin", "code", "fails", "with", "null", "pointer"]}
+{"id": "g-00097", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["B-ERROR_CODE", "O", "O", "O", "B-LIBRARY", "I-LIBRARY"], "tokens": ["timeout", "when", "calling", "the", "rest", "template"]}
+{"id": "g-00098", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O"], "tokens": ["unique", "constraint", "violation", "on", "insert"]}
+{"id": "g-00099", "intent": "DEBUG_ERROR", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O"], "tokens": ["tests", "are", "flaky", "because", "of", "dependency", "injection", "ordering"]}
+{"id": "g-00100", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["O", "O", "O", "B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["which", "is", "better", "jpa", "or", "jooq"]}
+{"id": "g-00101", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-FRAMEWORK", "O", "B-FRAMEWORK", "O", "O", "O", "O"], "tokens": ["gradle", "versus", "maven", "for", "a", "big", "project"]}
+{"id": "g-00102", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["O", "O", "O", "B-LANGUAGE", "O", "B-LANGUAGE"], "tokens": ["should", "i", "choose", "kotlin", "over", "java"]}
+{"id": "g-00103", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-FRAMEWORK", "O", "B-FRAMEWORK"], "tokens": ["spring", "or", "micronaut"]}
+{"id": "g-00104", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "O", "B-ARTIFACT"], "tokens": ["what", "are", "the", "differences", "between", "get", "and", "post"]}
+{"id": "g-00105", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-ARTIFACT", "O", "O", "O"], "tokens": ["constructor", "versus", "setter", "injection"]}
+{"id": "g-00106", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["mockito", "or", "powermock"]}
+{"id": "g-00107", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-ARTIFACT", "O", "B-ARTIFACT", "O", "O", "O"], "tokens": ["sync", "versus", "async", "calls", "between", "services"]}
+{"id": "g-00108", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-FRAMEWORK", "O", "B-FRAMEWORK", "O", "O", "O"], "tokens": ["angular", "or", "vue", "for", "the", "dashboard"]}
+{"id": "g-00109", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["mongodb", "versus", "postgres"]}
+{"id": "g-00110", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-LIBRARY", "O", "O", "O"], "tokens": ["jwt", "against", "opaque", "tokens"]}
+{"id": "g-00111", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-ARTIFACT", "O", "B-ARTIFACT", "O", "O", "O", "O"], "tokens": ["class", "versus", "record", "for", "a", "value", "object"]}
+{"id": "g-00112", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-LIBRARY", "O", "B-LIBRARY", "O", "O", "B-FRAMEWORK", "O"], "tokens": ["gson", "or", "jackson", "in", "a", "spring", "app"]}
+{"id": "g-00113", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O"], "tokens": ["monolith", "or", "microservices", "for", "a", "startup"]}
+{"id": "g-00114", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-FRAMEWORK", "O", "O", "O", "O"], "tokens": ["kubernetes", "or", "plain", "virtual", "machines"]}
+{"id": "g-00115", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-ARTIFACT", "O", "B-LIBRARY", "O", "O", "O"], "tokens": ["rest", "versus", "grpc", "for", "internal", "calls"]}
+{"id": "g-00116", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-LIBRARY", "B-VERSION", "O", "B-LIBRARY", "B-VERSION"], "tokens": ["junit", "4", "versus", "junit", "5"]}
+{"id": "g-00117", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["rxjava", "or", "coroutines"]}
+{"id": "g-00118", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-LIBRARY", "O", "B-LIBRARY"], "tokens": ["liquibase", "versus", "flyway"]}
+{"id": "g-00119", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-LANGUAGE", "O", "B-LANGUAGE", "I-LANGUAGE"], "tokens": ["swift", "versus", "objective", "c"]}
+{"id": "g-00120", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-FRAMEWORK", "I-FRAMEWORK", "O", "O", "O", "O"], "tokens": ["spring", "boot", "starter", "or", "manual", "configuration"]}
+{"id": "g-00121", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-ARTIFACT", "O", "B-ARTIFACT"], "tokens": ["hashmap", "versus", "treemap"]}
+{"id": "g-00122", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-LIBRARY", "O", "B-LIBRARY", "O", "O"], "tokens": ["redis", "versus", "memcached", "for", "caching"]}
+{"id": "g-00123", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-FRAMEWORK", "O", "O"], "tokens": ["terraform", "against", "cloudformation"]}
+{"id": "g-00124", "intent": "COMPARE_OPTIONS", "source": "golden", "tags": ["B-ARTIFACT", "O", "O", "O"], "tokens": ["composition", "or", "inheritance", "here"]}
+{"id": "g-00125", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["please", "add", "input", "validation", "to", "that"]}
+{"id": "g-00126", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "B-LANGUAGE"], "tokens": ["now", "convert", "it", "to", "kotlin"]}
+{"id": "g-00127", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "B-ARTIFACT", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["can", "you", "write", "a", "test", "for", "the", "code", "you", "just", "gave", "me"]}
+{"id": "g-00128", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT"], "tokens": ["also", "add", "a", "post", "endpoint"]}
+{"id": "g-00129", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["make", "the", "previous", "example", "use", "a", "dto"]}
+{"id": "g-00130", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "B-LIBRARY", "O", "O", "O"], "tokens": ["apply", "lombok", "to", "that", "class"]}
+{"id": "g-00131", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["change", "it", "so", "it", "returns", "a", "page", "of", "results"]}
+{"id": "g-00132", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["add", "proper", "logging", "to", "it"]}
+{"id": "g-00133", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "B-LIBRARY", "O", "O", "O", "O"], "tokens": ["use", "mockito", "in", "that", "test", "instead"]}
+{"id": "g-00134", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["rewrite", "it", "without", "field", "injection"]}
+{"id": "g-00135", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O"], "tokens": ["and", "add", "a", "put", "endpoint", "too"]}
+{"id": "g-00136", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["make", "that", "code", "more", "readable"]}
+{"id": "g-00137", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "B-FRAMEWORK", "I-FRAMEWORK", "B-VERSION"], "tokens": ["switch", "the", "example", "to", "spring", "boot", "3"]}
+{"id": "g-00138", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "B-LIBRARY", "O"], "tokens": ["wrap", "it", "in", "a", "transactional", "method"]}
+{"id": "g-00139", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["add", "javadoc", "to", "every", "method"]}
+{"id": "g-00140", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["handle", "exceptions", "in", "that", "method"]}
+{"id": "g-00141", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "B-LIBRARY", "O"], "tokens": ["now", "add", "swagger", "docs"]}
+{"id": "g-00142", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["do", "the", "same", "thing", "for", "orders"]}
+{"id": "g-00143", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["extract", "the", "validation", "into", "its", "own", "class"]}
+{"id": "g-00144", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["make", "it", "return", "an", "optional"]}
+{"id": "g-00145", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "O"], "tokens": ["can", "you", "add", "a", "second", "test", "case"]}
+{"id": "g-00146", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["make", "the", "controller", "thinner"]}
+{"id": "g-00147", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["rewrite", "that", "example", "with", "records"]}
+{"id": "g-00148", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["please", "also", "add", "a", "health", "check"]}
+{"id": "g-00149", "intent": "MODIFY_PREVIOUS", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["and", "make", "it", "configurable", "with", "properties"]}
+{"id": "g-00150", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["say", "it", "once", "more"]}
+{"id": "g-00151", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["please", "repeat", "the", "last", "answer"]}
+{"id": "g-00152", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["store", "this", "for", "later"]}
+{"id": "g-00153", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O"], "tokens": ["stop", "talking"]}
+{"id": "g-00154", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O"], "tokens": ["wipe", "this", "conversation"]}
+{"id": "g-00155", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["read", "that", "to", "me"]}
+{"id": "g-00156", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["go", "back", "one", "answer"]}
+{"id": "g-00157", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["add", "this", "to", "my", "favourites"]}
+{"id": "g-00158", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O"], "tokens": ["copy", "that", "snippet"]}
+{"id": "g-00159", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["send", "this", "to", "a", "colleague"]}
+{"id": "g-00160", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["begin", "a", "new", "chat"]}
+{"id": "g-00161", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O"], "tokens": ["never", "mind"]}
+{"id": "g-00162", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["slow", "down", "the", "speech"]}
+{"id": "g-00163", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["turn", "the", "volume", "up"]}
+{"id": "g-00164", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["bring", "up", "my", "past", "questions"]}
+{"id": "g-00165", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["open", "the", "saved", "list"]}
+{"id": "g-00166", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["remove", "this", "from", "history"]}
+{"id": "g-00167", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O"], "tokens": ["ask", "something", "else"]}
+{"id": "g-00168", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O"], "tokens": ["hold", "on"]}
+{"id": "g-00169", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O"], "tokens": ["go", "on"]}
+{"id": "g-00170", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["use", "the", "dark", "theme"]}
+{"id": "g-00171", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["use", "the", "light", "theme"]}
+{"id": "g-00172", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["what", "are", "you", "able", "to", "do"]}
+{"id": "g-00173", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["i", "need", "help", "using", "this", "app"]}
+{"id": "g-00174", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O"], "tokens": ["mute", "yourself"]}
+{"id": "g-00175", "intent": "META_COMMAND", "source": "golden", "tags": ["O", "O", "O"], "tokens": ["take", "that", "back"]}
+{"id": "g-00176", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "forecast", "for", "tomorrow"]}
+{"id": "g-00177", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "pair", "a", "controller", "with", "my", "playstation"]}
+{"id": "g-00178", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["tell", "me", "something", "funny"]}
+{"id": "g-00179", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "time", "in", "sydney"]}
+{"id": "g-00180", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["put", "on", "a", "playlist"]}
+{"id": "g-00181", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "design", "a", "pid", "controller", "for", "a", "heater"]}
+{"id": "g-00182", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["what", "was", "the", "final", "score", "of", "the", "game"]}
+{"id": "g-00183", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["suggest", "a", "dinner", "idea"]}
+{"id": "g-00184", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["why", "is", "my", "game", "controller", "drifting"]}
+{"id": "g-00185", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["which", "city", "is", "the", "capital", "of", "australia"]}
+{"id": "g-00186", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["reserve", "a", "table", "for", "two", "tonight"]}
+{"id": "g-00187", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O"], "tokens": ["say", "hello", "in", "japanese"]}
+{"id": "g-00188", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["how", "deep", "is", "the", "pacific", "ocean"]}
+{"id": "g-00189", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["wake", "me", "up", "at", "six"]}
+{"id": "g-00190", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["when", "should", "i", "service", "my", "boiler"]}
+{"id": "g-00191", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["any", "good", "restaurants", "around", "here"]}
+{"id": "g-00192", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "prepare", "for", "spring", "allergies"]}
+{"id": "g-00193", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["who", "is", "the", "prime", "minister", "of", "canada"]}
+{"id": "g-00194", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "is", "the", "euro", "doing", "against", "the", "dollar"]}
+{"id": "g-00195", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "stop", "my", "puppy", "from", "biting"]}
+{"id": "g-00196", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["is", "java", "coffee", "grown", "in", "indonesia"]}
+{"id": "g-00197", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "unclog", "a", "drain"]}
+{"id": "g-00198", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O"], "tokens": ["message", "my", "brother"]}
+{"id": "g-00199", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O"], "tokens": ["write", "a", "song", "about", "summer"]}
+{"id": "g-00200", "intent": "OUT_OF_SCOPE", "source": "golden", "tags": ["O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "long", "is", "a", "flight", "to", "new", "york"]}

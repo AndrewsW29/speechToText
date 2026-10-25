@@ -1,0 +1,6 @@
+# Large/raw artifacts are tracked by DVC (see ../.dvc/config); frozen golden sets stay in git.
+/raw/*
+!/raw/seed.jsonl
+/interim/
+/processed/
+!.gitignore

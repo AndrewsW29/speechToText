@@ -1,0 +1,13 @@
+.DS_Store
+.env*
+*.log
+.idea/
+.vscode/
+node_modules/
+.terraform/
+*.tfstate*
+*.tfvars
+.build/
+DerivedData/
+build/
+.gradle/

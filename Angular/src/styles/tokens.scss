@@ -1,0 +1,56 @@
+// Design tokens from "UX/UI /angular.html" (light + dark). Theme is selected by [data-theme].
+:root {
+  --bg: #f5f6f7;
+  --surface: #ffffff;
+  --ink: #0a0a0a;
+  --ink2: #333333;
+  --muted: #5C6B80;
+  --primary: #205fff;
+  --on-primary: #ffffff;
+  --link: #205fff;
+  --ac: #aa55ff;
+  --track: #e5e7eb;
+  --field: #ffffff;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: #0a0a0a;
+  --surface: #1a1a1a;
+  --ink: #f5f6f7;
+  --ink2: #d1d5db;
+  --muted: #9ca3af;
+  --link: #8caaff;
+  --ac: #c58bff;
+  --track: #333333;
+  --field: #111111;
+  color-scheme: dark;
+}
+
+// Values that need alpha or are theme-dependent but not contrast-checked as hex pairs.
+:root {
+  --line: rgba(10, 10, 10, 0.12);
+  --tint: rgba(32, 95, 255, 0.1);
+  --scrim: rgba(10, 10, 10, 0.5);
+  --radius-card: 12px;
+  --radius-pill: 999px;
+  --tap: 44px;
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --font-sans: 'Heebo', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  // Code block surfaces are dark in both themes.
+  --code-bg: #0a0a0a;
+  --code-head: #1a1a1a;
+  --code-ink: #f5f6f7;
+  --code-muted: #9ca3af;
+  --tok-k: #c58bff;
+  --tok-a: #88e100;
+  --tok-t: #5cc8f2;
+  --tok-s: #6be9a8;
+}
+
+[data-theme='dark'] {
+  --line: #2e2e2e;
+  --tint: rgba(140, 170, 255, 0.16);
+  --scrim: rgba(0, 0, 0, 0.65);
+}

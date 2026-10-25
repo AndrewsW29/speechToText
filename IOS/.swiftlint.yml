@@ -1,0 +1,3 @@
+included: [VoiceAssistant, VoiceAssistantTests]
+line_length: 120
+disabled_rules: [identifier_name]

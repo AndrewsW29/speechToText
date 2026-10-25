@@ -1,0 +1,62 @@
+{"id": "c-00001", "intent": "CREATE_CODE_ARTIFACT", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT", "O", "O", "B-ARTIFACT", "O", "B-LANGUAGE"], "tokens": ["how", "do", "i", "create", "a", "controler", "and", "a", "surface", "in", "java"]}
+{"id": "c-00002", "intent": "CREATE_CODE_ARTIFACT", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "B-FRAMEWORK"], "tokens": ["um", "so", "like", "make", "me", "a", "rest", "controller", "uh", "in", "spring"]}
+{"id": "c-00003", "intent": "CREATE_CODE_ARTIFACT", "source": "challenge", "tags": ["O", "O", "B-LIBRARY", "I-LIBRARY", "I-LIBRARY", "B-ARTIFACT", "O", "O"], "tokens": ["create", "a", "j", "p", "a", "repository", "for", "products"]}
+{"id": "c-00004", "intent": "CREATE_CODE_ARTIFACT", "source": "challenge", "tags": ["O", "O", "B-FRAMEWORK", "B-ARTIFACT", "O", "O", "B-LANGUAGE", "I-LANGUAGE"], "tokens": ["generate", "a", "springboot", "serves", "class", "in", "jar", "va"]}
+{"id": "c-00005", "intent": "CREATE_CODE_ARTIFACT", "source": "challenge", "tags": ["O", "O", "B-ARTIFACT", "O", "B-LANGUAGE", "O"], "tokens": ["make", "one", "kontroller", "with", "cotlin", "please"]}
+{"id": "c-00006", "intent": "CREATE_CODE_ARTIFACT", "source": "challenge", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "O", "O", "B-ARTIFACT", "O", "B-LIBRARY", "I-LIBRARY"], "tokens": ["write", "an", "unit", "test", "for", "the", "service", "with", "mock", "ito"]}
+{"id": "c-00007", "intent": "CREATE_CODE_ARTIFACT", "source": "challenge", "tags": ["O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "I-ARTIFACT", "O", "O", "O", "O"], "tokens": ["i", "need", "a", "d", "t", "o", "for", "the", "user", "entity"]}
+{"id": "c-00008", "intent": "CREATE_CODE_ARTIFACT", "source": "challenge", "tags": ["O", "B-ARTIFACT", "B-ARTIFACT", "I-ARTIFACT", "O", "B-FRAMEWORK", "B-FRAMEWORK"], "tokens": ["build", "rest", "end", "point", "in", "spring", "boot"]}
+{"id": "c-00009", "intent": "EXPLAIN_CONCEPT", "source": "challenge", "tags": ["O", "O", "B-ARTIFACT", "B-ARTIFACT"], "tokens": ["what", "is", "dependancy", "injection"]}
+{"id": "c-00010", "intent": "EXPLAIN_CONCEPT", "source": "challenge", "tags": ["O", "O", "O", "B-FRAMEWORK", "B-ARTIFACT", "O", "O"], "tokens": ["uh", "explain", "how", "spring", "beens", "get", "wired"]}
+{"id": "c-00011", "intent": "EXPLAIN_CONCEPT", "source": "challenge", "tags": ["O", "O", "B-LIBRARY", "I-LIBRARY", "I-LIBRARY", "O", "O", "O"], "tokens": ["what", "does", "j", "p", "a", "lazy", "loading", "mean"]}
+{"id": "c-00012", "intent": "EXPLAIN_CONCEPT", "source": "challenge", "tags": ["O", "O", "O", "O", "B-ARTIFACT", "I-ARTIFACT", "I-ARTIFACT"], "tokens": ["tell", "me", "whats", "a", "d", "t", "o"]}
+{"id": "c-00013", "intent": "EXPLAIN_CONCEPT", "source": "challenge", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["what", "is", "the", "hexagon", "architecture", "thing"]}
+{"id": "c-00014", "intent": "EXPLAIN_CONCEPT", "source": "challenge", "tags": ["O", "B-ARTIFACT", "O"], "tokens": ["explain", "sold", "principles"]}
+{"id": "c-00015", "intent": "EXPLAIN_CONCEPT", "source": "challenge", "tags": ["O", "O", "B-LIBRARY", "I-LIBRARY", "O", "O", "B-LANGUAGE"], "tokens": ["how", "do", "co", "routines", "work", "in", "cotlin"]}
+{"id": "c-00016", "intent": "EXPLAIN_CONCEPT", "source": "challenge", "tags": ["O", "O", "B-ARTIFACT", "I-ARTIFACT", "I-ARTIFACT", "I-ARTIFACT"], "tokens": ["what", "is", "c", "q", "r", "s"]}
+{"id": "c-00017", "intent": "FIND_DOCS", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "B-LIBRARY", "I-LIBRARY", "I-LIBRARY", "I-LIBRARY", "I-LIBRARY"], "tokens": ["show", "me", "the", "dogs", "for", "spring", "data", "j", "p", "a"]}
+{"id": "c-00018", "intent": "FIND_DOCS", "source": "challenge", "tags": ["O", "O", "O", "B-FRAMEWORK", "O"], "tokens": ["where", "is", "the", "springboot", "documentation"]}
+{"id": "c-00019", "intent": "FIND_DOCS", "source": "challenge", "tags": ["O", "O", "B-LIBRARY", "I-LIBRARY", "O", "O"], "tokens": ["find", "the", "jay", "unit", "five", "docs"]}
+{"id": "c-00020", "intent": "FIND_DOCS", "source": "challenge", "tags": ["O", "O", "B-LIBRARY", "I-LIBRARY", "O"], "tokens": ["documentation", "for", "mock", "ito", "please"]}
+{"id": "c-00021", "intent": "FIND_DOCS", "source": "challenge", "tags": ["O", "O", "B-LANGUAGE", "O"], "tokens": ["link", "the", "cotlin", "guide"]}
+{"id": "c-00022", "intent": "FIND_DOCS", "source": "challenge", "tags": ["O", "O", "B-FRAMEWORK", "O", "O", "O"], "tokens": ["open", "the", "angler", "docs", "on", "signals"]}
+{"id": "c-00023", "intent": "FIND_DOCS", "source": "challenge", "tags": ["O", "O", "O", "B-LIBRARY", "O"], "tokens": ["where", "are", "the", "hibernate", "docks"]}
+{"id": "c-00024", "intent": "FIND_DOCS", "source": "challenge", "tags": ["O", "O", "B-LIBRARY", "I-LIBRARY", "O"], "tokens": ["look", "up", "lom", "bock", "features"]}
+{"id": "c-00025", "intent": "DEBUG_ERROR", "source": "challenge", "tags": ["O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "B-ARTIFACT"], "tokens": ["i", "got", "a", "no", "pointer", "exception", "in", "my", "serves"]}
+{"id": "c-00026", "intent": "DEBUG_ERROR", "source": "challenge", "tags": ["O", "B-ARTIFACT", "O", "B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE"], "tokens": ["my", "kontroller", "returns", "four", "oh", "four"]}
+{"id": "c-00027", "intent": "DEBUG_ERROR", "source": "challenge", "tags": ["O", "B-ERROR_CODE", "I-ERROR_CODE", "O", "O", "B-FRAMEWORK", "O"], "tokens": ["why", "five", "hundred", "from", "my", "spring", "api"]}
+{"id": "c-00028", "intent": "DEBUG_ERROR", "source": "challenge", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["lazy", "init", "exception", "when", "i", "load", "the", "entity"]}
+{"id": "c-00029", "intent": "DEBUG_ERROR", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "O", "B-ERROR_CODE", "I-ERROR_CODE", "O", "O"], "tokens": ["uh", "my", "test", "is", "failing", "with", "class", "cast", "or", "something"]}
+{"id": "c-00030", "intent": "DEBUG_ERROR", "source": "challenge", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O"], "tokens": ["no", "such", "been", "definition", "error"]}
+{"id": "c-00031", "intent": "DEBUG_ERROR", "source": "challenge", "tags": ["B-ERROR_CODE", "O", "O", "O", "O", "O", "B-FRAMEWORK"], "tokens": ["cores", "problem", "calling", "my", "api", "from", "angler"]}
+{"id": "c-00032", "intent": "DEBUG_ERROR", "source": "challenge", "tags": ["B-ERROR_CODE", "I-ERROR_CODE", "I-ERROR_CODE", "O", "O", "O", "O"], "tokens": ["stack", "over", "flow", "in", "my", "recursive", "function"]}
+{"id": "c-00033", "intent": "COMPARE_OPTIONS", "source": "challenge", "tags": ["B-LIBRARY", "I-LIBRARY", "I-LIBRARY", "O", "B-LIBRARY", "I-LIBRARY", "I-LIBRARY", "I-LIBRARY"], "tokens": ["j", "p", "a", "or", "j", "d", "b", "c"]}
+{"id": "c-00034", "intent": "COMPARE_OPTIONS", "source": "challenge", "tags": ["B-FRAMEWORK", "O", "B-FRAMEWORK", "O", "O"], "tokens": ["maven", "versus", "gradle", "i", "guess"]}
+{"id": "c-00035", "intent": "COMPARE_OPTIONS", "source": "challenge", "tags": ["O", "O", "O", "B-LANGUAGE", "O", "B-LANGUAGE", "I-LANGUAGE"], "tokens": ["should", "i", "use", "cotlin", "or", "jar", "va"]}
+{"id": "c-00036", "intent": "COMPARE_OPTIONS", "source": "challenge", "tags": ["B-ARTIFACT", "I-ARTIFACT", "O", "O", "O", "O"], "tokens": ["rest", "controller", "or", "the", "functional", "thing"]}
+{"id": "c-00037", "intent": "COMPARE_OPTIONS", "source": "challenge", "tags": ["B-LIBRARY", "I-LIBRARY", "O", "B-LIBRARY", "I-LIBRARY"], "tokens": ["mock", "ito", "versus", "mock", "k"]}
+{"id": "c-00038", "intent": "COMPARE_OPTIONS", "source": "challenge", "tags": ["B-FRAMEWORK", "O", "B-FRAMEWORK"], "tokens": ["angler", "or", "react"]}
+{"id": "c-00039", "intent": "COMPARE_OPTIONS", "source": "challenge", "tags": ["O", "B-FRAMEWORK", "B-FRAMEWORK", "O", "B-FRAMEWORK"], "tokens": ["uh", "spring", "boot", "or", "kwarkus"]}
+{"id": "c-00040", "intent": "COMPARE_OPTIONS", "source": "challenge", "tags": ["B-LIBRARY", "O", "B-LIBRARY", "I-LIBRARY", "I-LIBRARY"], "tokens": ["kafka", "versus", "rabbit", "m", "q"]}
+{"id": "c-00041", "intent": "MODIFY_PREVIOUS", "source": "challenge", "tags": ["O", "O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["um", "now", "add", "validation", "to", "it"]}
+{"id": "c-00042", "intent": "MODIFY_PREVIOUS", "source": "challenge", "tags": ["O", "O", "B-LANGUAGE", "O"], "tokens": ["make", "it", "cotlin", "instead"]}
+{"id": "c-00043", "intent": "MODIFY_PREVIOUS", "source": "challenge", "tags": ["O", "O", "B-ARTIFACT", "O", "O", "O", "O", "O", "O"], "tokens": ["add", "a", "test", "for", "the", "thing", "you", "just", "did"]}
+{"id": "c-00044", "intent": "MODIFY_PREVIOUS", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "B-ARTIFACT"], "tokens": ["and", "the", "same", "for", "the", "repo"]}
+{"id": "c-00045", "intent": "MODIFY_PREVIOUS", "source": "challenge", "tags": ["O", "O", "B-LIBRARY", "I-LIBRARY", "O", "O"], "tokens": ["uh", "use", "lom", "bock", "in", "that"]}
+{"id": "c-00046", "intent": "MODIFY_PREVIOUS", "source": "challenge", "tags": ["O", "O", "O", "O", "O"], "tokens": ["can", "you", "make", "it", "shorter"]}
+{"id": "c-00047", "intent": "MODIFY_PREVIOUS", "source": "challenge", "tags": ["O", "B-ARTIFACT", "O", "O"], "tokens": ["add", "lodging", "to", "it"]}
+{"id": "c-00048", "intent": "MODIFY_PREVIOUS", "source": "challenge", "tags": ["O", "O", "B-ARTIFACT", "O", "O"], "tokens": ["switch", "to", "constructor", "injection", "there"]}
+{"id": "c-00049", "intent": "META_COMMAND", "source": "challenge", "tags": ["O", "O", "O", "O"], "tokens": ["um", "repeat", "that", "please"]}
+{"id": "c-00050", "intent": "META_COMMAND", "source": "challenge", "tags": ["O", "O", "O", "O"], "tokens": ["save", "the", "this", "answer"]}
+{"id": "c-00051", "intent": "META_COMMAND", "source": "challenge", "tags": ["O", "O"], "tokens": ["stop", "stop"]}
+{"id": "c-00052", "intent": "META_COMMAND", "source": "challenge", "tags": ["O", "O", "O"], "tokens": ["clear", "it", "all"]}
+{"id": "c-00053", "intent": "META_COMMAND", "source": "challenge", "tags": ["O", "O", "O", "O"], "tokens": ["red", "it", "out", "loud"]}
+{"id": "c-00054", "intent": "META_COMMAND", "source": "challenge", "tags": ["O", "O", "O", "O"], "tokens": ["open", "my", "safe", "answers"]}
+{"id": "c-00055", "intent": "OUT_OF_SCOPE", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "fix", "my", "controller", "its", "stuck", "on", "the", "loading", "screen"]}
+{"id": "c-00056", "intent": "OUT_OF_SCOPE", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "spring", "into", "action", "at", "the", "gym"]}
+{"id": "c-00057", "intent": "OUT_OF_SCOPE", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["set", "up", "a", "service", "for", "my", "bike"]}
+{"id": "c-00058", "intent": "OUT_OF_SCOPE", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "O"], "tokens": ["what", "is", "the", "java", "island", "population"]}
+{"id": "c-00059", "intent": "OUT_OF_SCOPE", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O"], "tokens": ["whats", "the", "best", "way", "to", "test", "a", "pid", "controller", "on", "a", "robot"]}
+{"id": "c-00060", "intent": "OUT_OF_SCOPE", "source": "challenge", "tags": ["O", "O", "O", "O", "O"], "tokens": ["how", "do", "i", "inject", "insulin"]}
+{"id": "c-00061", "intent": "OUT_OF_SCOPE", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["explain", "the", "architecture", "of", "the", "roman", "colosseum"]}
+{"id": "c-00062", "intent": "OUT_OF_SCOPE", "source": "challenge", "tags": ["O", "O", "O", "O", "O", "O", "O"], "tokens": ["which", "repository", "of", "antiques", "is", "the", "oldest"]}

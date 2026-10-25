@@ -1,0 +1,43 @@
+# Curated glossary: canonical spellings, spoken aliases and phonetic hints.
+# Only distinctive terms: common words ("service", "rest") are deliberately NOT keys,
+# because fuzzy matching would rewrite ordinary speech.
+terms:
+  - { canonical: "@RestController", aliases: ["rest controller", "rest kontroller"] }
+  - { canonical: "@Autowired", aliases: ["auto wired", "at autowired"] }
+  - { canonical: "@Transactional", aliases: ["transactional annotation"] }
+  - { canonical: "Spring Boot", aliases: ["spring boot", "springboot", "spring boots"] }
+  - { canonical: "Spring Data JPA", aliases: ["spring data j p a", "spring data jay pee ay"] }
+  - { canonical: "JPA", aliases: ["j p a", "jay pee ay"] }
+  - { canonical: "Hibernate", aliases: ["hybernate"] }
+  - { canonical: "JUnit", aliases: ["j unit", "jay unit"] }
+  - { canonical: "Mockito", aliases: ["mock ito", "mocky to"] }
+  - { canonical: "Lombok", aliases: ["lom bock", "lombock"] }
+  - { canonical: "Kotlin", aliases: ["cotlin", "cot lin"] }
+  - { canonical: "TypeScript", aliases: ["type script"] }
+  - { canonical: "Angular", aliases: ["angler"] }
+  - { canonical: "FastAPI", aliases: ["fast a p i", "fast api"] }
+  - { canonical: "Kubernetes", aliases: ["cooper netties", "kubernetis"] }
+  - { canonical: "Kafka", aliases: ["cafca"] }
+  - { canonical: "RabbitMQ", aliases: ["rabbit m q", "rabbit mq"] }
+  - { canonical: "PostgreSQL", aliases: ["postgres sequel", "post gres q l"] }
+  - { canonical: "Redis", aliases: ["redis cache"] }
+  - { canonical: "OAuth", aliases: ["o auth", "oh auth"] }
+  - { canonical: "JWT", aliases: ["j w t", "jay double you tee"] }
+  - { canonical: "DTO", aliases: ["d t o", "dee tee oh"] }
+  - { canonical: "gRPC", aliases: ["g r p c", "jee rpc"] }
+  - { canonical: "GraphQL", aliases: ["graph q l", "graph ql"] }
+  - { canonical: "Gradle", aliases: ["gray dle"] }
+  - { canonical: "Maven", aliases: ["may vin"] }
+  - { canonical: "Testcontainers", aliases: ["test containers"] }
+  - { canonical: "OpenAPI", aliases: ["open a p i", "open api"] }
+  - { canonical: "Swagger", aliases: ["swag ger"] }
+  - { canonical: "Docker", aliases: ["docker er"] }
+  - { canonical: "Terraform", aliases: ["terra form"] }
+  - { canonical: "Keycloak", aliases: ["key cloak"] }
+  - { canonical: "Flyway", aliases: ["fly way"] }
+  - { canonical: "Liquibase", aliases: ["liquid base"] }
+  - { canonical: "MapStruct", aliases: ["map struct"] }
+  - { canonical: "Jackson", aliases: ["jackson json"] }
+  - { canonical: ".NET", aliases: ["dot net"], match_canonical: false }  # bare "net" must not match
+  - { canonical: "NullPointerException", aliases: ["null pointer exception", "no pointer exception"] }
+  - { canonical: "CORS", aliases: ["c o r s", "cores error"] }

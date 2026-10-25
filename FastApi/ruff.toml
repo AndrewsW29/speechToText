@@ -1,0 +1,16 @@
+target-version = "py313"
+line-length = 100
+src = ["app", "tests"]
+
+[lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "ANN", "S", "C90", "RUF"]
+ignore = ["ANN401"]
+
+[lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "ANN", "E501"]
+"scripts/**" = ["E501", "ANN"]
+"ml/**" = ["E501", "ANN", "S101", "S311", "S603", "S607", "C901", "SIM", "RUF007"]
+"alembic/**" = ["E501", "ANN"]
+
+[lint.mccabe]
+max-complexity = 10

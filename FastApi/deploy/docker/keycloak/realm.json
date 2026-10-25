@@ -1,0 +1,23 @@
+{
+  "realm": "voice-assistant",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "clients": [
+    {
+      "clientId": "voice-api",
+      "bearerOnly": true,
+      "enabled": true
+    },
+    {
+      "clientId": "voice-web",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": ["http://localhost:4200/*"],
+      "webOrigins": ["http://localhost:4200"],
+      "attributes": { "pkce.code.challenge.method": "S256" }
+    }
+  ]
+}

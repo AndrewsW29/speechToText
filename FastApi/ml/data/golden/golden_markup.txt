@@ -1,0 +1,200 @@
+CREATE_CODE_ARTIFACT :: could you show me how to build a [controller|ARTIFACT] class in [java|LANGUAGE]
+CREATE_CODE_ARTIFACT :: i would like a [spring|FRAMEWORK] [service|ARTIFACT] that calls a [repository|ARTIFACT]
+CREATE_CODE_ARTIFACT :: please generate a [rest api|ARTIFACT] endpoint for customers in [spring boot|FRAMEWORK]
+CREATE_CODE_ARTIFACT :: write the code for a [jpa|LIBRARY] [entity|ARTIFACT] called invoice
+CREATE_CODE_ARTIFACT :: set up a [mockito|LIBRARY] test for the order [service|ARTIFACT]
+CREATE_CODE_ARTIFACT :: draft a [dto|ARTIFACT] and a [mapper|ARTIFACT] in [java|LANGUAGE]
+CREATE_CODE_ARTIFACT :: give me boilerplate for a [spring boot|FRAMEWORK] [3|VERSION] [rest controller|ARTIFACT]
+CREATE_CODE_ARTIFACT :: how would i code an [exception handler|ARTIFACT] in [spring|FRAMEWORK]
+CREATE_CODE_ARTIFACT :: produce a [kotlin|LANGUAGE] [repository|ARTIFACT] using [spring data|FRAMEWORK]
+CREATE_CODE_ARTIFACT :: help me write a [junit|LIBRARY] [5|VERSION] test class for a [service|ARTIFACT]
+CREATE_CODE_ARTIFACT :: i need an [angular|FRAMEWORK] [service|ARTIFACT] that calls an api in [typescript|LANGUAGE]
+CREATE_CODE_ARTIFACT :: make an [interceptor|ARTIFACT] for logging in [spring|FRAMEWORK]
+CREATE_CODE_ARTIFACT :: code up a [pagination|ARTIFACT] helper in [java|LANGUAGE] [17|VERSION]
+CREATE_CODE_ARTIFACT :: what is the code for a simple [controller|ARTIFACT] with a get method in [kotlin|LANGUAGE]
+CREATE_CODE_ARTIFACT :: build me a [validator|ARTIFACT] with [bean validation|LIBRARY]
+CREATE_CODE_ARTIFACT :: write a [docker compose|FRAMEWORK] file for a [postgres|LIBRARY] database and my api
+CREATE_CODE_ARTIFACT :: generate a [feign|LIBRARY] [client|ARTIFACT] in [java|LANGUAGE]
+CREATE_CODE_ARTIFACT :: show a [singleton|ARTIFACT] implementation in [java|LANGUAGE]
+CREATE_CODE_ARTIFACT :: create a [swift|LANGUAGE] [view model|ARTIFACT] for a login screen
+CREATE_CODE_ARTIFACT :: draft a [cache|ARTIFACT] configuration with [caffeine|LIBRARY]
+CREATE_CODE_ARTIFACT :: i want a [security|ARTIFACT] filter for [jwt|LIBRARY] in [spring boot|FRAMEWORK]
+CREATE_CODE_ARTIFACT :: could you write a [gradle|FRAMEWORK] build file for a [kotlin|LANGUAGE] service
+CREATE_CODE_ARTIFACT :: produce a [rest controller|ARTIFACT] and [service|ARTIFACT] pair for products in [java|LANGUAGE]
+CREATE_CODE_ARTIFACT :: lets build a [websocket|ARTIFACT] handler in [spring|FRAMEWORK]
+CREATE_CODE_ARTIFACT :: write a [fastapi|FRAMEWORK] [dependency|ARTIFACT] that reads the auth header in [python|LANGUAGE]
+EXPLAIN_CONCEPT :: could you explain what [dependency injection|ARTIFACT] is all about
+EXPLAIN_CONCEPT :: i do not understand [transactions|ARTIFACT] in [spring|FRAMEWORK]
+EXPLAIN_CONCEPT :: what is the idea behind [hexagonal|ARTIFACT] architecture
+EXPLAIN_CONCEPT :: break down how [jpa|LIBRARY] relationships work
+EXPLAIN_CONCEPT :: help me understand [reactive streams|ARTIFACT]
+EXPLAIN_CONCEPT :: what makes a [rest|ARTIFACT] api restful
+EXPLAIN_CONCEPT :: why would i use a [dto|ARTIFACT] instead of an entity
+EXPLAIN_CONCEPT :: describe the [mvc|ARTIFACT] pattern
+EXPLAIN_CONCEPT :: how does [spring|FRAMEWORK] decide which bean to inject
+EXPLAIN_CONCEPT :: what is [polymorphism|ARTIFACT] in [java|LANGUAGE]
+EXPLAIN_CONCEPT :: tell me how [mockito|LIBRARY] verifies calls
+EXPLAIN_CONCEPT :: what is the [jvm|ARTIFACT] and what does it do
+EXPLAIN_CONCEPT :: explain how [optional|ARTIFACT] helps avoid nulls
+EXPLAIN_CONCEPT :: what is [dependency inversion|ARTIFACT]
+EXPLAIN_CONCEPT :: how do [lambdas|ARTIFACT] work in [java|LANGUAGE] [8|VERSION]
+EXPLAIN_CONCEPT :: what does [stateless|ARTIFACT] mean for a service
+EXPLAIN_CONCEPT :: explain [aspect oriented|ARTIFACT] programming
+EXPLAIN_CONCEPT :: what is the point of [interfaces|ARTIFACT] in [kotlin|LANGUAGE]
+EXPLAIN_CONCEPT :: how does [oauth|LIBRARY] authorization code flow work
+EXPLAIN_CONCEPT :: what is [domain driven design|ARTIFACT]
+EXPLAIN_CONCEPT :: explain what [lazy loading|ARTIFACT] is
+EXPLAIN_CONCEPT :: what are [sealed classes|ARTIFACT] in [kotlin|LANGUAGE]
+EXPLAIN_CONCEPT :: how does [kubernetes|FRAMEWORK] self healing work
+EXPLAIN_CONCEPT :: why is the [open closed|ARTIFACT] principle useful
+EXPLAIN_CONCEPT :: what is a [thread|ARTIFACT] pool
+FIND_DOCS :: could you point me to the [spring data jpa|LIBRARY] reference
+FIND_DOCS :: i need the official page about [spring boot|FRAMEWORK] [3|VERSION] changes
+FIND_DOCS :: where is the documentation for [mockito|LIBRARY]
+FIND_DOCS :: find me the [kotlin|LANGUAGE] language reference
+FIND_DOCS :: open docs for [bean validation|LIBRARY] annotations
+FIND_DOCS :: take me to the [angular|FRAMEWORK] forms guide
+FIND_DOCS :: where do i read about the [spring|FRAMEWORK] [rest controller|ARTIFACT]
+FIND_DOCS :: i am looking for the [jackson|LIBRARY] user guide
+FIND_DOCS :: search for [hibernate|LIBRARY] documentation on caching
+FIND_DOCS :: show the api reference for the [java|LANGUAGE] [util|LIBRARY] package
+FIND_DOCS :: where is the reference on [junit|LIBRARY] extensions
+FIND_DOCS :: open the [openapi|LIBRARY] [3|VERSION] specification page
+FIND_DOCS :: point me to docs on [spring security|FRAMEWORK] method security
+FIND_DOCS :: get me the [docker|FRAMEWORK] cli reference
+FIND_DOCS :: where are the [terraform|FRAMEWORK] module docs
+FIND_DOCS :: find the manual page for [gradle|FRAMEWORK] plugins
+FIND_DOCS :: look for the [testcontainers|LIBRARY] getting started guide
+FIND_DOCS :: documentation for [lombok|LIBRARY] builder annotation
+FIND_DOCS :: where is the [swift|LANGUAGE] concurrency documentation
+FIND_DOCS :: show me [quarkus|FRAMEWORK] guides on rest
+FIND_DOCS :: find the [kafka|LIBRARY] producer configuration reference
+FIND_DOCS :: take me to the [spring|FRAMEWORK] [cloud|LIBRARY] docs
+FIND_DOCS :: where can i find the [slf4j|LIBRARY] faq
+FIND_DOCS :: open the [typescript|LANGUAGE] documentation on generics
+FIND_DOCS :: the official guide for [jdbc|LIBRARY] please
+DEBUG_ERROR :: help i have a [null pointer exception|ERROR_CODE] in my [controller|ARTIFACT]
+DEBUG_ERROR :: what causes a [404|ERROR_CODE] on a valid [spring|FRAMEWORK] route
+DEBUG_ERROR :: my [service|ARTIFACT] throws [illegal state exception|ERROR_CODE]
+DEBUG_ERROR :: how can i resolve [no qualifying bean|ERROR_CODE]
+DEBUG_ERROR :: why do i see [lazy initialization exception|ERROR_CODE] after a query
+DEBUG_ERROR :: the build fails with [compilation error|ERROR_CODE] in my [java|LANGUAGE] class
+DEBUG_ERROR :: my endpoint gives [500|ERROR_CODE] only in production
+DEBUG_ERROR :: why does my [jpa|LIBRARY] save not persist the [entity|ARTIFACT]
+DEBUG_ERROR :: [stack overflow|ERROR_CODE] with two entities referencing each other
+DEBUG_ERROR :: [unauthorized|ERROR_CODE] [401|ERROR_CODE] from my secured endpoint
+DEBUG_ERROR :: the [mockito|LIBRARY] when call is not stubbing anything
+DEBUG_ERROR :: my [spring boot|FRAMEWORK] app fails with [port in use|ERROR_CODE]
+DEBUG_ERROR :: [concurrent modification|ERROR_CODE] in a for loop
+DEBUG_ERROR :: why is [transactional|LIBRARY] not rolling back
+DEBUG_ERROR :: [class cast|ERROR_CODE] when reading from the list
+DEBUG_ERROR :: an [out of memory|ERROR_CODE] in my batch job
+DEBUG_ERROR :: [forbidden|ERROR_CODE] [403|ERROR_CODE] after adding csrf
+DEBUG_ERROR :: the json response is missing fields in my [dto|ARTIFACT]
+DEBUG_ERROR :: [bean creation|ERROR_CODE] error at startup
+DEBUG_ERROR :: why does my [angular|FRAMEWORK] app show [cors|ERROR_CODE] errors
+DEBUG_ERROR :: my [kotlin|LANGUAGE] code fails with [null pointer|ERROR_CODE]
+DEBUG_ERROR :: [timeout|ERROR_CODE] when calling the [rest template|LIBRARY]
+DEBUG_ERROR :: [unique constraint|ERROR_CODE] violation on insert
+DEBUG_ERROR :: tests are flaky because of [dependency injection|ARTIFACT] ordering
+COMPARE_OPTIONS :: which is better [jpa|LIBRARY] or [jooq|LIBRARY]
+COMPARE_OPTIONS :: [gradle|FRAMEWORK] versus [maven|FRAMEWORK] for a big project
+COMPARE_OPTIONS :: should i choose [kotlin|LANGUAGE] over [java|LANGUAGE]
+COMPARE_OPTIONS :: [spring|FRAMEWORK] or [micronaut|FRAMEWORK]
+COMPARE_OPTIONS :: what are the differences between [get|ARTIFACT] and [post|ARTIFACT]
+COMPARE_OPTIONS :: [constructor|ARTIFACT] versus setter injection
+COMPARE_OPTIONS :: [mockito|LIBRARY] or [powermock|LIBRARY]
+COMPARE_OPTIONS :: [sync|ARTIFACT] versus [async|ARTIFACT] calls between services
+COMPARE_OPTIONS :: [angular|FRAMEWORK] or [vue|FRAMEWORK] for the dashboard
+COMPARE_OPTIONS :: [mongodb|LIBRARY] versus [postgres|LIBRARY]
+COMPARE_OPTIONS :: [jwt|LIBRARY] against opaque tokens
+COMPARE_OPTIONS :: [class|ARTIFACT] versus [record|ARTIFACT] for a value object
+COMPARE_OPTIONS :: [gson|LIBRARY] or [jackson|LIBRARY] in a [spring|FRAMEWORK] app
+COMPARE_OPTIONS :: monolith or [microservices|ARTIFACT] for a startup
+COMPARE_OPTIONS :: [kubernetes|FRAMEWORK] or plain virtual machines
+COMPARE_OPTIONS :: [rest|ARTIFACT] versus [grpc|LIBRARY] for internal calls
+COMPARE_OPTIONS :: [junit|LIBRARY] [4|VERSION] versus [junit|LIBRARY] [5|VERSION]
+COMPARE_OPTIONS :: [rxjava|LIBRARY] or [coroutines|LIBRARY]
+COMPARE_OPTIONS :: [liquibase|LIBRARY] versus [flyway|LIBRARY]
+COMPARE_OPTIONS :: [swift|LANGUAGE] versus [objective c|LANGUAGE]
+COMPARE_OPTIONS :: [spring boot|FRAMEWORK] starter or manual configuration
+COMPARE_OPTIONS :: [hashmap|ARTIFACT] versus [treemap|ARTIFACT]
+COMPARE_OPTIONS :: [redis|LIBRARY] versus [memcached|LIBRARY] for caching
+COMPARE_OPTIONS :: [terraform|FRAMEWORK] against cloudformation
+COMPARE_OPTIONS :: [composition|ARTIFACT] or inheritance here
+MODIFY_PREVIOUS :: please add input validation to that
+MODIFY_PREVIOUS :: now convert it to [kotlin|LANGUAGE]
+MODIFY_PREVIOUS :: can you write a [test|ARTIFACT] for the code you just gave me
+MODIFY_PREVIOUS :: also add a [post endpoint|ARTIFACT]
+MODIFY_PREVIOUS :: make the previous example use a [dto|ARTIFACT]
+MODIFY_PREVIOUS :: apply [lombok|LIBRARY] to that class
+MODIFY_PREVIOUS :: change it so it returns a page of results
+MODIFY_PREVIOUS :: add proper logging to it
+MODIFY_PREVIOUS :: use [mockito|LIBRARY] in that test instead
+MODIFY_PREVIOUS :: rewrite it without field injection
+MODIFY_PREVIOUS :: and add a [put endpoint|ARTIFACT] too
+MODIFY_PREVIOUS :: make that code more readable
+MODIFY_PREVIOUS :: switch the example to [spring boot|FRAMEWORK] [3|VERSION]
+MODIFY_PREVIOUS :: wrap it in a [transactional|LIBRARY] method
+MODIFY_PREVIOUS :: add javadoc to every method
+MODIFY_PREVIOUS :: handle exceptions in that method
+MODIFY_PREVIOUS :: now add [swagger|LIBRARY] docs
+MODIFY_PREVIOUS :: do the same thing for orders
+MODIFY_PREVIOUS :: extract the validation into its own [class|ARTIFACT]
+MODIFY_PREVIOUS :: make it return an [optional|ARTIFACT]
+MODIFY_PREVIOUS :: can you add a second [test|ARTIFACT] case
+MODIFY_PREVIOUS :: make the controller thinner
+MODIFY_PREVIOUS :: rewrite that example with [records|ARTIFACT]
+MODIFY_PREVIOUS :: please also add a health check
+MODIFY_PREVIOUS :: and make it configurable with properties
+META_COMMAND :: say it once more
+META_COMMAND :: please repeat the last answer
+META_COMMAND :: store this for later
+META_COMMAND :: stop talking
+META_COMMAND :: wipe this conversation
+META_COMMAND :: read that to me
+META_COMMAND :: go back one answer
+META_COMMAND :: add this to my favourites
+META_COMMAND :: copy that snippet
+META_COMMAND :: send this to a colleague
+META_COMMAND :: begin a new chat
+META_COMMAND :: never mind
+META_COMMAND :: slow down the speech
+META_COMMAND :: turn the volume up
+META_COMMAND :: bring up my past questions
+META_COMMAND :: open the saved list
+META_COMMAND :: remove this from history
+META_COMMAND :: ask something else
+META_COMMAND :: hold on
+META_COMMAND :: go on
+META_COMMAND :: use the dark theme
+META_COMMAND :: use the light theme
+META_COMMAND :: what are you able to do
+META_COMMAND :: i need help using this app
+META_COMMAND :: mute yourself
+META_COMMAND :: take that back
+OUT_OF_SCOPE :: what is the forecast for tomorrow
+OUT_OF_SCOPE :: how do i pair a controller with my playstation
+OUT_OF_SCOPE :: tell me something funny
+OUT_OF_SCOPE :: what is the time in sydney
+OUT_OF_SCOPE :: put on a playlist
+OUT_OF_SCOPE :: how do i design a pid controller for a heater
+OUT_OF_SCOPE :: what was the final score of the game
+OUT_OF_SCOPE :: suggest a dinner idea
+OUT_OF_SCOPE :: why is my game controller drifting
+OUT_OF_SCOPE :: which city is the capital of australia
+OUT_OF_SCOPE :: reserve a table for two tonight
+OUT_OF_SCOPE :: say hello in japanese
+OUT_OF_SCOPE :: how deep is the pacific ocean
+OUT_OF_SCOPE :: wake me up at six
+OUT_OF_SCOPE :: when should i service my boiler
+OUT_OF_SCOPE :: any good restaurants around here
+OUT_OF_SCOPE :: how do i prepare for spring allergies
+OUT_OF_SCOPE :: who is the prime minister of canada
+OUT_OF_SCOPE :: how is the euro doing against the dollar
+OUT_OF_SCOPE :: how do i stop my puppy from biting
+OUT_OF_SCOPE :: is java coffee grown in indonesia
+OUT_OF_SCOPE :: how do i unclog a drain
+OUT_OF_SCOPE :: message my brother
+OUT_OF_SCOPE :: write a song about summer
+OUT_OF_SCOPE :: how long is a flight to new york

@@ -1,0 +1,61 @@
+name: ml
+on:
+  push:
+    paths: ["FastApi/ml/**", "FastApi/app/application/services/glossary.py", ".github/workflows/ml.yml"]
+  pull_request:
+    paths: ["FastApi/ml/**"]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: FastApi
+
+jobs:
+  data-and-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --python 3.13 --frozen --group ml-core
+      - name: Validate datasets (Great Expectations)
+        run: uv run --group ml-core python -m ml.evaluation.validate
+      - name: Frozen golden sets must be unchanged
+        run: |
+          git diff --exit-code origin/${{ github.base_ref || 'main' }} -- ml/data/golden/golden.jsonl ml/data/golden/challenge.jsonl \
+            || echo "golden sets changed: requires a deliberate re-freeze (CHECKSUMS.json is verified by pytest)"
+          uv run --group ml-core pytest ml/tests -q --no-cov
+      - name: Baseline metrics are reproducible
+        run: uv run --group ml-core python -m ml.training.intent.baseline
+
+  quality-gates:
+    # Gates are RED on purpose until US10 delivers a model; reported, never blocking.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --python 3.13 --frozen --group ml-core
+      - run: uv run --group ml-core pytest ml/tests/test_gates.py -m gates -q --no-cov
+
+  intent-model:
+    # Trains a small model with TensorFlow and checks the export, latency and registry paths.
+    runs-on: ubuntu-latest
+    needs: data-and-tests
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --python 3.13 --frozen --group ml
+      - name: Model, export, latency and registry tests
+        run: uv run --group ml pytest ml/tests/test_intent_model.py ml/tests/test_export.py ml/tests/test_intent_latency.py ml/tests/test_registry.py -q --no-cov
+      - name: Train and evaluate
+        run: uv run --group ml python -m ml.training.intent.pipeline --epochs 30 --seed 7
+      - name: Intent metric gates (macro-F1, slot F1, OOD recall, ECE, slice regression)
+        # Reported, not blocking, until the measured baselines replace the starting floors.
+        continue-on-error: true
+        run: uv run --group ml pytest ml/tests/test_gates.py tests/ml -m gates -q --no-cov
+      - uses: actions/upload-artifact@v4
+        with:
+          name: intent-model
+          path: FastApi/ml/artifacts/intent

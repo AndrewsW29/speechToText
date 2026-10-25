@@ -1,0 +1,43 @@
+{
+  "challenge": {
+    "ece": 0.47913129373512003,
+    "intent_macro_f1": 0.9024785671844495,
+    "n": 62,
+    "ood_recall": 0.75,
+    "slices": {
+      "framework=none": 0.8838820901320901,
+      "framework=spring": 1.0,
+      "language=cotlin": 0.7333333333333333,
+      "language=none": 0.908080808080808,
+      "length=long": 0.9047619047619048,
+      "length=medium": 0.8860187431616003,
+      "length=short": 0.9418181818181818,
+      "noise=challenge_noisy": 0.9024785671844495,
+      "user=unknown": 0.9024785671844495
+    },
+    "slot_f1": null
+  },
+  "golden": {
+    "ece": 0.4646325977589081,
+    "intent_macro_f1": 0.817573358245528,
+    "n": 200,
+    "ood_recall": 0.56,
+    "slices": {
+      "framework=none": 0.8077387963290601,
+      "framework=spring": 0.8513071895424836,
+      "language=java": 1.0,
+      "language=kotlin": 0.8095238095238096,
+      "language=none": 0.7995226404800873,
+      "length=long": 0.861038961038961,
+      "length=medium": 0.8326302063539727,
+      "length=short": 0.41510416666666666,
+      "noise=clean": 0.817573358245528,
+      "user=unknown": 0.817573358245528
+    },
+    "slot_f1": null
+  },
+  "trained_on": {
+    "file": "raw/seed.jsonl",
+    "rows": 416
+  }
+}

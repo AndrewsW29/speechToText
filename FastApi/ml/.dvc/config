@@ -1,0 +1,7 @@
+[core]
+    remote = minio
+    autostage = true
+['remote "minio"']
+    url = s3://ml-datasets/voice-assistant
+    endpointurl = http://localhost:9000
+    # Credentials come from AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY (never committed).
