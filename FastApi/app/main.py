@@ -14,8 +14,10 @@ from app.adapters.inbound.rest.auth import jwks_verifier
 from app.adapters.inbound.rest.errors import register_error_handlers
 from app.adapters.inbound.rest.health import build_health_router
 from app.adapters.inbound.rest.observability import install_observability
+from app.adapters.outbound.answer.circuit_breaker_generator import CircuitBreakerGenerator
 from app.adapters.outbound.answer.fixed_answer_generator import FixedAnswerGenerator
-from app.adapters.outbound.answer.top_chunks_answer_generator import TopChunksAnswerGenerator
+from app.adapters.outbound.answer.ollama_answer_generator import OllamaAnswerGenerator
+from app.adapters.outbound.answer.snippet_answer_generator import SnippetAnswerGenerator
 from app.adapters.outbound.ingestion.celery_jobs import CeleryIngestionJobs
 from app.adapters.outbound.ingestion.inline_jobs import InlineIngestionJobs
 from app.adapters.outbound.intent.tf_serving_classifier import (
@@ -24,6 +26,7 @@ from app.adapters.outbound.intent.tf_serving_classifier import (
 )
 from app.adapters.outbound.stt.factory import TranscriberFactory
 from app.adapters.outbound.stt.glossary_corrected_transcriber import GlossaryCorrectedTranscriber
+from app.application.ports.answer_generator import AnswerGenerator
 from app.application.ports.ingestion_jobs import IngestionJobs
 from app.application.ports.intent_classifier import IntentClassifier
 from app.application.services.glossary import GlossaryCorrector
@@ -58,6 +61,19 @@ def _build_classifier(settings: Settings) -> IntentClassifier | None:
     )
 
 
+def _build_generator(settings: Settings) -> AnswerGenerator:
+    snippets = SnippetAnswerGenerator()
+    if settings.llm_url is None:
+        return snippets
+    llm = OllamaAnswerGenerator(
+        httpx.Client(base_url=settings.llm_url, timeout=settings.llm_timeout_seconds),
+        settings.llm_model,
+    )
+    return CircuitBreakerGenerator(
+        llm, snippets, settings.llm_failure_threshold, settings.llm_reset_seconds
+    )
+
+
 def _with_pdf(settings: Settings, container: Container) -> Container:
     if not settings.pdf_enabled:
         return container
@@ -80,7 +96,7 @@ def build_container(settings: Settings) -> Container:
         Container(
             ask_question=AskQuestion(
                 transcriber,
-                TopChunksAnswerGenerator(),
+                _build_generator(settings),
                 build_retriever(settings),
                 _build_classifier(settings),
             ),

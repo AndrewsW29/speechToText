@@ -28,6 +28,17 @@ jobs:
       - name: Integration tests
         run: uv run pytest tests/integration --no-cov
 
+  intent-golden-gate:
+    # Trains the intent model and checks it against the frozen golden set (macro-F1, slot F1, OOD recall, ECE).
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --python 3.13 --frozen --group ml
+      - run: uv run --group ml python -m ml.training.intent.pipeline --epochs 30 --seed 7
+      - run: uv run --group ml pytest tests/ml -m gates -q --no-cov
+
   image:
     needs: quality
     runs-on: ubuntu-latest

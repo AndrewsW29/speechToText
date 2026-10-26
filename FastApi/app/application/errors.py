@@ -21,6 +21,10 @@ class ClassificationError(ApplicationError):
     """The intent classifier is unavailable or returned an unusable result."""
 
 
+class GenerationError(ApplicationError):
+    """The answer generator (LLM) is unavailable or returned nothing usable."""
+
+
 class TransientError(ApplicationError):
     """A failure worth retrying with backoff (network blip, scanner restarting, storage hiccup)."""
 

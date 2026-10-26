@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from uuid import uuid4
 
 from app.application.errors import ClassificationError, InvalidAudioError, NoRelevantSourcesError
+from app.application.events import AnswerDelivered, EventBus
 from app.application.ports.answer_generator import AnswerGenerator
 from app.application.ports.intent_classifier import IntentClassifier
 from app.application.ports.transcriber import Transcriber
@@ -55,6 +56,7 @@ class AskQuestion:
         classifier: IntentClassifier | None = None,
         gate: ConfidenceGate | None = None,
         router: IntentRouter | None = None,
+        events: EventBus | None = None,
     ) -> None:
         self._transcriber = transcriber
         self._generator = generator
@@ -62,6 +64,7 @@ class AskQuestion:
         self._classifier = classifier
         self._gate = gate or ConfidenceGate()
         self._router = router or default_router()
+        self._events = events
 
     def execute(
         self,
@@ -128,4 +131,13 @@ class AskQuestion:
             if not chunks:
                 raise NoRelevantSourcesError("no relevant knowledge found for this question")
         answer = self._generator.generate(query, chunks)
+        if self._events is not None:
+            self._events.publish(
+                AnswerDelivered(
+                    query.id,
+                    intent.name if intent else None,
+                    tuple(s.id for s in answer.sources),
+                    answer.confidence,
+                )
+            )
         return AskQuestionResult(query, answer=answer, intent=intent)

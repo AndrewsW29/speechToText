@@ -38,7 +38,9 @@ def test_chunker_keeps_all_non_heading_text_in_order(blocks: list) -> None:  # t
 def test_no_prose_chunk_exceeds_the_token_budget(blocks: list) -> None:  # type: ignore[type-arg]
     for chunk in chunk_blocks(blocks, max_tokens=350):
         if chunk.chunk_type == "text":
-            assert words(chunk.text) <= 350 or "\n\n" not in chunk.text  # a single oversized paragraph is split by sentences
+            assert (
+                words(chunk.text) <= 350 or "\n\n" not in chunk.text
+            )  # a single oversized paragraph is split by sentences
 
 
 @settings(max_examples=100, deadline=None)

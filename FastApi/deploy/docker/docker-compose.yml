@@ -12,6 +12,8 @@ services:
       VA_DATABASE_URL: postgresql+asyncpg://va:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/va
       VA_REDIS_URL: redis://redis:6379/0
       VA_QDRANT_URL: http://qdrant:6333
+      VA_INTENT_SERVING_URL: http://tf-serving:8501
+      VA_INTENT_MODEL_DIR: /models/intent/1
       VA_INGESTION_BACKEND: celery
       VA_PDF_ENABLED: "true"
       VA_CLAMAV_HOST: clamav
@@ -22,8 +24,8 @@ services:
       VA_TUS_UPLOAD_DIR: /tus
       VA_INGEST_ALLOWED_HOSTS: '["docs.spring.io","kotlinlang.org","junit.org"]'
     ports: ["8000:8000"]
-    volumes: [tus-uploads:/tus]
-    depends_on: [postgres, redis, qdrant, minio, clamav]
+    volumes: [tus-uploads:/tus, "../../ml/artifacts/intent:/models/intent:ro"]
+    depends_on: [postgres, redis, qdrant, minio, clamav, tf-serving]
   web:
     build: { context: ../../../Angular, dockerfile: deploy/docker/Dockerfile }
     ports: ["4200:8080"]
@@ -98,6 +100,9 @@ services:
       DEV_INGESTER_PASSWORD: ${DEV_INGESTER_PASSWORD:?set DEV_INGESTER_PASSWORD}
     volumes: [./keycloak/realm.json:/opt/keycloak/data/import/realm.json:ro]
     ports: ["8081:8080"]
+  tf-serving:
+    build: { context: ../.., dockerfile: deploy/docker/tf-serving.Dockerfile }
+    ports: ["8501:8501"]
   ollama:
     image: ollama/ollama:latest
     volumes: [ollama:/root/.ollama]

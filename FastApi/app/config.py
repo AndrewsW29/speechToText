@@ -84,6 +84,11 @@ class Settings(BaseSettings):
     intent_model_name: str = "intent"
     intent_model_label: str | None = None  # TF Serving version label (e.g. champion)
     intent_model_dir: Path | None = None  # exported version dir with vocab/labels/temperature
+    llm_url: str | None = None  # Ollama base URL; unset serves retrieval-only snippet answers
+    llm_model: str = "llama3.2"
+    llm_timeout_seconds: float = Field(default=20.0, gt=0)
+    llm_failure_threshold: int = Field(default=3, ge=1)
+    llm_reset_seconds: float = Field(default=30.0, gt=0)
     glossary_path: Path | None = None  # curated terms for post-ASR correction
     stt_engine: str = "whisper"  # "whisper", or "fake" (CI, local and Postman only)
     fake_stt_text: str | None = None

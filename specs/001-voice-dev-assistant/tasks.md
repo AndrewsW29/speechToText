@@ -173,18 +173,18 @@ story, write the tests first and confirm they FAIL before implementing.
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T082 [P] [US3] Contract test suite for `IntentClassifier` in `FastApi/tests/contract/test_intent_classifier_contract.py`
-- [ ] T083 [P] [US3] Golden-set accuracy test (threshold from env) in `FastApi/tests/ml/test_intent_golden_set.py`
-- [ ] T084 [P] [US3] Unit test low-confidence fallback to `FIND_DOCS` in `FastApi/tests/unit/application/test_intent_fallback.py`
+- [X] T082 [P] [US3] Contract test suite for `IntentClassifier` in `FastApi/tests/contract/test_intent_classifier_contract.py`
+- [X] T083 [P] [US3] Golden-set accuracy test (threshold from env) in `FastApi/tests/ml/test_intent_golden_set.py`
+- [X] T084 [P] [US3] Unit test low-confidence fallback to `FIND_DOCS` in `FastApi/tests/unit/application/test_intent_fallback.py`
 
 ### Implementation for User Story 3
 
 - [X] T085 [P] [US3] Define `IntentClassifier` port in `FastApi/app/application/ports/intent_classifier.py`
 - [X] T086 [US3] Implement `TFServingIntentClassifier` adapter (gRPC/REST) in `FastApi/app/adapters/outbound/intent/tf_serving_classifier.py`
 - [X] T087 [P] [US3] Implement `FakeClassifier` in `FastApi/tests/fakes/`
-- [ ] T088 [US3] Wire intent into `AskQuestion` (entities → search filters, confidence fallback) in `FastApi/app/application/use_cases/ask_question.py`
-- [ ] T089 [P] [US3] Add TF Serving container to `FastApi/deploy/docker/docker-compose.yml` and `FastApi/deploy/docker/tf-serving.Dockerfile`
-- [ ] T090 [US3] Add golden-set gate job to `.github/workflows/backend.yml`
+- [X] T088 [US3] Wire intent into `AskQuestion` (entities → search filters, confidence fallback) in `FastApi/app/application/use_cases/ask_question.py`
+- [X] T089 [P] [US3] Add TF Serving container to `FastApi/deploy/docker/docker-compose.yml` and `FastApi/deploy/docker/tf-serving.Dockerfile`
+- [X] T090 [US3] Add golden-set gate job to `.github/workflows/backend.yml`
 
 **Checkpoint**: Intent-aware retrieval works and is guarded by CI
 
@@ -198,18 +198,18 @@ story, write the tests first and confirm they FAIL before implementing.
 
 ### Tests for User Story 4 ⚠️
 
-- [ ] T091 [P] [US4] Unit tests for `CircuitBreakerGenerator` states (closed/open/half-open) in `FastApi/tests/unit/adapters/test_circuit_breaker_generator.py`
-- [ ] T092 [P] [US4] Unit tests for `AnswerBuilder` (text, sources, confidence, snippets) in `FastApi/tests/unit/application/test_answer_builder.py`
-- [ ] T093 [P] [US4] Integration test fallback when LLM is down in `FastApi/tests/integration/test_llm_fallback.py`
+- [X] T091 [P] [US4] Unit tests for `CircuitBreakerGenerator` states (closed/open/half-open) in `FastApi/tests/unit/adapters/test_circuit_breaker_generator.py`
+- [X] T092 [P] [US4] Unit tests for `AnswerBuilder` (text, sources, confidence, snippets) in `FastApi/tests/unit/application/test_answer_builder.py`
+- [X] T093 [P] [US4] Integration test fallback when LLM is down in `FastApi/tests/integration/test_llm_fallback.py`
 
 ### Implementation for User Story 4
 
-- [ ] T094 [P] [US4] Implement `AnswerBuilder` in `FastApi/app/application/services/answer_builder.py`
-- [ ] T095 [P] [US4] Implement `SnippetAnswerGenerator` (retrieval-only) in `FastApi/app/adapters/outbound/answer/snippet_answer_generator.py`
-- [ ] T096 [P] [US4] Implement `OllamaAnswerGenerator` with RAG prompt template and timeouts in `FastApi/app/adapters/outbound/answer/ollama_answer_generator.py`
-- [ ] T097 [US4] Implement `CircuitBreakerGenerator` decorator with fallback in `FastApi/app/adapters/outbound/answer/circuit_breaker_generator.py`
-- [ ] T098 [US4] Wire generators in the composition root and add LLM settings in `FastApi/app/main.py` and `FastApi/app/config.py`
-- [ ] T099 [P] [US4] Add `AnswerDelivered` domain event and in-process event bus in `FastApi/app/application/events.py`
+- [X] T094 [P] [US4] Implement `AnswerBuilder` in `FastApi/app/application/services/answer_builder.py`
+- [X] T095 [P] [US4] Implement `SnippetAnswerGenerator` (retrieval-only) in `FastApi/app/adapters/outbound/answer/snippet_answer_generator.py`
+- [X] T096 [P] [US4] Implement `OllamaAnswerGenerator` with RAG prompt template and timeouts in `FastApi/app/adapters/outbound/answer/ollama_answer_generator.py`
+- [X] T097 [US4] Implement `CircuitBreakerGenerator` decorator with fallback in `FastApi/app/adapters/outbound/answer/circuit_breaker_generator.py`
+- [X] T098 [US4] Wire generators in the composition root and add LLM settings in `FastApi/app/main.py` and `FastApi/app/config.py`
+- [X] T099 [P] [US4] Add `AnswerDelivered` domain event and in-process event bus in `FastApi/app/application/events.py`
 
 **Checkpoint**: Answers are generated with graceful degradation
 

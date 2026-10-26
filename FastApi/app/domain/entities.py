@@ -68,6 +68,8 @@ class Answer:
 
     text: str
     sources: tuple[Source, ...]
+    confidence: float | None = None  # retrieval-based, in [0, 1]
+    snippets: tuple[str, ...] = ()  # the retrieved passages the answer rests on
 
     def __post_init__(self) -> None:
         if not self.text.strip():
